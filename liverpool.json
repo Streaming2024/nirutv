@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "Liverpool VS Man United",
+    "date": "19 Oct 2025",
+    "time": "09:45 PM NST",
+    "stadium": "Anfield",
+    "league": "Premier League",
+    "round": "Round 8",
+    "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6275/live/b48f5aa0-a9d4-11f0-aa13-0b0479f6f42a.png",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "UAE",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+    "name": "japan", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:Liverpool VS Man United", 
+      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
+    },
+    {
+      "name": "Best Link 2:Liverpool VS Man United", 
+      "url": "https://nirutv.online/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Liverpool VS Man United", 
+      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+    },
+    {
+      "name": "HD Link 1:Liverpool VS Man United", 
+      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=414317"
+    },
+   {
+      "name": "HD Link 2:Liverpool VS Man United", 
+      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/socohd?id=9912060"
+    },
+
+    {
+      "name": "HD Link 3:Liverpool VS Man United", 
+      "url": "https://nirutv.online/VIP/ads.html"
+   
+    }
+  ]
+}

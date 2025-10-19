@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:India vs Australia", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://yonotv.pages.dev/?id=IND2"
+      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/?id=IND2"
     },
     {
       "name": "Best Link 2:India vs Australia", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:India vs Australia", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/?id=IND"
+      "url": "https://yonotv.pages.dev/page2?src=https://yonotv.pages.dev/?id=IND"
     },
     {
       "name": "HD Link 1:India vs Australia", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/wtv"
+      "url": "https://yonotv.pages.dev/page2?src=https://nirutv.online/wtv"
     },
    {
       "name": "HD Link 2:India vs Australia", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/TNT1"
+      "url": "https://yonotv.pages.dev/page2?src=https://nirutv.online/TNT1"
     },
 
     {
@@ -46,7 +46,7 @@
     },
    {
       "name": "Full HD 1:India vs Australia", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/links?id=india2"
+      "url": "https://yonotv.pages.dev/page2?src=https://yonotv.pages.dev/links?id=india2"
     },
 {
       "name": "Full HD 1:India vs Australia", 
@@ -55,7 +55,7 @@
     
     {
       "name": "Full HD 2:India vs Australia ",
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/links?id=india3"
+      "url": "https://yonotv.pages.dev/page2?src=https://yonotv.pages.dev/links?id=india3"
     }
   ]
 }

@@ -37,7 +37,7 @@ const streamMap = {
     url: "https://rumble-foxo.cdn.rumble.cloud/live/r31jzt5k/slot-125/ci5t-x7f0/playlist.m3u8",
     poster: "#"
   },
-    "WC": {
+    "WCC": {
     url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8",
     poster: "https://nirutv.online/logo/image.png"
   },

@@ -24,8 +24,8 @@ const streamMap = {
     poster: "https://nirutv.online/logo/image.png"
   
   },
-  "WC": {
-    url: "https://live-en.aisports.cc/moviebox/football001/playlist.m3u8",
+  "IND2": {
+    url: "https://live-en.aisports.cc/moviebox/device02/playlist.m3u8",
     poster: "https://imgeng.jagran.com/images/2025/09/30/article/image/complete-list-of-ICC-women-cricket-world-cup-winners--1759237177116.webp"
   },
   "WOMENS": {

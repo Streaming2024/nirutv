@@ -37,9 +37,9 @@ const streamMap = {
     url: "https://rumble-foxo.cdn.rumble.cloud/live/r31jzt5k/slot-125/ci5t-x7f0/playlist.m3u8",
     poster: "#"
   },
-    "ACC2": {
-    url: "https://rumble-foxo.cdn.rumble.cloud/live/v13wgnv6/slot-49/4m4k-4qjy/playlist.m3u8",
-    poster: "https://img.jagranjosh.com/images/2025/09/27/article/image/Untitled-design-(73)-1758966052512.webp"
+    "WC": {
+    url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8",
+    poster: "https://nirutv.online/logo/image.png"
   },
   "ACC": {
     url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8",

@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "Tottenham vs Aston Villa",
+    "date": "19 Oct 2025",
+    "time": "06:45 PM NST",
+    "stadium": "Tottenham Hotspur Stadium",
+    "league": "Premier League",
+    "round": "Round 8",
+    "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
+    "banner_image": "https://theanalyst.com/wp-content/uploads/2025/10/tottenham-v-aston-villa-preview.jpg",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "UAE",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+    "name": "japan", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
+    },
+    {
+      "name": "Best Link 2:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+    },
+    {
+      "name": "HD Link 1:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=414317"
+    },
+   {
+      "name": "HD Link 2:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/socohd?id=9912060"
+    },
+
+    {
+      "name": "HD Link 3:Tottenham vs Aston Villa", 
+      "url": "https://nirutv.online/VIP/ads.html"
+   
+    }
+  ]
+}

@@ -6,7 +6,7 @@
     "stadium": "Hagley Oval",
     "league": "ODI Series",
     "round": "First match",
-    "broadcaster": "ICC TV, Fancode ,WillowTV",
+    "broadcaster": "Fancode ,WillowTV",
     "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
     "lineup_published": false
   },
@@ -21,28 +21,28 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/fc"
+      "url": "https://dns-tv.pages.dev/Player/pageads.html?src=https://dns-tv.pages.dev/fc"
     },
     {
       "name": "Best Link 2:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
       "name": "Best Link 3:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/plyrr?url=https://cdn-bunny.styxsports.live/LiveApp/streams/s60pMVtEyH73a8Im22027794991194.m3u8"
+      "url": "https://dns-tv.pages.dev/Player/pageads.html?src=https://dns-tv.pages.dev/Player/plyrr?url=https://cdn-bunny.styxsports.live/LiveApp/streams/s60pMVtEyH73a8Im22027794991194.m3u8"
     },
     {
       "name": "HD Link 1:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137700"
+      "url": "https://dns-tv.pages.dev/Player/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137700"
     },
    {
       "name": "HD Link 2:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://me.webcric.com/frame8.htm"
+      "url": "https://dns-tv.pages.dev/Player/page2ads.html?src=https://me.webcric.com/frame8.htm"
     },
 
     {
       "name": "HD Link 3:Bangladesh vs West Indies", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

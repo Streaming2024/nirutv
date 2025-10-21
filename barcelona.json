@@ -1,6 +1,6 @@
 {
   "match": {
-    "title": "Barcelona vs Girona",
+    "title": "Barcelona vs Olympiakos",
     "date": "18 Oct 2025",
     "time": "08:00 PM NST",
     "stadium": "Estadi Olímpic Lluís",
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Barcelona vs Girona", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch6.php"
+      "name": "Best Link 1:Barcelona vs Olympiakos", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "Best Link 2:Barcelona vs Girona", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:Barcelona vs Olympiakos", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Barcelona vs Girona", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+      "name": "Best Link 3:Barcelona vs Olympiakos", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
-      "name": "HD Link 1:Barcelona vs Girona", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=414317"
+      "name": "HD Link 1:Barcelona vs Olympiakos", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
    {
-      "name": "HD Link 2:Barcelona vs Girona", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=380460"
+      "name": "HD Link 2:Barcelona vs Olympiakos", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
     },
 
     {
-      "name": "HD Link 3:Barcelona vs Girona", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:Barcelona vs Olympiakos", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

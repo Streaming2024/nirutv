@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "PSG vs Strasbourg",
-    "date": "18 Oct 2025",
+    "title": "PSG vs Bayer",
+    "date": "22 Oct 2025",
     "time": "12:30 AM NST",
     "stadium": "Parc des Princes",
-    "league": "Ligue 1",
+    "league": "UEFA Champions League",
       "round": "",
     "broadcaster": "Amazon Prime, fuboTV,Canal+",
-    "banner_image": "https://cdn.ratingbet.com/ratingbet/20251015/08bb56f8dd783675d7e879b3e2133db9c137df21fe530db3ebb4c22cacef42be-800-500.webp",
+    "banner_image": "https://res.cloudinary.com/dq4uxsxpv/image/upload/v1760839732/prediction-assets/prediction-bayer-leverkusen-vs-psg-uefa-champions-league-en.webp",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=400722"
+      "name": "Best Link 1:PSG vs Bayer", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch5.php"
     },
     {
-      "name": "Best Link 2:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:PSG vs Bayer", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://embedsports.top/embed/admin/ppv-psg-vs-strasbourg/1"
+      "name": "Best Link 3:PSG vs Bayer", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
     },
     {
-      "name": "HD Link 1:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=291277"
+      "name": "HD Link 1:PSG vs Bayer", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
    {
-      "name": "HD Link 2:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=387694"
+      "name": "HD Link 2:PSG vs Bayer", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
 
     {
-      "name": "HD Link 3:PSG vs Strasbourg", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:PSG vs Bayer", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }
   ]

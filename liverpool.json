@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Liverpool VS Man United",
-    "date": "19 Oct 2025",
-    "time": "09:45 PM NST",
-    "stadium": "Anfield",
-    "league": "Premier League",
+    "title": "Liverpool vs Frankfurt ",
+    "date": "23 Oct 2025",
+    "time": "12:45 AMN NST",
+    "stadium": "Coliseum",
+    "league": "UEFA Champions League",
     "round": "Round 8",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/6275/live/b48f5aa0-a9d4-11f0-aa13-0b0479f6f42a.png",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/06f8/live/837f5e90-adaf-11f0-aa13-0b0479f6f42a.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Liverpool VS Man United", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/plyrr?url=https://live-en.aisports.cc/moviebox/football001/playlist.m3u8"
+      "name": "Best Link 1:Liverpool vs Frankfurt ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=291277"
     },
     {
-      "name": "Best Link 2:Liverpool VS Man United", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:Liverpool vs Frankfurt ", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Liverpool VS Man United", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+      "name": "Best Link 3:Liverpool vs Frankfurt ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Liverpool VS Man United", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=414317"
+      "name": "HD Link 1:Liverpool vs Frankfurt ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=283501"
     },
    {
-      "name": "HD Link 2:Liverpool VS Man United", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "HD Link 2:Liverpool vs Frankfurt ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=534219"
     },
 
     {
-      "name": "HD Link 3:Liverpool VS Man United", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:Liverpool vs Frankfurt ", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

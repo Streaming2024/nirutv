@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Real Madrid vs Getafe",
-    "date": "20 Oct 2025",
+    "title": "Real Madrid vs Juventus",
+    "date": "23 Oct 2025",
     "time": "12:45 AMN NST",
     "stadium": "Coliseum",
-    "league": "La Liga",
+    "league": "UEFA Champions League",
     "round": "Round 8",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://e01-phantom-marca.uecdn.es/874be7b83c8b196e8c93c67548e314a9/resize/1200/assets/multimedia/imagenes/2022/10/08/16652491189557.jpg",
+    "banner_image": "https://www.juventus.com/images/image/private/t_editorial_landscape_12_desktop/dev/lw9cjnt8bgmej6ominan.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch6.php"
+      "name": "Best Link 1:Real Madrid vs Juventus", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
-      "name": "Best Link 2:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:Real Madrid vs Juventus", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+      "name": "Best Link 3:Real Madrid vs Juventus", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch5.php"
     },
     {
-      "name": "HD Link 1:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=414317"
+      "name": "HD Link 1:Real Madrid vs Juventus", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
    {
-      "name": "HD Link 2:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=462413"
+      "name": "HD Link 2:Real Madrid vs Juventus", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
 
     {
-      "name": "HD Link 3:Real Madrid vs Getafe", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:Real Madrid vs Juventus", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

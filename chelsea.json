@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Chelsea vs Nottingham",
-    "date": "18 Oct 2025",
-    "time": "05:15 PM NST",
-    "stadium": "City Ground",
-    "league": "Premire Leagues",
+    "title": "Chelsea vs Ajax ",
+    "date": "23 Oct 2025",
+    "time": "12:45 AMN NST",
+    "stadium": "Coliseum",
+    "league": "UEFA Champions League",
     "round": "Round 8",
-    "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://i2-prod.football.london/incoming/article29147077.ece/ALTERNATES/s1200/0_Nottingham-Forest-vs-Chelsea.jpg",
+    "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
+    "banner_image": "https://www.juventus.com/images/image/private/t_editorial_landscape_12_desktop/dev/lw9cjnt8bgmej6ominan.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "Best Link 1:Chelsea vs Ajax ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
     {
-      "name": "Best Link 2:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:Chelsea vs Ajax ", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=327159"
+      "name": "Best Link 3:Chelsea vs Ajax ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
     },
     {
-      "name": "HD Link 1:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137700"
+      "name": "HD Link 1:Chelsea vs Ajax ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=321443"
     },
    {
-      "name": "HD Link 2:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://me.webcric.com/frame8.htm"
+      "name": "HD Link 2:Chelsea vs Ajax ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
     },
 
     {
-      "name": "HD Link 3:Chelsea vs Nottingham", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:Chelsea vs Ajax ", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

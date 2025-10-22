@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "Al-Nepal-W vs Iran-W",
+    "date": "24 Oct 2025",
+    "time": "06:15 PM NST",
+    "stadium": "Shillong, Meghalaya, India",
+    "league": "Women's International Friendlies",
+    "round": "First match",
+    "broadcaster": "FIFA+ , YoNoTV",
+    "banner_image": "https://i.ytimg.com/vi/Nb7HfBn79ck/sddefault.jpg",
+    "lineup_published":true
+  },
+  "team1": {
+    "name": "Nepal",
+    "lineup": "	Sabitra Bhandari (Captain), Sajani Thokar, Meena Deuba, Rashmi Kumari Ghising, Rekha Poudel, Purnima Rai, Sabita Rana Magar ,	Preeti Rai, Dipa Shahi, Hira Kumari Bhujel, Saraswati Hamal, Renuka Nagarkote, Saru Limbu, Manmaya Damai, Tulsa Bohara,Amrita Jaishi, Bimala B.K., Nisha Thokar, Samikshya Ghimire, Puja Rana,	Anjila Tumbapo Subba, Anjana Rana Magar, Usha Nath"
+  },
+  "team2": {
+    "name": "Iran", 
+    "lineup": "	Afsaneh Chatrenoor, Sara Ghomi, Negin Zandi, Hajar Dabbaghi,	Zahra Sarbali, Sara Zohrabi, Samaneh Chahkandi, Yasaman Farmani, Elham Farahmand, Zahra Masoumi, Fatemeh Adeli, Marzieh Nikkhah, Sana Sadeghi,	Hadieh Kor, Melika Motevalli, Ghazaelh Banitalebi, Behnaz Taherkhani, Zohreh Jalali, Fatemeh Amineh, Melika Mohammadi,	Zohreh Koudaei, Maryam Yektaei, Arefeh Seyedkazemi"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:Al-Nepal-W vs Iran-W", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=136132"
+    },
+    {
+      "name": "Best Link 2:Al-Nepal-W vs Iran-W", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Al-Nepal-W vs Iran-W", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=494201"
+    },
+    {
+      "name": "HD Link 1:Al-Nepal-W vs Iran-W", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=239275"
+    },
+   {
+      "name": "HD Link 2:Al-Nepal-W vs Iran-W", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+    },
+
+    {
+      "name": "HD Link 3:Al-Nepal-W vs Iran-W", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+   
+    }
+  ]
+}

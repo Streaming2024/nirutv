@@ -11,12 +11,12 @@
     "lineup_published": false
   },
   "team1": {
-    "name": "Nepal",
-    "lineup": "Sabitra Bhandari (Captain), Sajani Thokar, Meena Deuba, Rashmi Kumari Ghising, Rekha Poudel, Purnima Rai, Sabita Rana Magar ,	Preeti Rai, Dipa Shahi, Hira Kumari Bhujel, Saraswati Hamal, Renuka Nagarkote, Saru Limbu, Manmaya Damai, Tulsa Bohara,Amrita Jaishi, Bimala B.K., Nisha Thokar, Samikshya Ghimire, Puja Rana,	Anjila Tumbapo Subba, Anjana Rana Magar, Usha Nath"
+    "name": "Nepal-W",
+    "lineup": "Anjila, Anjana, Usha, Amrita, Bimala, Gita, Nisha, Puja, Samikshya, Manmaya, Pratikshya, Sabina, Renuka, Preeti, Saru, Saraswati, Hima, Tulsa, Anita, Sabita, Sushma, Sabitra, Rekha, Rashmi, Chandra, Mina, Mamata, and Purnima. "
   },
   "team2": {
-    "name": "Iran", 
-    "lineup": "Afsaneh Chatrenoor,Sara Ghomi,Negin Zandi,Hajar Dabbaghi,Zahra Sarbali, Sara Zohrabi, Samaneh Chahkandi, Yasaman Farmani, Elham Farahmand, Zahra Masoumi, Fatemeh Adeli, Marzieh Nikkhah, Sana Sadeghi,	Hadieh Kor, Melika Motevalli, Ghazaelh Banitalebi, Behnaz Taherkhani, Zohreh Jalali, Fatemeh Amineh, Melika Mohammadi,	Zohreh Koudaei, Maryam Yektaei, Arefeh Seyedkazemi"
+    "name": "Iran-W", 
+    "lineup": "Zohreh, Maryam, Arefeh, Hadieh, Melika, Ghazaelh, Behnaz, Zohreh, Fatemeh, Melika, Zahra, Sara, Samaneh, Yasaman, Elham, Zahra, Fatemeh, Marzieh, Sana, Afsaneh, Sara, Negin"
   },
   "telecast_links": [
     {

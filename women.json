@@ -8,15 +8,15 @@
     "round": "First match",
     "broadcaster": "FIFA+ , YoNoTV",
     "banner_image": "https://i.ytimg.com/vi/Nb7HfBn79ck/sddefault.jpg",
-    "lineup_published":true
+    "lineup_published": false
   },
   "team1": {
     "name": "Nepal",
-    "lineup": "	Sabitra Bhandari (Captain), Sajani Thokar, Meena Deuba, Rashmi Kumari Ghising, Rekha Poudel, Purnima Rai, Sabita Rana Magar ,	Preeti Rai, Dipa Shahi, Hira Kumari Bhujel, Saraswati Hamal, Renuka Nagarkote, Saru Limbu, Manmaya Damai, Tulsa Bohara,Amrita Jaishi, Bimala B.K., Nisha Thokar, Samikshya Ghimire, Puja Rana,	Anjila Tumbapo Subba, Anjana Rana Magar, Usha Nath"
+    "lineup": "Sabitra Bhandari (Captain), Sajani Thokar, Meena Deuba, Rashmi Kumari Ghising, Rekha Poudel, Purnima Rai, Sabita Rana Magar ,	Preeti Rai, Dipa Shahi, Hira Kumari Bhujel, Saraswati Hamal, Renuka Nagarkote, Saru Limbu, Manmaya Damai, Tulsa Bohara,Amrita Jaishi, Bimala B.K., Nisha Thokar, Samikshya Ghimire, Puja Rana,	Anjila Tumbapo Subba, Anjana Rana Magar, Usha Nath"
   },
   "team2": {
     "name": "Iran", 
-    "lineup": "	Afsaneh Chatrenoor, Sara Ghomi, Negin Zandi, Hajar Dabbaghi,	Zahra Sarbali, Sara Zohrabi, Samaneh Chahkandi, Yasaman Farmani, Elham Farahmand, Zahra Masoumi, Fatemeh Adeli, Marzieh Nikkhah, Sana Sadeghi,	Hadieh Kor, Melika Motevalli, Ghazaelh Banitalebi, Behnaz Taherkhani, Zohreh Jalali, Fatemeh Amineh, Melika Mohammadi,	Zohreh Koudaei, Maryam Yektaei, Arefeh Seyedkazemi"
+    "lineup": "Afsaneh Chatrenoor,Sara Ghomi,Negin Zandi,Hajar Dabbaghi,Zahra Sarbali, Sara Zohrabi, Samaneh Chahkandi, Yasaman Farmani, Elham Farahmand, Zahra Masoumi, Fatemeh Adeli, Marzieh Nikkhah, Sana Sadeghi,	Hadieh Kor, Melika Motevalli, Ghazaelh Banitalebi, Behnaz Taherkhani, Zohreh Jalali, Fatemeh Amineh, Melika Mohammadi,	Zohreh Koudaei, Maryam Yektaei, Arefeh Seyedkazemi"
   },
   "telecast_links": [
     {

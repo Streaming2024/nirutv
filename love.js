@@ -2,21 +2,21 @@
 const streamMap = {
  "MAX": {
     url: "https://webott.viatv.com.np/v0t1/KntCineplexTv.stream/playlist.m3u8",
-    poster: "https://nirutv.online/logo/image.png"
+    poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
    "MAX2": {
     url: "https://ktvhdsg.ekantipur.com:8443/ktvmax2025/match1/playlist.m3u8",
-    poster: "https://nirutv.online/logo/image.png"
+    poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
   
   
   "NP": {
     url: "https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-93/18r9-y3ys/playlist.m3u8",
-    poster: "https://nirutv.online/logo/image.png"
+    poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
   "NP2": {
     url: "https://rumble-foxo.cdn.rumble.cloud/live/d5a20b4d/slot-93/18r9-y3ys/playlist.m3u8",
-    poster: "https://nirutv.online/logo/image.png"
+    poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
   
   "IND": {

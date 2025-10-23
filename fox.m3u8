@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:BANDWIDTH=9000000,RESOLUTION=1920x1080
+https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-141/u49a-lu5c/playlist.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=4500000,RESOLUTION=1920x1080
+https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-141/u49a-lu5c_1080p/playlist.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2800000,RESOLUTION=1280x720
+https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-141/u49a-lu5c_720p/playlist.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1200000,RESOLUTION=640x360
+https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-141/u49a-lu5c_360p/playlist.m3u8

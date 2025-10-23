@@ -11,7 +11,7 @@ const streamMap = {
   
   
   "NP": {
-    url: "https://hugh.cdn.rumble.cloud/live/d5a20b4d/slot-93/18r9-y3ys/playlist.m3u8",
+    url: "https://hugh.cdn.rumble.cloud/live/41ac4fe/slot-28/7n1k-6s3d/playlist.m3u8",
     poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
   "NP2": {

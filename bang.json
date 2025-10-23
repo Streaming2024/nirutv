@@ -1,11 +1,11 @@
 {
   "match": {
     "title": "Bangladesh vs West Indies",
-    "date": "18 Oct 2025",
-    "time": "12:15 PM NST",
+    "date": "23 Oct 2025",
+    "time": "01:15 PM NST",
     "stadium": "Hagley Oval",
     "league": "ODI Series",
-    "round": "First match",
+    "round": "2nd match",
     "broadcaster": "Fancode ,WillowTV",
     "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
     "lineup_published": false
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137701"
+      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137702"
     },
     {
       "name": "Best Link 2:Bangladesh vs West Indies", 

@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev"
+      "url": "https://yonotv.pages.dev/page.html?src=https://yonotv.pages.dev/?id=NP"
     },
     {
       "name": "Best Link 2:Nepal-W vs Iran-W", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=494201"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nep"
     },
     {
       "name": "HD Link 1:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=239275"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/?id=NP2"
     },
    {
       "name": "HD Link 2:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/?id=NP"
     },
 
     {

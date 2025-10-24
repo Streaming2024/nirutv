@@ -12,7 +12,7 @@ const streamMap = {
   
   "NP": {
     url: "https://hugh.cdn.rumble.cloud/live/gi29le7p/slot-39/knne-tgf8/playlist.m3u8",
-    poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
+    poster: "https://i.postimg.cc/x1XsRf68/NEPAL-VS-IRAN-FOOTBALL-WOMENS.png"
   },
   "NP2": {
     url: "https://rumble-foxo.cdn.rumble.cloud/live/d5a20b4d/slot-93/18r9-y3ys/playlist.m3u8",

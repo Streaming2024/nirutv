@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Liverpool vs Frankfurt ",
-    "date": "23 Oct 2025",
-    "time": "12:45 AMN NST",
-    "stadium": "Coliseum",
-    "league": "UEFA Champions League",
-    "round": "Round 8",
+    "title": "Liverpool vs Brentford",
+    "date": "26 Oct 2025",
+    "time": "12:45 AM NST",
+    "stadium": "Gtech Community Stadium",
+    "league": "Premier League",
+    "round": "Round 9",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/06f8/live/837f5e90-adaf-11f0-aa13-0b0479f6f42a.png",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/4b7b/live/1ea2d370-af4f-11f0-b2a1-6f537f66f9aa.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Liverpool vs Frankfurt ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=291277"
-    },
-    {
-      "name": "Best Link 2:Liverpool vs Frankfurt ", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
-    },
-    {
-      "name": "Best Link 3:Liverpool vs Frankfurt ", 
+      "name": "Best Link 1:Liverpool vs Brentford", 
       "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Liverpool vs Frankfurt ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=283501"
+      "name": "Best Link 2:Liverpool vs Brentford", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Liverpool vs Brentford", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
+    },
+    {
+      "name": "HD Link 1:Liverpool vs Brentford", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
     },
    {
-      "name": "HD Link 2:Liverpool vs Frankfurt ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=534219"
+      "name": "HD Link 2:Liverpool vs Brentford", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912105"
     },
 
     {
-      "name": "HD Link 3:Liverpool vs Frankfurt ", 
+      "name": "HD Link 3:Liverpool vs Brentford", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

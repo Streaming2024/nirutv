@@ -1,10 +1,10 @@
 {
   "match": {
     "title": "New Zealand vs England",
-    "date": "17 Oct 2025",
-    "time": "12:00 PM NST",
+    "date": "26 Oct 2025",
+    "time": "06:45 AM NST",
     "stadium": "Hagley Oval",
-    "league": "T20I Series",
+    "league": "ODI Series",
     "round": "First match",
     "broadcaster": "ICC TV, Fancode ,WillowTV",
     "banner_image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000009885/1759596746115336_NZvsENG_PROMO_landscape_thumb.jpg",
@@ -25,37 +25,37 @@
     },
     {
       "name": "Best Link 2:New Zealand vs England", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
       "name": "Best Link 3:New Zealand vs England", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/TNT1"
+      "url": "https://dns-tv.pages.dev/TNT1"
     },
     {
       "name": "HD Link 1:New Zealand vs England", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/links?id=icc2"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc2"
     },
    {
       "name": "HD Link 2:New Zealand vs England", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/links?id=eng3"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=eng3"
     },
 
     {
       "name": "HD Link 3:New Zealand vs England", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
    {
       "name": "Full HD 1:New Zealand vs England", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/?id=MAX"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/?id=MAX"
     },
 {
       "name": "Full HD 1:New Zealand vs England", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     
     {
       "name": "Full HD 2:New Zealand vs England ",
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/links?id=icc3"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc3"
     }
   ]
 }

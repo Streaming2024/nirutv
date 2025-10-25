@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Al-Nassr vs FC Goa",
-    "date": "22 Oct 2025",
-    "time": "07:15 PM NST",
-    "stadium": "Al -Awwal Park",
+    "title": "Al-Nassr vs Al-Hazem",
+    "date": "25 Oct 2025",
+    "time": "11:45 PM NST",
+    "stadium": "Buraidah city",
     "league": "Saudi Pro League",
-    "round": "Round 8",
+    "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK",
-    "banner_image": "https://images.news18.com/ibnlive/uploads/2025/10/FC-GOA-VS-AL-NASSR-2025-10-c640e12c641c5e91a2f8346fb6cee551.jpg",
+    "banner_image": "https://riyadhticketsmap.com/wp-content/uploads/2025/09/Al-Nassr-vs-Al-Hazem.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Al-Nassr vs FC Goa", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=136132"
+      "name": "Best Link 1:Al-Nassr vs Al-Hazem", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=136610"
     },
     {
-      "name": "Best Link 2:Al-Nassr vs FC Goa", 
+      "name": "Best Link 2:Al-Nassr vs Al-Hazem", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Al-Nassr vs FC Goa", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=494201"
+      "name": "Best Link 3:Al-Nassr vs Al-Hazem", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=485739"
     },
     {
-      "name": "HD Link 1:Al-Nassr vs FC Goa", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=239275"
+      "name": "HD Link 1:Al-Nassr vs Al-Hazem", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
     },
    {
-      "name": "HD Link 2:Al-Nassr vs FC Goa", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+      "name": "HD Link 2:Al-Nassr vs Al-Hazem", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=532999"
     },
 
     {
-      "name": "HD Link 3:Al-Nassr vs FC Goa", 
+      "name": "HD Link 3:Al-Nassr vs Al-Hazem", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

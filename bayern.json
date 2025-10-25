@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Bayern vs Dortmund",
-    "date": "18 Oct 2025",
-    "time": "10:15 PM NST",
-    "stadium": "Allianz Arena",
+    "title": "Bayern vs Borussia",
+    "date": "25 Oct 2025",
+    "time": "06:15 PM NST",
+    "stadium": "Craven Cottage",
     "league": "Bundesliga",
     "round": "Round 8",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://cdn.ratingbet.com/ratingbet/20251016/f7b82357eb5a58337380173e458da78aa19b52d8ee347873eea9ada8a311c65c-800-500.webp",
+    "banner_image": "https://images2.minutemediacdn.com/image/upload/c_crop,w_1919,h_1079,x_0,y_0/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/90min_en_international_web/01h95fzqf5xyq1yz4v86.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://streamcenter.pro/embed/ch8.php"
+      "name": "Best Link 1:Bayern vs Borussia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch4.php"
     },
     {
-      "name": "Best Link 2:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "Best Link 2:Bayern vs Borussia", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/Player/soco?id=484845"
+      "name": "Best Link 3:Bayern vs Borussia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
     {
-      "name": "HD Link 1:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=494201"
+      "name": "HD Link 1:Bayern vs Borussia", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
     },
    {
-      "name": "HD Link 2:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/Player/soco?id=494201"
+      "name": "HD Link 2:Bayern vs Borussia", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=400722"
     },
 
     {
-      "name": "HD Link 3:Bayern vs Dortmund", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 3:Bayern vs Borussia", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }
   ]

@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "Man United vs Brighton",
+    "date": "25 Oct 2025",
+    "time": "10:15 PM NST",
+    "stadium": "Old Trafford",
+    "league": "Premier League",
+    "round": "Round 9",
+    "broadcaster": "beIN Sports,Sky Go UK,NBC",
+    "banner_image": "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/4065/production/_131058461_e2a327bb-fff5-4c5a-ac8c-37e7c41cca5d.jpg",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "UAE",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+    "name": "japan", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:Man United vs Brighton", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch3.php"
+    },
+    {
+      "name": "Best Link 2:Man United vs Brighton", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Man United vs Brighton", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+    },
+    {
+      "name": "HD Link 1:Man United vs Brighton", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912108"
+    },
+   {
+      "name": "HD Link 2:Man United vs Brighton", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
+    },
+
+    {
+      "name": "HD Link 3:Man United vs Brighton", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+   
+    }
+  ]
+}

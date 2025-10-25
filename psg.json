@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "PSG vs Bayer",
-    "date": "22 Oct 2025",
-    "time": "12:30 AM NST",
-    "stadium": "Parc des Princes",
-    "league": "UEFA Champions League",
-      "round": "",
+    "title": "PSG vs Brestois ",
+    "date": "25 Oct 2025",
+    "time": "08:45 PM NST",
+    "stadium": "Stade Francis-Le Blé",
+    "league": "Ligue 1",
+      "round": "round 8",
     "broadcaster": "Amazon Prime, fuboTV,Canal+",
-    "banner_image": "https://res.cloudinary.com/dq4uxsxpv/image/upload/v1760839732/prediction-assets/prediction-bayer-leverkusen-vs-psg-uefa-champions-league-en.webp",
+    "banner_image": "https://icdn.psgtalk.com/wp-content/uploads/2024/09/PSG-vs-Brest-preview-Ligue-1-2024-1536x877.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Bayer", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch5.php"
+      "name": "Best Link 1:PSG vs Brestois ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch7.php"
     },
     {
-      "name": "Best Link 2:PSG vs Bayer", 
+      "name": "Best Link 2:PSG vs Brestois ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Bayer", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
+      "name": "Best Link 3:PSG vs Brestois ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=321443"
     },
     {
-      "name": "HD Link 1:PSG vs Bayer", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "HD Link 1:PSG vs Brestois ", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=527384"
     },
    {
-      "name": "HD Link 2:PSG vs Bayer", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
+      "name": "HD Link 2:PSG vs Brestois ", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912008"
     },
 
     {
-      "name": "HD Link 3:PSG vs Bayer", 
+      "name": "HD Link 3:PSG vs Brestois ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

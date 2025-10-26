@@ -7,7 +7,7 @@
     "league": "Women's International Friendlies",
     "round": "First match",
     "broadcaster": "FIFA+ , YoNoTV",
-    "banner_image": "https://i.postimg.cc/x1XsRf68/NEPAL-VS-IRAN-FOOTBALL-WOMENS.png",
+    "banner_image": "https://images.fancode.com/skillup-uploads/cms-media/India-vs-nepal-old.jpg",
     "lineup_published":true
   },
   "team1": {
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=kick"
+      "url": "https://yonotv.pages.dev/page.html?src=https://yonotv.pages.dev/links?id=women2"
     },
     {
       "name": "HD Link 1:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nepal2"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=women3"
     },
    {
       "name": "HD Link 2:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nepal"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=women"
     },
 
     {

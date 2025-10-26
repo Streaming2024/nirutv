@@ -1,6 +1,6 @@
 {
   "match": {
-    "title": "Nepal-W vs Iran-W",
+    "title": "Nepal-W vs India-W",
     "date": "24 Oct 2025",
     "time": "06:15 PM NST",
     "stadium": "Jawaharlal Nehru Stadium,India",
@@ -15,33 +15,33 @@
     "lineup": "Anjila, Anjana, Usha, Amrita, Bimala, Gita, Nisha, Puja, Samikshya, Manmaya, Pratikshya, Sabina, Renuka, Preeti, Saru, Saraswati, Hima, Tulsa, Anita, Sabita, Sushma, Sabitra, Rekha, Rashmi, Chandra, Mina, Mamata, and Purnima. "
   },
   "team2": {
-    "name": "Iran-W", 
+    "name": "India-W", 
     "lineup": "Zohreh, Maryam, Arefeh, Hadieh, Melika, Ghazaelh, Behnaz, Zohreh, Fatemeh, Melika, Zahra, Sara, Samaneh, Yasaman, Elham, Zahra, Fatemeh, Marzieh, Sana, Afsaneh, Sara, Negin"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://www.youtube.com/embed/MrZIvReW9pQ"
+      "name": "Best Link 1:Nepal-W vs India-W", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://yonotv.pages.dev/links?id=nepal"
     },
     {
-      "name": "Best Link 2:Nepal-W vs Iran-W", 
+      "name": "Best Link 2:Nepal-W vs India-W", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nep"
+      "name": "Best Link 3:Nepal-W vs India-W", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=kick"
     },
     {
-      "name": "HD Link 1:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/?id=NP"
+      "name": "HD Link 1:Nepal-W vs India-W", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nepal2"
     },
    {
-      "name": "HD Link 2:Nepal-W vs Iran-W", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nep"
+      "name": "HD Link 2:Nepal-W vs India-W", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=nepal"
     },
 
     {
-      "name": "HD Link 3:Nepal-W vs Iran-W", 
+      "name": "HD Link 3:Nepal-W vs India-W", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

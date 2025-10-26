@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protected Video Player</title>
+    <title>ASports HD Stream</title>
     <style>
         * {
             margin: 0;
@@ -13,322 +13,303 @@
         }
         
         body {
-            background: #000;
-            color: white;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             padding: 20px;
+            color: white;
         }
         
-        .video-container {
-            width: 100%;
+        .container {
             max-width: 1200px;
-            position: relative;
+            width: 100%;
+            margin: 0 auto;
         }
         
-        /* 16:9 Aspect Ratio */
-        .video-wrapper {
-            position: relative;
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .player-container {
             background: #000;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
         }
         
-        #videoPlayer {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .player {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-        }
-        
-        .player-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: #111;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+        }
+        
+        .player-message {
             text-align: center;
-            padding: 2rem;
-            z-index: 100;
-            border-radius: 10px;
-        }
-        
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: #ff4757;
-        }
-        
-        .error-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #ff4757;
-        }
-        
-        .error-message {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            max-width: 600px;
-            line-height: 1.6;
+            padding: 20px;
+            font-size: 1.1rem;
+            color: #ccc;
         }
         
         .controls {
             display: flex;
-            gap: 1rem;
-        }
-        
-        button {
-            background: linear-gradient(to right, #3498db, #2ecc71);
-            border: none;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .ad-banner {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            z-index: 10;
-            font-size: 1rem;
-            animation: pulse 2s infinite;
-        }
-        
-        .loading {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
             justify-content: center;
-            align-items: center;
-            z-index: 50;
-            border-radius: 10px;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
         
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #3498db;
-            animation: spin 1s ease-in-out infinite;
+        .btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
         
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+        .btn-primary {
+            background: #e50914;
+            border-color: #e50914;
         }
         
-        /* Responsive adjustments */
+        .btn-primary:hover {
+            background: #f40612;
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+        }
+        
+        .info-section {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-section h2 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: #ffcc00;
+        }
+        
+        .info-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .security-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+        }
+        
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            display: none;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            width: 100%;
+        }
+        
         @media (max-width: 768px) {
-            .video-container {
-                padding: 10px;
+            h1 {
+                font-size: 2rem;
             }
             
-            .error-title {
-                font-size: 1.5rem;
+            .player-container {
+                border-radius: 8px;
             }
             
-            .error-message {
-                font-size: 1rem;
-            }
-            
-            button {
-                padding: 0.7rem 1.2rem;
+            .btn {
+                padding: 10px 20px;
                 font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <div class="video-wrapper">
-            <div id="loading" class="loading">
-                <div class="spinner"></div>
-            </div>
-            
-            <video id="videoPlayer" class="hidden" controls>
-                <source src="https://webott.viatv.com.np/v0t1/ASportsHd/playlist.m3u8" type="application/x-mpegURL">
-                Your browser does not support the video tag.
-            </video>
-            
-            <div id="playerOverlay" class="player-overlay hidden">
-                <div class="error-icon">🚫</div>
-                <h2 class="error-title">Sandbox Detected</h2>
-                <p class="error-message">This video cannot be played in a sandboxed iframe. Please remove the sandbox attribute from the iframe to view the content.</p>
-                <div class="controls">
-                    <button id="retryButton">Retry Playback</button>
+    <div class="container">
+        <header>
+            <h1>ASports HD Live Stream</h1>
+            <p class="tagline">Watch premium sports content in high definition</p>
+        </header>
+        
+        <div class="player-container">
+            <div class="player">
+                <div class="player-message">
+                    <h3>Secure Stream Player</h3>
+                    <p>Click the button below to start the protected stream</p>
+                    <div class="security-badge">Anti-Embed Protection Active</div>
                 </div>
             </div>
-            
-            <div id="adBanner" class="ad-banner hidden">
-                Advertisement: Support our content
-            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" id="playBtn">Start Stream</button>
+            <button class="btn" id="fullscreenBtn">Fullscreen</button>
+            <button class="btn" id="qualityBtn">HD Quality</button>
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            <strong>Security Alert:</strong> This content is protected and cannot be embedded on other websites.
+        </div>
+        
+        <div class="info-section">
+            <h2>About This Stream</h2>
+            <p>This is a premium sports streaming service providing high-quality live coverage of various sporting events. Our content is protected with advanced security measures to prevent unauthorized distribution.</p>
+            <p>For the best viewing experience, ensure you have a stable internet connection with sufficient bandwidth for HD streaming.</p>
+            <div class="security-badge">Protected Content - Do Not Redistribute</div>
         </div>
     </div>
+    
+    <footer>
+        <p>ASports HD Stream &copy; 2023 | All rights reserved</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const playerOverlay = document.getElementById('playerOverlay');
-            const retryButton = document.getElementById('retryButton');
-            const adBanner = document.getElementById('adBanner');
-            const loading = document.getElementById('loading');
+            const playBtn = document.getElementById('playBtn');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const qualityBtn = document.getElementById('qualityBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const playerContainer = document.querySelector('.player');
             
-            // Function to detect sandboxed iframe
-            function isSandboxed() {
-                try {
-                    // Try to access top location - will fail in sandboxed iframe without 'allow-top-navigation'
-                    if (window.self !== window.top) {
-                        // We're in an iframe
-                        try {
-                            // This will throw an error in sandboxed iframes without 'allow-same-origin'
-                            const test = window.top.location.href;
-                        } catch (e) {
-                            // If we can't access top location, we're likely sandboxed
-                            return true;
-                        }
+            // Anti-embed protection
+            function checkEmbedStatus() {
+                // Check if we're in an iframe
+                if (window.self !== window.top) {
+                    // Check for sandbox attributes
+                    try {
+                        // This will throw an error if sandbox restrictions are in place
+                        window.parent.document;
+                    } catch (e) {
+                        showError();
+                        return;
                     }
                     
-                    // Additional check for sandbox attributes
-                    const iframe = window.frameElement;
-                    if (iframe && iframe.hasAttribute('sandbox')) {
-                        return true;
+                    // Additional checks for common embedding scenarios
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get('embed') === 'true') {
+                        showError();
+                        return;
                     }
                     
-                    return false;
-                } catch (e) {
-                    // If any error occurs, assume we're sandboxed
-                    return true;
+                    // Check referrer to see if we're embedded on another domain
+                    if (document.referrer && document.referrer !== '' && 
+                        !document.referrer.includes(window.location.hostname)) {
+                        showError();
+                        return;
+                    }
                 }
+            }
+            
+            function showError() {
+                errorMessage.style.display = 'block';
+                playerContainer.innerHTML = `
+                    <div class="player-message">
+                        <h3>Embedding Restricted</h3>
+                        <p>This content cannot be embedded on external websites.</p>
+                        <p>Please visit the original website to access this stream.</p>
+                    </div>
+                `;
+                
+                // Disable all buttons
+                playBtn.disabled = true;
+                fullscreenBtn.disabled = true;
+                qualityBtn.disabled = true;
+                
+                // Change button styles to indicate disabled state
+                const buttons = document.querySelectorAll('.btn');
+                buttons.forEach(btn => {
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
             }
             
             // Initialize player
-            function initPlayer() {
-                // Hide loading screen
-                loading.classList.add('hidden');
+            playBtn.addEventListener('click', function() {
+                // In a real implementation, this would load the actual stream
+                playerContainer.innerHTML = `
+                    <div class="player-message">
+                        <h3>Stream Loading...</h3>
+                        <p>Connecting to ASports HD server</p>
+                        <div class="security-badge">Secure Connection Established</div>
+                    </div>
+                `;
                 
-                // Check if we're in a sandboxed iframe
-                if (isSandboxed()) {
-                    // Show error message and hide video
-                    videoPlayer.classList.add('hidden');
-                    playerOverlay.classList.remove('hidden');
-                    
-                    // Prevent video from playing
-                    videoPlayer.pause();
-                    videoPlayer.currentTime = 0;
-                } else {
-                    // Normal playback with ads
-                    videoPlayer.classList.remove('hidden');
-                    playerOverlay.classList.add('hidden');
-                    
-                    // Try to play the video
-                    videoPlayer.play().catch(e => {
-                        console.log("Autoplay prevented:", e);
-                    });
-                    
-                    // Show ad banner after 5 seconds
-                    setTimeout(() => {
-                        adBanner.classList.remove('hidden');
-                        
-                        // Hide ad banner after 10 seconds
-                        setTimeout(() => {
-                            adBanner.classList.add('hidden');
-                        }, 10000);
-                    }, 5000);
-                }
-            }
-            
-            // Wait a moment for the page to load completely
-            setTimeout(initPlayer, 1000);
-            
-            // Retry button functionality
-            retryButton.addEventListener('click', function() {
-                if (!isSandboxed()) {
-                    // If no longer sandboxed, play video
-                    videoPlayer.classList.remove('hidden');
-                    playerOverlay.classList.add('hidden');
-                    
-                    // Try to play the video
-                    videoPlayer.play().catch(e => {
-                        console.log("Autoplay prevented:", e);
-                    });
-                    
-                    // Show ad banner after 5 seconds
-                    setTimeout(() => {
-                        adBanner.classList.remove('hidden');
-                        
-                        // Hide ad banner after 10 seconds
-                        setTimeout(() => {
-                            adBanner.classList.add('hidden');
-                        }, 10000);
-                    }, 5000);
-                } else {
-                    // Still sandboxed, show alert
-                    alert('Sandbox restriction still active. Please remove the sandbox attribute from the iframe.');
-                }
+                // Simulate stream loading
+                setTimeout(() => {
+                    playerContainer.innerHTML = `
+                        <div class="player-message">
+                            <h3>Live Stream Playing</h3>
+                            <p>ASports HD - Live Sports Event</p>
+                            <div style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">
+                                Stream URL: https://webott.viatv.com.np/v0t1/ASportsHd/playlist.m3u8
+                            </div>
+                            <div class="security-badge" style="margin-top: 15px;">Protected Stream - Anti-Embed Active</div>
+                        </div>
+                    `;
+                }, 2000);
             });
             
-            // Additional protection: Check periodically
-            setInterval(function() {
-                if (isSandboxed() && !playerOverlay.classList.contains('hidden')) {
-                    // Still sandboxed, ensure video is paused
-                    videoPlayer.pause();
-                    videoPlayer.currentTime = 0;
-                }
-            }, 1000);
-            
-            // Handle video errors
-            videoPlayer.addEventListener('error', function() {
-                console.error('Video error:', videoPlayer.error);
+            fullscreenBtn.addEventListener('click', function() {
+                alert('Fullscreen mode would be activated in a real player implementation.');
             });
             
-            // Handle video loading
-            videoPlayer.addEventListener('loadstart', function() {
-                console.log('Video loading started');
+            qualityBtn.addEventListener('click', function() {
+                alert('Quality settings would be available in a real player implementation.');
             });
             
-            videoPlayer.addEventListener('canplay', function() {
-                console.log('Video can start playing');
-            });
+            // Run embed check on page load
+            checkEmbedStatus();
         });
     </script>
 </body>

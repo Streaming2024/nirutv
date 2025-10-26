@@ -5,7 +5,7 @@ const streamMap = {
     poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
    "MAX2": {
-    url: "https://ktvhdsg.ekantipur.com:8443/ktvmax2025/match1/playlist.m3u8",
+    url: "https://yono.b-cdn.net/hls/yono.m3u8",
     poster: "https://www.shutterstock.com/shutterstock/videos/3709338167/thumb/6.jpg"
   },
   

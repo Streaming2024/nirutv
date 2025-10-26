@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        #videoPlayer {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .player-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            z-index: 100;
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: #ff4757;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ff4757;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        button {
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .ad-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            z-index: 10;
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <video id="videoPlayer" controls>
+        <source src="https://webott.viatv.com.np/v0t1/ASportsHd/playlist.m3u8" type="application/x-mpegURL">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div id="playerOverlay" class="player-overlay hidden">
+        <div class="error-icon">🚫</div>
+        <h2 class="error-title">Sandbox Detected</h2>
+        <p class="error-message">This video cannot be played in a sandboxed iframe. Please remove the sandbox attribute from the iframe to view the content.</p>
+        <div class="controls">
+            <button id="retryButton">Retry Playback</button>
+        </div>
+    </div>
+    
+    <div id="adBanner" class="ad-banner hidden">
+        Advertisement: Support our content by viewing this ad
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const playerOverlay = document.getElementById('playerOverlay');
+            const retryButton = document.getElementById('retryButton');
+            const adBanner = document.getElementById('adBanner');
+            
+            // Function to detect sandboxed iframe
+            function isSandboxed() {
+                try {
+                    // Try to access top location - will fail in sandboxed iframe without 'allow-top-navigation'
+                    if (window.self !== window.top) {
+                        // We're in an iframe
+                        try {
+                            // This will throw an error in sandboxed iframes without 'allow-same-origin'
+                            const test = window.top.location.href;
+                        } catch (e) {
+                            // If we can't access top location, we're likely sandboxed
+                            return true;
+                        }
+                    }
+                    
+                    // Additional check for sandbox attributes
+                    const iframe = window.frameElement;
+                    if (iframe && iframe.hasAttribute('sandbox')) {
+                        return true;
+                    }
+                    
+                    return false;
+                } catch (e) {
+                    // If any error occurs, assume we're sandboxed
+                    return true;
+                }
+            }
+            
+            // Check if we're in a sandboxed iframe
+            if (isSandboxed()) {
+                // Show error message and hide video
+                videoPlayer.classList.add('hidden');
+                playerOverlay.classList.remove('hidden');
+                
+                // Prevent video from playing
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            } else {
+                // Normal playback with ads
+                videoPlayer.classList.remove('hidden');
+                playerOverlay.classList.add('hidden');
+                
+                // Show ad banner after 5 seconds
+                setTimeout(() => {
+                    adBanner.classList.remove('hidden');
+                    
+                    // Hide ad banner after 10 seconds
+                    setTimeout(() => {
+                        adBanner.classList.add('hidden');
+                    }, 10000);
+                }, 5000);
+            }
+            
+            // Retry button functionality
+            retryButton.addEventListener('click', function() {
+                if (!isSandboxed()) {
+                    // If no longer sandboxed, play video
+                    videoPlayer.classList.remove('hidden');
+                    playerOverlay.classList.add('hidden');
+                    videoPlayer.play();
+                    
+                    // Show ad banner after 5 seconds
+                    setTimeout(() => {
+                        adBanner.classList.remove('hidden');
+                        
+                        // Hide ad banner after 10 seconds
+                        setTimeout(() => {
+                            adBanner.classList.add('hidden');
+                        }, 10000);
+                    }, 5000);
+                } else {
+                    // Still sandboxed, show alert
+                    alert('Sandbox restriction still active. Please remove the sandbox attribute from the iframe.');
+                }
+            });
+            
+            // Additional protection: Check periodically
+            setInterval(function() {
+                if (isSandboxed() && !playerOverlay.classList.contains('hidden')) {
+                    // Still sandboxed, ensure video is paused
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

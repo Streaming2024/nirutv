@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Nepal vs USA ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal.m3u8"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal.m3u8"
     },
     {
       "name": "Best Link 2:Nepal vs USA ", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Nepal vs USA ", 
-      "url": "https://yonotv.pages.dev/links?id=icc"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=icc"
     },
     {
       "name": "HD Link 1:Nepal vs USA ", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal2.m3u8"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal2.m3u8"
     },
    {
       "name": "HD Link 2:Nepal vs USA ", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc2"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=icc2"
     },
 
     {
@@ -46,7 +46,7 @@
     },
    {
       "name": "Full HD 1:Nepal vs USA ", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal.m3u8"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/nepal.m3u8"
     },
 {
       "name": "Full HD 1:Nepal vs USA ", 
@@ -55,7 +55,7 @@
     
     {
       "name": "Full HD 2:Nepal vs USA  ",
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc3"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=icc3"
     }
   ]
 }

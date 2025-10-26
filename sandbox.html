@@ -17,6 +17,7 @@
             color: white;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
         
         #videoPlayer {
@@ -101,6 +102,32 @@
             animation: pulse 2s infinite;
         }
         
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         @keyframes pulse {
             0% { opacity: 0.7; }
             50% { opacity: 1; }
@@ -109,7 +136,11 @@
     </style>
 </head>
 <body>
-    <video id="videoPlayer" controls>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    
+    <video id="videoPlayer" class="hidden" controls>
         <source src="https://webott.viatv.com.np/v0t1/ASportsHd/playlist.m3u8" type="application/x-mpegURL">
         Your browser does not support the video tag.
     </video>
@@ -133,6 +164,7 @@
             const playerOverlay = document.getElementById('playerOverlay');
             const retryButton = document.getElementById('retryButton');
             const adBanner = document.getElementById('adBanner');
+            const loading = document.getElementById('loading');
             
             // Function to detect sandboxed iframe
             function isSandboxed() {
@@ -162,30 +194,44 @@
                 }
             }
             
-            // Check if we're in a sandboxed iframe
-            if (isSandboxed()) {
-                // Show error message and hide video
-                videoPlayer.classList.add('hidden');
-                playerOverlay.classList.remove('hidden');
+            // Initialize player
+            function initPlayer() {
+                // Hide loading screen
+                loading.classList.add('hidden');
                 
-                // Prevent video from playing
-                videoPlayer.pause();
-                videoPlayer.currentTime = 0;
-            } else {
-                // Normal playback with ads
-                videoPlayer.classList.remove('hidden');
-                playerOverlay.classList.add('hidden');
-                
-                // Show ad banner after 5 seconds
-                setTimeout(() => {
-                    adBanner.classList.remove('hidden');
+                // Check if we're in a sandboxed iframe
+                if (isSandboxed()) {
+                    // Show error message and hide video
+                    videoPlayer.classList.add('hidden');
+                    playerOverlay.classList.remove('hidden');
                     
-                    // Hide ad banner after 10 seconds
+                    // Prevent video from playing
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                } else {
+                    // Normal playback with ads
+                    videoPlayer.classList.remove('hidden');
+                    playerOverlay.classList.add('hidden');
+                    
+                    // Try to play the video
+                    videoPlayer.play().catch(e => {
+                        console.log("Autoplay prevented:", e);
+                    });
+                    
+                    // Show ad banner after 5 seconds
                     setTimeout(() => {
-                        adBanner.classList.add('hidden');
-                    }, 10000);
-                }, 5000);
+                        adBanner.classList.remove('hidden');
+                        
+                        // Hide ad banner after 10 seconds
+                        setTimeout(() => {
+                            adBanner.classList.add('hidden');
+                        }, 10000);
+                    }, 5000);
+                }
             }
+            
+            // Wait a moment for the page to load completely
+            setTimeout(initPlayer, 1000);
             
             // Retry button functionality
             retryButton.addEventListener('click', function() {
@@ -193,7 +239,11 @@
                     // If no longer sandboxed, play video
                     videoPlayer.classList.remove('hidden');
                     playerOverlay.classList.add('hidden');
-                    videoPlayer.play();
+                    
+                    // Try to play the video
+                    videoPlayer.play().catch(e => {
+                        console.log("Autoplay prevented:", e);
+                    });
                     
                     // Show ad banner after 5 seconds
                     setTimeout(() => {
@@ -218,6 +268,20 @@
                     videoPlayer.currentTime = 0;
                 }
             }, 1000);
+            
+            // Handle video errors
+            videoPlayer.addEventListener('error', function() {
+                console.error('Video error:', videoPlayer.error);
+            });
+            
+            // Handle video loading
+            videoPlayer.addEventListener('loadstart', function() {
+                console.log('Video loading started');
+            });
+            
+            videoPlayer.addEventListener('canplay', function() {
+                console.log('Video can start playing');
+            });
         });
     </script>
 </body>

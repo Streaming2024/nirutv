@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Barcelona vs Olympiakos",
-    "date": "21 Oct 2025",
-    "time": "10:30 PM NST",
+    "title": "Barcelona vs Real Madrid",
+    "date": "26 Oct 2025",
+    "time": "09:30 PM NST",
     "stadium": "Estadi Olímpic Lluís",
-    "league": "UEFA Champions League",
+    "league": "La Liga",
     "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/124/2025/10/21/barcelona-vs-olympiacos-2272974264.png",
+    "banner_image": "https://static0.givemesportimages.com/wordpress/wp-content/uploads/2024/10/v2.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Barcelona vs Olympiakos", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "Best Link 1:Barcelona vs Real Madrid", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912108"
     },
     {
-      "name": "Best Link 2:Barcelona vs Olympiakos", 
+      "name": "Best Link 2:Barcelona vs Real Madrid", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Barcelona vs Olympiakos", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+      "name": "Best Link 3:Barcelona vs Real Madrid", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch6.php"
     },
     {
-      "name": "HD Link 1:Barcelona vs Olympiakos", 
+      "name": "HD Link 1:Barcelona vs Real Madrid", 
       "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
    {
-      "name": "HD Link 2:Barcelona vs Olympiakos", 
+      "name": "HD Link 2:Barcelona vs Real Madrid", 
       "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
     },
 
     {
-      "name": "HD Link 3:Barcelona vs Olympiakos", 
+      "name": "HD Link 3:Barcelona vs Real Madrid", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

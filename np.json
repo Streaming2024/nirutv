@@ -7,16 +7,16 @@
     "league": "CWC League 2",
       "round": "ODI matches",
     "broadcaster": "Fancode ,KantipurTV, YonoTV",
-    "banner_image": "https://st3.cricketcountry.com/wp-content/uploads/2023/06/template-3.png",
-    "lineup_published": false
+    "banner_image": "https://i.ibb.co/mVBVKjTX/Copy-of-Copy-of-NEPAL.png",
+    "lineup_published": true
   },
   "team1": {
     "name": "Nepal",
-    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+    "lineup": "Rohit Kumar Paudel (C), Dipendra Singh Airee (VC), Aasif Sheikh (WK), Anil Kumar Sah (WK), Basir Ahmad, Sandeep Lamichhane, Sompal Kami, Karan KC, Kushal Bhurtel, Bhim Sharki, Arif Sheikh, Gulshan Jha, Nandan Yadav, Rijan Dhakal, Lalit Narayan Rajbanshi."
   },
   "team2": {
     "name": "USA ", 
-    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+    "lineup": "Monank Patel (Captain), Jessy Singh (Vice-Captain), Saurabh Netravalkar, Rushil Ugarkar, Nosthush Kenjige, Milind Kumar, Smit Patel, Shayan Jahangir, Juanoy Drysdale, Sanjay Krishnamurthi, Harmeet Singh, Yasir Mohammad, Saiteja Mukkamalla, Shubham Ranjane, Andries Gous"
   },
   "telecast_links": [
     {

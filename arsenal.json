@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Arsenal vs Atletico",
-    "date": "22 Oct 2025",
-    "time": "01:45 PM NST",
-    "stadium": "Craven Cottage",
-    "league": "UEFA Champions League",
-    "round": "Round 8",
+    "title": "Arsenal vs Crystal Palace",
+    "date": "26 Oct 2025",
+    "time": "07:45 PM NST",
+    "stadium": "Emirates Stadium",
+    "league": "Premier League",
+    "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://img-estaticos.atleticodemadrid.com/system/file5s/43471/medium2x2/IRNsJ6L-cL_SORTEO_UEL-ARS-ATM.jpg",
+    "banner_image": "https://c.files.bbci.co.uk/ceda/live/92d070a0-afe9-11f0-aa13-0b0479f6f42a.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Arsenal vs Atletico", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
+      "name": "Best Link 1:Arsenal vs Crystal Palace", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
     {
-      "name": "Best Link 2:Arsenal vs Atletico", 
+      "name": "Best Link 2:Arsenal vs Crystal Palace", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Arsenal vs Atletico", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=351530"
+      "name": "Best Link 3:Arsenal vs Crystal Palace", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch2.php"
     },
     {
-      "name": "HD Link 1:Arsenal vs Atletico", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912008"
+      "name": "HD Link 1:Arsenal vs Crystal Palace", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=462413"
     },
    {
-      "name": "HD Link 2:Arsenal vs Atletico", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912104"
+      "name": "HD Link 2:Arsenal vs Crystal Palace", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
     },
 
     {
-      "name": "HD Link 3:Arsenal vs Atletico", 
+      "name": "HD Link 3:Arsenal vs Crystal Palace", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

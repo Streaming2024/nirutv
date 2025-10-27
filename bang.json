@@ -1,11 +1,11 @@
 {
   "match": {
     "title": "Bangladesh vs West Indies",
-    "date": "23 Oct 2025",
-    "time": "01:15 PM NST",
+    "date": "27 Oct 2025",
+    "time": "05:45 PM NST",
     "stadium": "Hagley Oval",
     "league": "ODI Series",
-    "round": "2nd match",
+    "round": "3nd match",
     "broadcaster": "Fancode ,WillowTV",
     "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
     "lineup_published": false
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137702"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137703"
     },
     {
       "name": "Best Link 2:Bangladesh vs West Indies", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://embedsports.top/embed/charlie/bangladesh-vs-west-indies-1629466329/1"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://embedsports.top/embed/charlie/bangladesh-vs-west-indies-1629466329/1"
     },
     {
       "name": "HD Link 1:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://kasin-tv.com/hi/play.php?id=137702"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137703"
     },
    {
       "name": "HD Link 2:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://me.webcric.com/frame8.htm"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://me.webcric.com/frame8.htm"
     },
 
     {

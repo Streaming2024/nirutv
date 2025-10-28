@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137857"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/FC"
     },
     {
       "name": "Best Link 2:Al-Nassr vs Al Ittihad", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=536185"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137857"
     },
     {
       "name": "HD Link 1:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=304148"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=304148"
     },
    {
       "name": "HD Link 2:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912113"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=536185"
     },
 
     {

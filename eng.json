@@ -1,7 +1,7 @@
 {
   "match": {
     "title": "New Zealand vs England",
-    "date": "26 Oct 2025",
+    "date": "29 Oct 2025",
     "time": "06:45 AM NST",
     "stadium": "Hagley Oval",
     "league": "ODI Series",
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:New Zealand vs England", 
-      "url": "https://dns-tv.pages.dev/prime"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/prime"
     },
     {
       "name": "Best Link 2:New Zealand vs England", 
@@ -29,33 +29,21 @@
     },
     {
       "name": "Best Link 3:New Zealand vs England", 
-      "url": "https://dns-tv.pages.dev/TNT1"
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/tnt1"
     },
     {
       "name": "HD Link 1:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc2"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/1"
     },
    {
       "name": "HD Link 2:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=eng3"
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/2"
     },
 
     {
       "name": "HD Link 3:New Zealand vs England", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
-    },
-   {
-      "name": "Full HD 1:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/?id=MAX"
-    },
-{
-      "name": "Full HD 1:New Zealand vs England", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
-    },
-    
-    {
-      "name": "Full HD 2:New Zealand vs England ",
-      "url": "https://yonotv.pages.dev/page2.html?src=https://yonotv.pages.dev/links?id=icc3"
+ 
     }
   ]
 }

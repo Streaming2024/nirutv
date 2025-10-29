@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Arsenal vs Crystal Palace",
-    "date": "26 Oct 2025",
-    "time": "07:45 PM NST",
+    "title": "Arsenal vs Brighton",
+    "date": "30 Oct 2025",
+    "time": "01:30 PM NST",
     "stadium": "Emirates Stadium",
-    "league": "Premier League",
+    "league": "EFL Cup",
     "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://c.files.bbci.co.uk/ceda/live/92d070a0-afe9-11f0-aa13-0b0479f6f42a.png",
+    "banner_image": "https://ichef.bbci.co.uk/images/ic/640x360/p0m9n9zh.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Arsenal vs Crystal Palace", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/bsy_006/playlist.m3u8"
+      "name": "Best Link 1:Arsenal vs Brighton", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
     {
-      "name": "Best Link 2:Arsenal vs Crystal Palace", 
+      "name": "Best Link 2:Arsenal vs Brighton", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Arsenal vs Crystal Palace", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch2.php"
+      "name": "Best Link 3:Arsenal vs Brighton", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch3.php"
     },
     {
-      "name": "HD Link 1:Arsenal vs Crystal Palace", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=462413"
+      "name": "HD Link 1:Arsenal vs Brighton", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/socohd?id=991140"
     },
    {
-      "name": "HD Link 2:Arsenal vs Crystal Palace", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
+      "name": "HD Link 2:Arsenal vs Brighton", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=532999"
     },
 
     {
-      "name": "HD Link 3:Arsenal vs Crystal Palace", 
+      "name": "HD Link 3:Arsenal vs Brighton", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

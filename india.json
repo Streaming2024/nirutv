@@ -21,11 +21,11 @@
   "telecast_links": [
     {
       "name": "Best Link 1:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/fox.m3u8"
+      "url": "https://yonotv.pages.dev/pageads?src=https://freeplyrr.pages.dev/plyrr?src=https://yonotv.pages.dev/fox.m3u8"
     },
     {
       "name": "Best Link 2:IND vs AUS", 
-      "url": "https://freeplyrr.pages.dev/tnt4"
+      "url": "https://yonotv.pages.dev/pageads?src=https://yonotv.pages.dev/tnt1"
     },
     {
       "name": "Best Link 3:IND vs AUS", 
@@ -33,11 +33,11 @@
     },
     {
       "name": "HD Link 1:IND vs AUS(Hindi)", 
-      "url": "https://yonotv.pages.dev/page2?src=https://freeplyrr.pages.dev/plyrr?src=https://foxhindi.pages.dev/playlist.m3u8"
+      "url": "https://yonotv.pages.dev/page2ads?src=https://freeplyrr.pages.dev/plyrr?src=https://foxhindi.pages.dev/playlist.m3u8"
     },
    {
       "name": "HD Link 2:IND vs AUS(Hindi)", 
-      "url": "https://yonotv.pages.dev/page2?src=https://freeplyrr.pages.dev/cplyrr?src=https://yonotv.pages.dev/hindi.m3u8"
+      "url": "https://yonotv.pages.dev/page2ads?src=https://freeplyrr.pages.dev/cplyrr?src=https://yonotv.pages.dev/hindi.m3u8"
     },
 
     {

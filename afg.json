@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "Afghanistan vs Zimbabwe",
+    "date": "27 Oct 2025",
+    "time": "05:45 PM NST",
+    "stadium": "Hagley Oval",
+    "league": "ODI Series",
+    "round": "3nd match",
+    "broadcaster": "Fancode ,WillowTV",
+    "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "UAE",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+    "name": "japan", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:Afghanistan vs Zimbabwe", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137372"
+    },
+    {
+      "name": "Best Link 2:Afghanistan vs Zimbabwe", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:Afghanistan vs Zimbabwe", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://embedsports.top/embed/charlie/bangladesh-vs-west-indies-1629466335/1"
+    },
+    {
+      "name": "HD Link 1:Afghanistan vs Zimbabwe", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137703"
+    },
+   {
+      "name": "HD Link 2:Afghanistan vs Zimbabwe", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://me.webcric.com/frame8.htm"
+    },
+
+    {
+      "name": "HD Link 3:Afghanistan vs Zimbabwe", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+   
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "PSG vs Brestois ",
-    "date": "25 Oct 2025",
-    "time": "08:45 PM NST",
-    "stadium": "Stade Francis-Le Blé",
+    "title": "PSG vs Lorient",
+    "date": "29 Oct 2025",
+    "time": "11:45 PM NST",
+    "stadium": "Stade du Moustoire",
     "league": "Ligue 1",
       "round": "round 8",
     "broadcaster": "Amazon Prime, fuboTV,Canal+",
-    "banner_image": "https://icdn.psgtalk.com/wp-content/uploads/2024/09/PSG-vs-Brest-preview-Ligue-1-2024-1536x877.jpg",
+    "banner_image": "https://www.101greatgoals.com/wp-content/uploads/2025/10/si_article_builder_3109859536-768x432.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Brestois ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch7.php"
+      "name": "Best Link 1:PSG vs Lorient", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
     },
     {
-      "name": "Best Link 2:PSG vs Brestois ", 
+      "name": "Best Link 2:PSG vs Lorient", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Brestois ", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=321443"
+      "name": "Best Link 3:PSG vs Lorient", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch7.php"
     },
     {
-      "name": "HD Link 1:PSG vs Brestois ", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=527384"
+      "name": "HD Link 1:PSG vs Lorient", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
    {
-      "name": "HD Link 2:PSG vs Brestois ", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912008"
+      "name": "HD Link 2:PSG vs Lorient", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
     },
 
     {
-      "name": "HD Link 3:PSG vs Brestois ", 
+      "name": "HD Link 3:PSG vs Lorient", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": " Man City vs  Aston Villa",
-    "date": "26 Oct 2025",
-    "time": "07:45 PM NST",
-    "stadium": "Villa Park",
-    "league": "Premier League",
+    "title": "Man City vs Swansea City",
+    "date": "30 Oct 2025",
+    "time": "01:30 AM NST",
+    "stadium": "Swansea Stadium",
+    "league": "EFL Cup",
     "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/fd12/live/f845ad10-af6c-11f0-b2a1-6f537f66f9aa.png",
+    "banner_image": "https://ichef.bbci.co.uk/ace/standard/480/cpsprodpb/04de/live/cad2e9c0-b4ac-11f0-b2a1-6f537f66f9aa.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1: Man City vs  Aston Villa", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/bsy_026/playlist.m3u8"
+      "name": "Best Link 1: Man City vs Swansea City", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=532257"
     },
     {
-      "name": "Best Link 2: Man City vs  Aston Villa", 
+      "name": "Best Link 2: Man City vs Swansea City", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3: Man City vs  Aston Villa", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "Best Link 3: Man City vs Swansea City", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch4.php"
     },
     {
-      "name": "HD Link 1: Man City vs  Aston Villa", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=321443"
+      "name": "HD Link 1: Man City vs Swansea City", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=501412"
     },
    {
-      "name": "HD Link 2: Man City vs  Aston Villa", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912110"
+      "name": "HD Link 2: Man City vs Swansea City", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=532081"
     },
 
     {
-      "name": "HD Link 3: Man City vs  Aston Villa", 
+      "name": "HD Link 3: Man City vs Swansea City", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Liverpool vs Brentford",
-    "date": "26 Oct 2025",
-    "time": "12:45 AM NST",
-    "stadium": "Gtech Community Stadium",
-    "league": "Premier League",
+    "title": "Liverpool vs  Crystal Palace ",
+    "date": "30 Oct 2025",
+    "time": "01:30 AM NST",
+    "stadium": "Anfield Stadium",
+    "league": "EFL Cup",
     "round": "Round 9",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/4b7b/live/1ea2d370-af4f-11f0-b2a1-6f537f66f9aa.png",
+    "banner_image": "https://ichef.bbci.co.uk/images/ic/640x360/p08hgp23.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Liverpool vs Brentford", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "Best Link 1:Liverpool vs  Crystal Palace ", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=522086"
     },
     {
-      "name": "Best Link 2:Liverpool vs Brentford", 
+      "name": "Best Link 2:Liverpool vs  Crystal Palace ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Liverpool vs Brentford", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
+      "name": "Best Link 3:Liverpool vs  Crystal Palace ", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Liverpool vs Brentford", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
+      "name": "HD Link 1:Liverpool vs  Crystal Palace ", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=527384"
     },
    {
-      "name": "HD Link 2:Liverpool vs Brentford", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912105"
+      "name": "HD Link 2:Liverpool vs  Crystal Palace ", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
 
     {
-      "name": "HD Link 3:Liverpool vs Brentford", 
+      "name": "HD Link 3:Liverpool vs  Crystal Palace ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

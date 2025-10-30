@@ -6,7 +6,7 @@
     <link href="https://dns-tv.pages.dev/logo/favicon.png" rel="icon" type="image/x-icon"/>
     <!-- Plyrr Player CSS -->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <title>YoNoTV - M3U8 Player</title>
+    <title>YoNoTV - Nepal Channel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -218,6 +218,26 @@
                 justify-content: center;
             }
         }
+        
+        /* Channel Info */
+        .channel-info {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        body.dark-mode .channel-info {
+            background-color: #2d2d2d;
+        }
+        
+        .channel-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -250,12 +270,17 @@
     </div>
     
     <div class="notice">Wait for Loading & Skip 1–2 ads (press back)</div>
+    
+    <!-- Channel Info -->
+    <div class="channel-info">
+        <h2 class="channel-title">Now Playing: Nepal Channel</h2>
+    </div>
    
     <!-- Video Container -->
     <div class="video-container">
         <!-- Plyrr Player -->
         <video id="player" playsinline controls>
-            <!-- M3U8 source will be set dynamically from URL parameter -->
+            <!-- Nepal channel M3U8 will be loaded automatically -->
         </video>
         <button class="fullscreen-btn" id="fullscreen-button"><i class="fas fa-expand"></i> Fullscreen</button>
     </div>
@@ -314,26 +339,24 @@
         speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] }
     });
 
-    // Load video from URL param
-    const urlParams = new URLSearchParams(window.location.search);
-    const src = urlParams.get('src');
+    // Built-in Nepal channel M3U8
+    const nepalChannelUrl = "https://yonotv.b-cdn.net/hls/nepal.m3u8";
     
-    if (src) {
-        // Set the source for the Plyrr player
+    // Load Nepal channel automatically
+    function loadNepalChannel() {
         player.source = {
             type: 'video',
-            title: 'Live Stream',
+            title: 'Nepal Channel',
             sources: [
                 {
-                    src: src,
+                    src: nepalChannelUrl,
                     type: 'application/x-mpegURL'
                 }
             ]
         };
-    } else {
-        // If no source, show blank state
-        player.source = null;
-        document.querySelector('.notice').textContent = 'No stream URL provided. Use ?src=YOUR_M3U8_URL';
+        
+        // Update notice
+        document.querySelector('.notice').textContent = 'Loading Nepal Channel...';
     }
     
     // YouTube Chat URL
@@ -458,6 +481,7 @@
     
     // Run after page loads
     window.addEventListener('load', function() {
+        loadNepalChannel();
         loadYouTubeChat();
         setTimeout(detectAdBlock, 2000);
     });

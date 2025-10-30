@@ -112,10 +112,10 @@ video {
 }
 .fullscreen-btn {
   position: absolute;
-  top: 10px;
+  top: 10px;      /* Top-right corner */
   right: 10px;
-  background: rgba(255, 0, 17, 0.8);
-  color: white;
+  background: rgba(255,0,17,0.9);
+  color: #fff;
   border: none;
   padding: 6px 10px;
   font-size: 12px;
@@ -167,7 +167,6 @@ video {
   border-radius: 12px;
 }
 </style>
-  <script type='text/javascript' src='//orientsweptautopsy.com/f1/32/4d/f1324de9f268fbbdf75151f560354d2c.js'></script>
 </head>
 <body>
 
@@ -185,16 +184,7 @@ video {
       <img src="https://dns-tv.pages.dev/logo/logo.png" alt="YoNoTV Live" class="header-image">
     </a>
   </div>
-<center><script type="text/javascript">
-	atOptions = {
-		'key' : 'fa60d1a6685d4d4a746bad73d107d3f8',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//orientsweptautopsy.com/fa60d1a6685d4d4a746bad73d107d3f8/invoke.js"></script></center>
+
   <div class="top-controls">
     <button class="control-btn" id="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
     <button class="control-btn theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
@@ -227,41 +217,43 @@ video {
 
 <script>
 const video = document.getElementById('player');
-const streamURL = 'https://yonotv.b-cdn.net/hls/nepal.m3u8'; // change to your .m3u8
+const streamURL = 'https://yonotv.b-cdn.net/hls/nepal.m3u8'; // your m3u8 URL
 
-if (Hls.isSupported()) {
+// HLS.js setup
+if(Hls.isSupported()){
   const hls = new Hls();
   hls.loadSource(streamURL);
   hls.attachMedia(video);
-  hls.on(Hls.Events.MANIFEST_PARSED, function() {
-    video.muted = true;
-    video.play();
-  });
-} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+  hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+} else if(video.canPlayType('application/vnd.apple.mpegurl')){
   video.src = streamURL;
-  video.addEventListener('loadedmetadata', function() {
-    video.muted = true;
-    video.play();
-  });
+  video.addEventListener('loadedmetadata', ()=> video.play());
 }
 
+// Plyr setup
 const player = new Plyr(video, {
   autoplay: true,
-  controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+  controls: ['play','progress','current-time','mute','volume','settings','fullscreen']
 });
 
-document.getElementById('fullscreen-button').addEventListener('click', () => {
-  player.fullscreen.enter();
+// Fullscreen button (top-right)
+document.getElementById('fullscreen-button').addEventListener('click', async ()=>{
+  try{
+    await player.fullscreen.enter();
+    if(screen.orientation && screen.orientation.lock){
+      await screen.orientation.lock('landscape');
+    }
+  }catch(err){console.log('Orientation lock not supported',err);}
 });
 
-// Chat
+// Chat toggle
 document.getElementById('chat-frame').src = 'https://www.youtube.com/live_chat?v=CcpYwQ1QiDY&embed_domain=dns-tv.pages.dev';
-document.getElementById('chat-toggle-btn').addEventListener('click', function() {
+document.getElementById('chat-toggle-btn').addEventListener('click', function(){
   const chat = document.getElementById('chat-frame');
-  if (chat.style.display === 'none') {
+  if(chat.style.display === 'none'){
     chat.style.display = 'block';
     this.innerHTML = '<i class="fas fa-comment-slash"></i> Hide Chat';
-  } else {
+  }else{
     chat.style.display = 'none';
     this.innerHTML = '<i class="fas fa-comment"></i> Show Chat';
   }
@@ -269,34 +261,22 @@ document.getElementById('chat-toggle-btn').addEventListener('click', function() 
 
 // Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('click', function() {
+themeToggle.addEventListener('click', ()=> {
   document.body.classList.toggle('dark-mode');
   themeToggle.innerHTML = document.body.classList.contains('dark-mode')
     ? '<i class="fas fa-sun"></i> Light Mode'
     : '<i class="fas fa-moon"></i> Dark Mode';
 });
 
-// Refresh button
-document.getElementById('refresh-btn').addEventListener('click', () => location.reload());
+// Refresh
+document.getElementById('refresh-btn').addEventListener('click', ()=> location.reload());
 
 // Anti-Adblock
-async function detectAdBlock() {
-  try {
-    await fetch(new Request('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', {cache: 'no-store'}));
-  } catch (e) {
-    document.getElementById("adb").style.display = "block";
-    player.pause();
-  }
+async function detectAdBlock(){
+  try{ await fetch(new Request('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',{cache:'no-store'})); }
+  catch(e){ document.getElementById("adb").style.display="block"; player.pause(); }
 }
-setTimeout(detectAdBlock, 2000);
+setTimeout(detectAdBlock,2000);
 </script>
-
-<center>
-  <script src="//widget.supercounters.com/ssl/online_i.js"></script>
-  <script>sc_online_i(1704055,"ffffff","e61c1c");</script>
-</center>
-
-<script src="https://dns-tv.pages.dev/Scripts/clicks.js"></script>
-<script disable-devtool-auto='true' src='https://cdn.jsdelivr.net/npm/disable-devtool' clear-log='true' disable-select='true' disable-copy='true' disable-cut='true' disable-paste='true'></script>
 </body>
 </html>

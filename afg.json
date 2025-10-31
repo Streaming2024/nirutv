@@ -11,17 +11,17 @@
     "lineup_published": false
   },
   "team1": {
-    "name": "UAE",
-    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+    "name": "Afghanistan",
+    "lineup": "Rahmanullah Gurbaz (wk), Ibrahim Zadran, Sediqullah Atal, Darwish Rasooli, Shahidullah Kamal, Azmatullah Omarzai, Rashid Khan (c), Mohammad Nabi, Mujeeb Ur Rahman, Fareed Ahmad Malik, Abdullah Ahmadzai"
   },
   "team2": {
-    "name": "japan", 
-    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+    "name": "Zimbabwe", 
+    "lineup": "Brian Bennett, Tadiwanashe Marumani, Brendan Taylor (wk), Sikandar Raza (c), Ryan Burl, Tony Munyonga, Tashinga Musekiwa, Brad Evans, Tinotenda Maposa/Graeme Cremer, Richard Ngarava, Blessing Muzarabani"
   },
   "telecast_links": [
     {
       "name": "Best Link 1:Afghanistan vs Zimbabwe", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://wo.cma.footballii.ir/hls2/solh.m3u8"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/plyrr?src=https://wo.cma.footballii.ir/hls2/solh.m3u8"
     },
     {
       "name": "Best Link 2:Afghanistan vs Zimbabwe", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Afghanistan vs Zimbabwe", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137372"
+      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137372"
     },
     {
       "name": "HD Link 1:Afghanistan vs Zimbabwe", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137372"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://kasin-tv.com/hi/play.php?id=137372"
     },
    {
       "name": "HD Link 2:Afghanistan vs Zimbabwe", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://me.webcric.com/frame8.htm"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://me.webcric.com/frame8.htm"
     },
 
     {

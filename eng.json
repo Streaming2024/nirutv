@@ -1,27 +1,27 @@
 {
   "match": {
     "title": "New Zealand vs England",
-    "date": "29 Oct 2025",
+    "date": "01 Nov 2025",
     "time": "06:45 AM NST",
     "stadium": "Hagley Oval",
     "league": "ODI Series",
-    "round": "First match",
-    "broadcaster": "ICC TV, Fancode ,WillowTV",
+    "round": "Third match",
+    "broadcaster": "Fancode ,WillowTV , Prime",
     "banner_image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000009885/1759596746115336_NZvsENG_PROMO_landscape_thumb.jpg",
-    "lineup_published": false
+    "lineup_published": true
   },
   "team1": {
-    "name": "UAE",
-    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+    "name": "New Zealand",
+    "lineup": "Will Young, Rachin Ravindra, Kane Williamson, Daryl Mitchell, Tom Latham (wk), Michael Bracewell, Mitchell Santner (c), Kristian Clarke, Zakary Foulkes, Blair Tickner, Jacob Duffy"
   },
   "team2": {
-    "name": "japan", 
-    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+    "name": "England", 
+    "lineup": "Jamie Smith, Ben Duckett, Joe Root, Jacob Bethell, Harry Brook (c), Jos Buttler (wk), Sam Curran, Jamie Overton, Brydon Carse, Jofra Archer, Rehan Ahmed"
   },
   "telecast_links": [
     {
       "name": "Best Link 1:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/prime"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/prime"
     },
     {
       "name": "Best Link 2:New Zealand vs England", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/tnt1"
+      "url": "https://yonotv.pages.dev/page.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/1"
     },
     {
       "name": "HD Link 1:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/1"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://freeplyrr.pages.dev/tnt1"
     },
    {
       "name": "HD Link 2:New Zealand vs England", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/2"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://embedsports.top/embed/alpha/new-zealand-vs-england/2"
     },
 
     {

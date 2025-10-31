@@ -1,22 +1,22 @@
 {
   "match": {
     "title": "IND vs AUS",
-    "date": "29 Oct 2025",
+    "date": "31 Oct 2025",
     "time": "02:00 PM NST",
     "stadium": "Optus Stadium",
     "league": "T20I Series",
-    "round": "1st match",
+    "round": "2nd match",
     "broadcaster": ", TNT ,WillowTV, FOX",
     "banner_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVyzHlp4MHHzXEbiuis8yFsWTVhFhLMQlSXQ&s",
-    "lineup_published": false
+    "lineup_published": true
   },
   "team1": {
-    "name": "UAE",
-    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+    "name": "IND",
+    "lineup": "Abhishek Sharma, Shubman Gill, Suryakumar Yadav (c), Tilak Varma, Sanju Samson (wk), Shivam Dube, Axar Patel, Harshit Rana, Kuldeep Yadav, Varun Chakaravarthy, Jasprit Bumrah"
   },
   "team2": {
-    "name": "japan", 
-    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+    "name": "AUS", 
+    "lineup": "Mitchell Marsh (c), Travis Head, Josh Inglis (wk), Tim David, Mitchell Owen, Marcus Stoinis, Matthew Short, Xavier Bartlett, Nathan Ellis, Matthew Kuhnemann, Josh Hazlewood"
   },
   "telecast_links": [
     {
@@ -33,16 +33,16 @@
     },
     {
       "name": "HD Link 1:IND vs AUS(Hindi)", 
-      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/links?id=india3"
+      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/links?id=india2"
     },
    {
       "name": "HD Link 2:IND vs AUS(Hindi)", 
-      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/tnt2"
+      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/links?id=india3"
     },
 
     {
       "name": "HD Link 3:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/links?id=india2"
+      "url": "https://yonotv.pages.dev/page2ads?src=https://yonotv.pages.dev/links?id=india4"
     
     }
   ]

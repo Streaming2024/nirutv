@@ -8,20 +8,20 @@
     "round": "3nd match",
     "broadcaster": "Fancode ,WillowTV",
     "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
-    "lineup_published": false
+    "lineup_published": true
   },
   "team1": {
-    "name": "UAE",
-    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+    "name": "Bangladesh",
+    "lineup": "Tanzid Hasan, Saif Hassan, Litton Das (c & wk), Jaker Ali, Shamim Hossain, Towhid Hridoy, Taskin Ahmed/Shoriful Islam, Rishad Hossain, Tanzim Hasan Sakib, Nasum Ahmed, Mustafizur Rahman"
   },
   "team2": {
-    "name": "japan", 
-    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+    "name": "West Indies", 
+    "lineup": "Brandon King, Alick Athanaze, Shai Hope (c & wk), Roston Chase, Sherfane Rutherford, Rovman Powell, Romario Shepherd, Jason Holder, Khary Pierre, Akeal Hosein, Jayden Seales"
   },
   "telecast_links": [
     {
       "name": "Best Link 1:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/FC"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/fc"
     },
     {
       "name": "Best Link 2:Bangladesh vs West Indies", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137704"
+      "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137705"
     },
     {
       "name": "HD Link 1:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://kasin-tv.com/hi/play.php?id=137704"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://kasin-tv.com/hi/play.php?id=137705"
     },
    {
       "name": "HD Link 2:Bangladesh vs West Indies", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://me.webcric.com/frame8.htm"
+      "url": "https://yonotv.pages.dev/page2.html?src=https://me.webcric.com/frame8.htm"
     },
 
     {

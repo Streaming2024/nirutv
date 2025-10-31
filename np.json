@@ -1,60 +1,60 @@
 {
   "match": {
-    "title": "Nepal vs UAE ",
-    "date": "30 Oct 2025",
+    "title": "Nepal vs USA ",
+    "date": "01 Nov 2025",
     "time": "11:15 AM NST",
     "stadium": "Dubai International Stadium",
     "league": "CWC League 2",
       "round": "ODI matches",
     "broadcaster": "Fancode ,KTV, YonoTV",
-    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/03_UAE-vs-Nepal.jpg",
-    "lineup_published": true
+    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/03_USA-vs-Nepal.jpg",
+    "lineup_published": false
   },
   "team1": {
     "name": "Nepal",
     "lineup": "Kushal Bhurtel, Aasif Sheikh (wk), Bhim Sharki, Rohit Paudel (c), Aarif Sheikh, Dipendra Singh Airee(vc), Gulshan Jha, Sompal Kami, Karan KC, Sandeep Lamichhane, Lalit Rajbanshi"
   },
   "team2": {
-    "name": "UAE ", 
+    "name": "USA ", 
     "lineup": " Alishan Sharafu, Aryansh Sharma (wk), Rahul Chopra (c), Shoaib Khan, Muhammad Waseem, Dhruv Parashar, Harshit Kaushik, Zahid Ali, Haider Ali, Junaid Siddique, Muhammad Rohid Khan"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Nepal vs UAE ", 
+      "name": "Best Link 1:Nepal vs USA ", 
       "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=nepal"
     },
     {
-      "name": "Best Link 2:Nepal vs UAE ", 
+      "name": "Best Link 2:Nepal vs USA ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Nepal vs UAE ", 
+      "name": "Best Link 3:Nepal vs USA ", 
       "url": "https://yonotv.pages.dev/cnd"
     },
     {
-      "name": "HD Link 1:Nepal vs UAE ", 
+      "name": "HD Link 1:Nepal vs USA ", 
       "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=nepal2"
     },
    {
-      "name": "HD Link 2:Nepal vs UAE ", 
+      "name": "HD Link 2:Nepal vs USA ", 
       "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=nepal3"
     },
 
     {
-      "name": "HD Link 3:Nepal vs UAE ", 
+      "name": "HD Link 3:Nepal vs USA ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
    {
-      "name": "Full HD 1:Nepal vs UAE ", 
+      "name": "Full HD 1:Nepal vs USA ", 
       "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=nepal4"
     },
 {
-      "name": "Full HD 1:Nepal vs UAE ", 
+      "name": "Full HD 1:Nepal vs USA ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     
     {
-      "name": "Full HD 2:Nepal vs UAE  ",
+      "name": "Full HD 2:Nepal vs USA  ",
       "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=nepal"
     }
   ]

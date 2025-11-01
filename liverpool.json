@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Liverpool vs  Crystal Palace ",
-    "date": "30 Oct 2025",
+    "title": "Liverpool vs Aston Villa",
+    "date": "01 Nov 2025",
     "time": "01:30 AM NST",
     "stadium": "Anfield Stadium",
     "league": "EFL Cup",
     "round": "Round 9",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/images/ic/640x360/p08hgp23.jpg",
+    "banner_image": "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/f0d7/live/1634d160-0c72-11ef-82e8-cd354766a224.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,25 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Liverpool vs  Crystal Palace ", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=522086"
+      "name": "Best Link 1:Liverpool vs Aston Villa", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=459401"
     },
     {
-      "name": "Best Link 2:Liverpool vs  Crystal Palace ", 
+      "name": "Best Link 2:Liverpool vs Aston Villa", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Liverpool vs  Crystal Palace ", 
+      "name": "Best Link 3:Liverpool vs Aston Villa", 
       "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Liverpool vs  Crystal Palace ", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=527384"
+      "name": "HD Link 1:Liverpool vs Aston Villa", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
-      "name": "HD Link 2:Liverpool vs  Crystal Palace ", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
-    },
-
-    {
-      "name": "HD Link 3:Liverpool vs  Crystal Palace ", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "name": "HD Link 2:Liverpool vs Aston Villa", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+  
    
     }
   ]

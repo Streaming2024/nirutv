@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream with ID</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            font-family: Tahoma, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #000;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .embed-protection {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .embed-protection h2 {
+            color: #ff4444;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .embed-protection p {
+            font-size: 18px;
+            max-width: 600px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .embed-protection .search-info {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="embed-protection" class="embed-protection">
+        <h2>This Content is Protected </h2>
+        <p>This content cannot be embedded on other websites and cannot be played directly.</p>
+        <p>Please watch directly from our official website YoNo TV.</p>
+        <p class="search-info">Search on Google: "YoNo TV"</p>
+    </div>
+    
+    <iframe id="player" class="hidden" loading="lazy" allowfullscreen></iframe>
+    
+    <script>
+        const channels = { 
+            //START SOON
+            startsoon: "https://dns-tv.pages.dev", 
+            //START SOON
+             
+            kick: "https://player.kick.com/cricketnp", 
+            nepal: "https://freeplyrr.pages.dev/hlsplyrr?src=https://vag-mugi-link-copy-garxas.pages.dev/aafai-live-gar.m3u8", 
+            nepal2: "https://player.kick.com/cricketnp",   
+            nepal3: "https://freeplyrr.pages.dev/hlsplyrr?src=https://vag-mugi-link-copy-garxas.pages.dev/aafai-live-gar2.m3u8",   
+            nepal4: "https://embedsports.top/embed/alpha/nepal-vs-usa/2",   
+            np: "https://freeplyrr.pages.dev/hlsplyrr?src=https://vag-mugi-link-copy-garxas.pages.dev/aafai-live-gar-nw.m3u8", 
+            np3: "https://freeplyrr.pages.dev/hlsplyrr?src=https://vag-mugi-link-copy-garxas.pages.dev/aafai-live-gar-nw2.m3u8", 
+
+
+            
+            india2: "https://freeplyrr.pages.dev/plyrr?src=https://foxhindi.pages.dev/playlist.m3u8", 
+            india: "https://freeplyrr.pages.dev/plyrr?src=https://foxenglish.pages.dev/playlist.m3u8", 
+            india3: "https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/device02/playlist.m3u8", 
+            women: "https://www.youtube.com/embed/Bc9xjCN3_YE", 
+            women2: "https://freeplyrr.pages.dev/plyrr?src=https://hugh.cdn.rumble.cloud/live/y16rq9u0/slot-29/4n69-z79w_1080p/chunklist.m3u8", 
+        };
+
+        // Check if the page is ONLY embedded on our allowed domain
+        function isAllowedEmbed() {
+            // Check if we're in an iframe
+            if (window.self !== window.top) {
+                // Check if the parent is from our allowed domain
+                try {
+                    const parentHostname = window.parent.location.hostname;
+                    const allowedDomains = ['freeplyrr.pages.dev'];
+                    
+                    // Check if parent is exactly our allowed domain
+                    return allowedDomains.some(domain => 
+                        parentHostname === domain || parentHostname.endsWith('.' + domain)
+                    );
+                } catch (e) {
+                    // If we can't access parent location, it's cross-origin embedding (not allowed)
+                    return false;
+                }
+            }
+            // Not in iframe (direct access) - not allowed
+            return false;
+        }
+
+        // Show embed protection notice
+        function showEmbedProtection() {
+            document.getElementById('embed-protection').classList.remove('hidden');
+            document.getElementById('player').classList.add('hidden');
+        }
+
+        // Show player (only for allowed embeds)
+        function showPlayer() {
+            document.getElementById('embed-protection').classList.add('hidden');
+            document.getElementById('player').classList.remove('hidden');
+        }
+
+        // Set up the player
+        function initializePlayer() {
+            if (!isAllowedEmbed()) {
+                showEmbedProtection();
+                return;
+            }
+
+            // Only show player if embedded on our domain
+            const urlParams = new URLSearchParams(window.location.search);
+            const channel = urlParams.get('id');
+            const iframe = document.getElementById('player');
+            
+            if (channel && channels[channel]) {
+                iframe.src = channels[channel];
+            } else {
+                // Default channel if none specified
+                iframe.src = channels.startsoon;
+            }
+            
+            showPlayer();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePlayer);
+    </script>
+</body>
+</html>

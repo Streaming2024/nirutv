@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Chelsea vs Wolves",
-    "date": "30 Oct 2025",
+    "title": "Chelsea vs Tottenham",
+    "date": "01 NOV 2025",
     "time": "01:30 AM NST",
     "stadium": " Molineux Stadium",
     "league": "EFL Cup",
     "round": "Round 9",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/standard/1600/cpsprodpb/8899/live/3a206200-9a86-11ee-91bf-230bfab3fcba.jpg",
+    "banner_image": "https://theanalyst.com/wp-content/uploads/2025/10/spurs-v-chelsea-preview.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,25 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Chelsea vs Wolves", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=536185"
+      "name": "Best Link 1:Chelsea vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
     {
-      "name": "Best Link 2:Chelsea vs Wolves", 
+      "name": "Best Link 2:Chelsea vs Tottenham", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Chelsea vs Wolves", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch5.php"
+      "name": "Best Link 3:Chelsea vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Chelsea vs Wolves", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=336303"
+      "name": "HD Link 1:Chelsea vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912060"
     },
    {
-      "name": "HD Link 2:Chelsea vs Wolves", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912113"
-    },
-
-    {
-      "name": "HD Link 3:Chelsea vs Wolves", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "name": "HD Link 2:Chelsea vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912091"
+   
    
     }
   ]

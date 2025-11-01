@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Real Madrid vs Juventus",
-    "date": "23 Oct 2025",
+    "title": "Real Madrid vs Valencia",
+    "date": "01 Nov 2025",
     "time": "12:45 AMN NST",
     "stadium": "Coliseum",
     "league": "UEFA Champions League",
     "round": "Round 8",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://www.juventus.com/images/image/private/t_editorial_landscape_12_desktop/dev/lw9cjnt8bgmej6ominan.jpg",
+    "banner_image": "https://ss-i.thgim.com/public/incoming/iixhyr/article69416534.ece/alternates/LANDSCAPE_1200/WhatsApp%20Image%202025-04-05%20at%2018.36.20.jpeg",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,25 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Real Madrid vs Juventus", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+      "name": "Best Link 1:Real Madrid vs Valencia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=400722"
     },
     {
-      "name": "Best Link 2:Real Madrid vs Juventus", 
+      "name": "Best Link 2:Real Madrid vs Valencia", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Real Madrid vs Juventus", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch5.php"
+      "name": "Best Link 3:Real Madrid vs Valencia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch6.php"
     },
     {
-      "name": "HD Link 1:Real Madrid vs Juventus", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "HD Link 1:Real Madrid vs Valencia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
     },
    {
-      "name": "HD Link 2:Real Madrid vs Juventus", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
-    },
-
-    {
-      "name": "HD Link 3:Real Madrid vs Juventus", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "name": "HD Link 2:Real Madrid vs Valencia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912097"
+    
    
     }
   ]

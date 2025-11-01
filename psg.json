@@ -1,6 +1,6 @@
 {
   "match": {
-    "title": "PSG vs Lorient",
+    "title": "PSG vs Nice",
     "date": "29 Oct 2025",
     "time": "11:45 PM NST",
     "stadium": "Stade du Moustoire",
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Lorient", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=344370"
+      "name": "Best Link 1:PSG vs Nice", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
     {
-      "name": "Best Link 2:PSG vs Lorient", 
+      "name": "Best Link 2:PSG vs Nice", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Lorient", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch7.php"
+      "name": "Best Link 3:PSG vs Nice", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch7.php"
     },
     {
-      "name": "HD Link 1:PSG vs Lorient", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "HD Link 1:PSG vs Nice", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
-      "name": "HD Link 2:PSG vs Lorient", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
+      "name": "HD Link 2:PSG vs Nice", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
     },
 
     {
-      "name": "HD Link 3:PSG vs Lorient", 
+      "name": "HD Link 3:PSG vs Nice", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

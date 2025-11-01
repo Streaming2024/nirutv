@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Al-Nassr vs Al Ittihad",
-    "date": "28 Oct 2025",
+    "title": "Al-Nassr vs Al Fayha",
+    "date": "01 Nov 2025",
     "time": "11:45 PM NST",
     "stadium": "Buraidah city",
     "league": "King's Cup",
     "round": "Round 9",
     "broadcaster": "beIN Sports,Sky Go UK",
-    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/Al-Nassr-vs-Al-Ittihad_old_1761382261639.jpg",
+    "banner_image": "https://tips.gg/match/al-nassr-vs-al-fayha-06-02-2025-05-00/poster/",
     "lineup_published": false
   },
   "team1": {
@@ -20,29 +20,25 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/FC"
+      "name": "Best Link 1:Al-Nassr vs Al Fayha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://yonotv.pages.dev/FC"
     },
     {
-      "name": "Best Link 2:Al-Nassr vs Al Ittihad", 
+      "name": "Best Link 2:Al-Nassr vs Al Fayha", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://kasin-tv.com/hi/play.php?id=137857"
+      "name": "Best Link 3:Al-Nassr vs Al Fayha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=462413"
     },
     {
-      "name": "HD Link 1:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=304148"
+      "name": "HD Link 1:Al-Nassr vs Al Fayha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=501412"
     },
    {
-      "name": "HD Link 2:Al-Nassr vs Al Ittihad", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=536185"
-    },
-
-    {
-      "name": "HD Link 3:Al-Nassr vs Al Ittihad", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "name": "HD Link 2:Al-Nassr vs Al Fayha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=548860"
+    
    
     }
   ]

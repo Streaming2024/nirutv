@@ -21,11 +21,11 @@
   "telecast_links": [
     {
       "name": "Best Link 1:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/links?id=india"
+      "url": "https://yonotv.pages.dev/page?src=https://dns-tv.pages.dev/link1?id=tnt3"
     },
     {
       "name": "Best Link 2:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://dns-tv.pages.dev/link1?id=tnt3"
+      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/links?id=india"
     },
     {
       "name": "Best Link 3:IND vs AUS", 

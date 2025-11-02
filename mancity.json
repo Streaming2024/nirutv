@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Man City vs Swansea City",
-    "date": "30 Oct 2025",
-    "time": "01:30 AM NST",
-    "stadium": "Swansea Stadium",
-    "league": "EFL Cup",
-    "round": "Round 9",
+    "title": "Man City vs Bournemouth",
+    "date": "02 Nov 2025",
+    "time": "10:15 PM NST",
+    "stadium": "Etihad Stadium",
+    "league": "Premier League ",
+    "round": "Round 10",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://ichef.bbci.co.uk/ace/standard/480/cpsprodpb/04de/live/cad2e9c0-b4ac-11f0-b2a1-6f537f66f9aa.png",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/8ffa/live/8033f0b0-b64d-11f0-ba75-093eca1ac29b.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1: Man City vs Swansea City", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=532257"
+      "name": "Best Link 1: Man City vs Bournemouth", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
     {
-      "name": "Best Link 2: Man City vs Swansea City", 
+      "name": "Best Link 2: Man City vs Bournemouth", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3: Man City vs Swansea City", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch4.php"
+      "name": "Best Link 3: Man City vs Bournemouth", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1: Man City vs Swansea City", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=501412"
+      "name": "HD Link 1: Man City vs Bournemouth", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912091"
     },
    {
-      "name": "HD Link 2: Man City vs Swansea City", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=532081"
+      "name": "HD Link 2: Man City vs Bournemouth", 
+      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912108"
     },
 
     {
-      "name": "HD Link 3: Man City vs Swansea City", 
+      "name": "HD Link 3: Man City vs Bournemouth", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

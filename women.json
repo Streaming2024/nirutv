@@ -1,7 +1,7 @@
 {
   "match": {
-    "title": "Nepal-W vs India-W",
-    "date": "27 Oct 2025",
+    "title": "IND-W vs SA-W",
+    "date": "02 Nov 2025",
     "time": "06:15 PM NST",
     "stadium": "Jawaharlal Nehru Stadium,India",
     "league": "Women's International Friendlies",
@@ -20,29 +20,9 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=women"
-    },
-    {
-      "name": "Best Link 2:Nepal-W vs India-W", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
-    },
-    {
-      "name": "Best Link 3:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=women2"
-    },
-    {
-      "name": "HD Link 1:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=women"
-    },
-   {
-      "name": "HD Link 2:Nepal-W vs India-W", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=women2"
-    },
-
-    {
-      "name": "HD Link 3:Nepal-W vs India-W", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "name": "Best Link 1:IND-W vs SA-W", 
+      "url": "https://yonotv.pages.dev/pagea.html?src=https://yonotv.pages.dev/links?id=women"
+   
    
     }
   ]

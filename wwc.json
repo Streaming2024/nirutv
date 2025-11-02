@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:IND vs SA", 
-      "url": "https://freeplyrr.pages.dev/hlsplyrr?src=https://live-en.aisports.cc/moviebox/device02/playlist.m3u8"
+      "url": "https://soft-crunch.github.io/live/?url=https://live-en.aisports.cc/moviebox/device02/playlist.m3u8"
     },
    
     {

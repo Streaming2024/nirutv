@@ -1,12 +1,12 @@
 {
   "match": {
-    "title": "Women's World Cup 2025",
-    "date": "18 Oct 2025",
+    "title": "INDvs SA",
+    "date": "02 Nov 2025",
     "time": "03:15 pm NST",
     "stadium": "R. Premadasa Stadium",
-    "league": "Women's World Cup 2025",
-      "round": "Group Stage",
-    "broadcaster": "ICC TV, WillowTV, Star Sports",
+    "league": "INDvs SA",
+      "round": "Final",
+    "broadcaster": "WillowTV, Star Sports",
     "banner_image": "https://media.assettype.com/outlookindia/2025-09-26/14jggr7t/icc-wc-women-2025.webp",
     "lineup_published": false
   },
@@ -20,29 +20,17 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Women's World Cup 2025", 
-      "url": "https://nirutv.online/Player/pageads.html?src=https://nirutv.online/ICCWC.html"
+      "name": "Best Link 1:IND vs SA", 
+      "url": "https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/device02/playlist.m3u8"
+    },
+   
+    {
+      "name": "Best Link 3:IND vs SA(hindi)", 
+      "url": "https://prime-hindi.vercel.app/"
     },
     {
-      "name": "Best Link 2:Women's World Cup 2025", 
-      "url": "https://nirutv.online/VIP/ads.html"
-    },
-    {
-      "name": "Best Link 3:Women's World Cup 2025", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/?id=WC"
-    },
-    {
-      "name": "HD Link 1:Women's World Cup 2025", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://nirutv.online/wtv"
-    },
-   {
-      "name": "HD Link 2:Women's World Cup 2025", 
-      "url": "https://nirutv.online/Player/page2ads.html?src=https://yonotv.pages.dev/?id=WC"
-    },
-
-    {
-      "name": "HD Link 3:Women's World Cup 2025", 
-      "url": "https://nirutv.online/VIP/ads.html"
+      "name": "HD Link 1:IND vs SA", 
+      "url": "https://prime-english.vercel.app/"
    
     }
   ]

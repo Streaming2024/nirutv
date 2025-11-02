@@ -1,7 +1,7 @@
 {
   "match": {
     "title": "UAE vs USA",
-    "date": "28 Oct 2025",
+    "date": "03 Nov 2025",
     "time": "11:15 AM NST",
     "stadium": "Dubai International Stadium",
     "league": "CWC League 2",
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:UAE vs USA", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=icc"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=icc"
     },
     {
       "name": "Best Link 2:UAE vs USA", 
@@ -29,20 +29,15 @@
     },
     {
       "name": "Best Link 3:UAE vs USA", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://yonotv.pages.dev/links?id=icc2"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=icc2"
     },
     {
       "name": "HD Link 1:UAE vs USA", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=icc3"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=icc3"
     },
    {
       "name": "HD Link 2:UAE vs USA", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://yonotv.pages.dev/links?id=icc"
-    },
-
-    {
-      "name": "HD Link 3:UAE vs USA", 
-      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=icc"
    
     }
   ]

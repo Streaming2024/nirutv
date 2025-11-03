@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Nepal vs USA ",
-    "date": "01 Nov 2025",
+    "title": "Nepal vs UAE ",
+    "date": "05 Nov 2025",
     "time": "11:15 AM NST",
     "stadium": "Dubai International Stadium",
     "league": "CWC League 2",
       "round": "ODI matches",
     "broadcaster": "Fancode ,KTV, YonoTV",
-    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/01_Nepal-vs-USA.jpg",
+    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/03_UAE-vs-Nepal.jpg",
     "lineup_published": true
   },
   "team1": {
@@ -15,41 +15,41 @@
     "lineup": "Kushal Bhurtel, Aasif Sheikh (wk), Bhim Sharki, Rohit Paudel (c), Aarif Sheikh, Dipendra Singh Airee(vc), Gulshan Jha, Sompal Kami, Karan KC, Sandeep Lamichhane, Lalit Rajbanshi"
   },
   "team2": {
-    "name": "USA ", 
+    "name": "UAE ", 
     "lineup": " Alishan Sharafu, Aryansh Sharma (wk), Rahul Chopra (c), Shoaib Khan, Muhammad Waseem, Dhruv Parashar, Harshit Kaushik, Zahid Ali, Haider Ali, Junaid Siddique, Muhammad Rohid Khan"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Nepal vs USA ", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np3"
+      "name": "Best Link 1:Nepal vs UAE ", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np"
     },
     {
-      "name": "Best Link 2:Nepal vs USA ", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np5"
-    },
-    {
-      "name": "Best Link 3:Nepal vs USA ", 
+      "name": "Best Link 2:Nepal vs UAE ", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np2"
     },
     {
-      "name": "HD Link 1:Nepal vs USA ", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np"
+      "name": "Best Link 3:Nepal vs UAE ", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np3"
+    },
+    {
+      "name": "HD Link 1:Nepal vs UAE ", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np4"
     },
    {
-      "name": "HD Link 2:Nepal vs USA ", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np4"
+      "name": "HD Link 2:Nepal vs UAE ", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np5"
     },
 
     {
-      "name": "HD Link 3:Nepal vs USA ", 
+      "name": "HD Link 3:Nepal vs UAE ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
    {
-      "name": "Full HD 1:Nepal vs USA ", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np5"
+      "name": "Full HD 1:Nepal vs UAE ", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np6"
     },
 {
-      "name": "Full HD 1:Nepal vs USA ", 
+      "name": "Full HD 1:Nepal vs UAE ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

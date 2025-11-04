@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Arsenal vs Burnley",
-    "date": "30 Oct 2025",
-    "time": "01:30 PM NST",
-    "stadium": "Emirates Stadium",
-    "league": "EFL Cup",
-    "round": "Round 9",
+    "title": "Arsenal vs Slavia Praha",
+    "date": "04 Nov 2025",
+    "time": "11:30 PM NST",
+    "stadium": "Fortuna Arena Stadium",
+    "league": "Champions League",
+    "round": "Round 4",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://ichef.bbci.co.uk/images/ic/640x360/p0m9n9zh.jpg",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/7951/live/b512a380-b64d-11f0-aa13-0b0479f6f42a.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Arsenal vs Burnley", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/device02/playlist.m3u8"
+      "name": "Best Link 1:Arsenal vs Slavia Praha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
-      "name": "Best Link 2:Arsenal vs Burnley", 
+      "name": "Best Link 2:Arsenal vs Slavia Praha", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Arsenal vs Burnley", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch.php"
+      "name": "Best Link 3:Arsenal vs Slavia Praha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Arsenal vs Burnley", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=123226"
+      "name": "HD Link 1:Arsenal vs Slavia Praha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=532999"
     },
    {
-      "name": "HD Link 2:Arsenal vs Burnley", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=532999"
+      "name": "HD Link 2:Arsenal vs Slavia Praha", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=351530"
     },
 
     {
-      "name": "HD Link 3:Arsenal vs Burnley", 
+      "name": "HD Link 3:Arsenal vs Slavia Praha", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

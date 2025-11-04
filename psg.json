@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "PSG vs Nice",
-    "date": "29 Oct 2025",
-    "time": "11:45 PM NST",
-    "stadium": "Stade du Moustoire",
-    "league": "Ligue 1",
-      "round": "round 8",
+    "title": "PSG vs Bayern",
+    "date": "05 Nov 2025",
+    "time": "01:45 AM NST",
+    "stadium": "Parc des Princes Stadium",
+    "league": " Champions League",
+      "round": "round 4",
     "broadcaster": "Amazon Prime, fuboTV,Canal+",
-    "banner_image": "https://www.101greatgoals.com/wp-content/uploads/2025/10/si_article_builder_3109859536-768x432.png",
+    "banner_image": "https://www.forebet.com/images/g-previews/g-preview-2388805.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Nice", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "Best Link 1:PSG vs Bayern", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
     {
-      "name": "Best Link 2:PSG vs Nice", 
+      "name": "Best Link 2:PSG vs Bayern", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Nice", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch7.php"
+      "name": "Best Link 3:PSG vs Bayern", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
     },
     {
-      "name": "HD Link 1:PSG vs Nice", 
+      "name": "HD Link 1:PSG vs Bayern", 
       "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
-      "name": "HD Link 2:PSG vs Nice", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+      "name": "HD Link 2:PSG vs Bayern", 
+      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
     },
 
     {
-      "name": "HD Link 3:PSG vs Nice", 
+      "name": "HD Link 3:PSG vs Bayern", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

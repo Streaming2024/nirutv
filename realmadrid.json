@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Real Madrid vs Valencia",
-    "date": "01 Nov 2025",
-    "time": "12:45 AMN NST",
-    "stadium": "Coliseum",
-    "league": "UEFA Champions League",
-    "round": "Round 8",
+    "title": "Real Madrid vs Liverpool",
+    "date": "05 Nov 2025",
+    "time": "01:45 AM NST",
+    "stadium": "Anfield Stadium",
+    "league": "Champions League",
+    "round": "Round 4",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ss-i.thgim.com/public/incoming/iixhyr/article69416534.ece/alternates/LANDSCAPE_1200/WhatsApp%20Image%202025-04-05%20at%2018.36.20.jpeg",
+    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/e211/live/ca2b0780-b64d-11f0-aa13-0b0479f6f42a.png",
     "lineup_published": false
   },
   "team1": {
@@ -20,24 +20,24 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Real Madrid vs Valencia", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=400722"
+      "name": "Best Link 1:Real Madrid vs Liverpool", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
-      "name": "Best Link 2:Real Madrid vs Valencia", 
+      "name": "Best Link 2:Real Madrid vs Liverpool", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Real Madrid vs Valencia", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch6.php"
+      "name": "Best Link 3:Real Madrid vs Liverpool", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch3.php"
     },
     {
-      "name": "HD Link 1:Real Madrid vs Valencia", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
+      "name": "HD Link 1:Real Madrid vs Liverpool", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912104"
     },
    {
-      "name": "HD Link 2:Real Madrid vs Valencia", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912097"
+      "name": "HD Link 2:Real Madrid vs Liverpool", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     
    
     }

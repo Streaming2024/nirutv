@@ -1,44 +1,44 @@
 {
   "match": {
-    "title": "Nepal vs UAE ",
-    "date": "05 Nov 2025",
-    "time": "11:15 AM NST",
-    "stadium": "Dubai International Stadium",
-    "league": "CWC League 2",
-      "round": "ODI matches",
+    "title": "Nepal vs Afghanistan ",
+    "date": "07 Nov 2025",
+    "time": "08:15 AM NST",
+    "stadium": "Mission Road Ground",
+    "league": "Hong Kong Sixes 2025",
+      "round": "Group Stage",
     "broadcaster": "Fancode ,KTV, YonoTV",
-    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/03_UAE-vs-Nepal.jpg",
+    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/03_Afghanistan-vs-Nepal.jpg",
     "lineup_published": true
   },
   "team1": {
     "name": "Nepal",
-    "lineup": "Kushal Bhurtel, Aasif Sheikh (wk), Bhim Sharki, Rohit Paudel (c), Aarif Sheikh, Dipendra Singh Airee, Kushal Malla, Karan KC, Nandan Yadav, Sandeep Lamichhane, Lalit Rajbanshi"
+    "lineup": "Sharad Vesawkar(C), Sundeep Jora, Lokesh Bam(wk), Basir Ahamad, Mohammad Aadil Alam, Rashid Khan, and Rupesh Kumar Singh"
   },
   "team2": {
-    "name": "UAE ", 
-    "lineup": " Aryansh Sharma (wk), Alishan Sharafu (c), Muhammad Shahdad, Shoaib Khan, Muhammad Waseem, Harshit Kaushik, Dhruv Parashar, Zahid Ali, Haider Ali, Junaid Siddique, Muhammad Jawadullah"
+    "name": "Afghanistan ", 
+    "lineup": "Gulbadin Naib(C), Noor ul Rahman, Sediqullah Pacha, Ijaz Ahmadzai, Farmanullah Safi, Sharafuddin Ashraf, and Karim Janat."
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Nepal vs UAE ", 
+      "name": "Best Link 1:Nepal vs Afghanistan ", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np"
     },
     {
-      "name": "Best Link 2:Nepal vs UAE ", 
+      "name": "Best Link 2:Nepal vs Afghanistan ", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np2"
     },
     {
-      "name": "Best Link 3:Nepal vs UAE ", 
+      "name": "Best Link 3:Nepal vs Afghanistan ", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np3"
     },
     {
-      "name": "HD Link 1:Nepal vs UAE ", 
+      "name": "HD Link 1:Nepal vs Afghanistan ", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np4"
     },
    
 
     {
-      "name": "HD Link 3:Nepal vs UAE ", 
+      "name": "HD Link 3:Nepal vs Afghanistan ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     

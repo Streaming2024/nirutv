@@ -1,13 +1,13 @@
 {
   "match": {
     "title": "Man City vs Bournemouth",
-    "date": "02 Nov 2025",
-    "time": "10:15 PM NST",
+    "date": "06 Nov 2025",
+    "time": "01:45 AM NST",
     "stadium": "Etihad Stadium",
-    "league": "Premier League ",
+    "league": "Champions League",
     "round": "Round 10",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/8ffa/live/8033f0b0-b64d-11f0-ba75-093eca1ac29b.png",
+    "banner_image": "https://sportshub.cbsistatic.com/i/r/2021/04/05/f5d15291-4028-4a3c-9bef-c092227b8737/thumbnail/1200x675/04101511caf10b2ea0442769b235eab8/city-dortmund.png",
     "lineup_published": false
   },
   "team1": {
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1: Man City vs Bournemouth", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/plyrr?src=https://live-en.aisports.cc/moviebox/device01/playlist.m3u8"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
       "name": "Best Link 2: Man City vs Bournemouth", 
@@ -33,11 +33,11 @@
     },
     {
       "name": "HD Link 1: Man City vs Bournemouth", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912091"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
       "name": "HD Link 2: Man City vs Bournemouth", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912108"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=525090"
    
     }
   ]

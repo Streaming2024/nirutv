@@ -1,13 +1,13 @@
 {
   "match": {
     "title": "Chelsea vs Tottenham",
-    "date": "01 NOV 2025",
-    "time": "01:30 AM NST",
-    "stadium": " Molineux Stadium",
-    "league": "EFL Cup",
+    "date": "05 NOV 2025",
+    "time": "11:30 PM NST",
+    "stadium": "Bahramov Stadium",
+    "league": "Champions League",
     "round": "Round 9",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://theanalyst.com/wp-content/uploads/2025/10/spurs-v-chelsea-preview.png",
+    "banner_image": "https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.4461ae12-3ea4-418f-85e8-d7766b655826/2/BOXART-16X9/en-US._UR1920,1080_SX500_FMjpg_.jpeg",
     "lineup_published": false
   },
   "team1": {
@@ -21,7 +21,7 @@
   "telecast_links": [
     {
       "name": "Best Link 1:Chelsea vs Tottenham", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=532999"
     },
     {
       "name": "Best Link 2:Chelsea vs Tottenham", 
@@ -29,15 +29,15 @@
     },
     {
       "name": "Best Link 3:Chelsea vs Tottenham", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
     },
     {
       "name": "HD Link 1:Chelsea vs Tottenham", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912060"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
    {
       "name": "HD Link 2:Chelsea vs Tottenham", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912091"
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=525090"
    
    
     }

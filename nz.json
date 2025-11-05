@@ -1,0 +1,49 @@
+{
+  "match": {
+    "title": "New Zealand vs West Indies",
+    "date": "05 Nov 2025",
+    "time": "11:45 AM NST",
+    "stadium": "Eden Park",
+    "league": "T20I Series",
+    "round": "1st match",
+    "broadcaster": "Fancode ,WillowTV , Prime",
+    "banner_image": "https://www.fancode.com/skillup-uploads/cms-media/WI-vs-NZ_T20Is_old.jpg",
+    "lineup_published": true
+  },
+  "team1": {
+    "name": "New Zealand",
+    "lineup": "Will Young, Rachin Ravindra, Kane Williamson, Daryl Mitchell, Tom Latham (wk), Michael Bracewell, Mitchell Santner (c), Kristian Clarke, Zakary Foulkes, Blair Tickner, Jacob Duffy"
+  },
+  "team2": {
+    "name": "England", 
+    "lineup": "Jamie Smith, Ben Duckett, Joe Root, Jacob Bethell, Harry Brook (c), Jos Buttler (wk), Sam Curran, Jamie Overton, Brydon Carse, Jofra Archer, Rehan Ahmed"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:West Indies vs New Zealand", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/tnt2"
+    },
+    {
+      "name": "Best Link 2:West Indies vs New Zealand", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:West Indies vs New Zealand", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://embedsports.top/embed/charlie/new-zealand-vs-west-indies-1629467896/1"
+    },
+    {
+      "name": "HD Link 1:West Indies vs New Zealand", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/tnt2"
+    },
+   {
+      "name": "HD Link 2:West Indies vs New Zealand", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://embedsports.top/embed/charlie/new-zealand-vs-west-indies-1629467896/1"
+    },
+
+    {
+      "name": "HD Link 3:West Indies vs New Zealand", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+ 
+    }
+  ]
+}

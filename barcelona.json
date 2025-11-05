@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Barcelona vs Elche",
-    "date": "02 Nov 2025",
-    "time": "11:15 PM NST",
-    "stadium": "Estadi Olímpic Lluís",
-    "league": "La Liga",
+    "title": "Barcelona vs Club Brugge",
+    "date": "06 Nov 2025",
+    "time": "01:45 AM NST",
+    "stadium": "Jan Breydel Stadium",
+    "league": "Champions League",
     "round": "Round 10",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://images2.minutemediacdn.com/image/upload/c_crop,w_1919,h_1079,x_0,y_0/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/si/01k8ygkq00fb1t2bs0aa.jpg",
+    "banner_image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000010599/1761722000042681_UCL2526_Club_Brugge_vs_Barcelona_29oct_Dated_landscape.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -15,29 +15,29 @@
     "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
   },
   "team2": {
-    "name": "Elche", 
+    "name": "Club Brugge", 
     "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Barcelona vs Elche", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
+      "name": "Best Link 1:Barcelona vs Club Brugge", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
     },
     {
-      "name": "Best Link 2:Barcelona vs Elche", 
+      "name": "Best Link 2:Barcelona vs Club Brugge", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Barcelona vs Elche", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://channel.globalplay.live/fancode/play.php?id=130931"
+      "name": "Best Link 3:Barcelona vs Club Brugge", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch4.php"
     },
     {
-      "name": "HD Link 1:Barcelona vs Elche", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+      "name": "HD Link 1:Barcelona vs Club Brugge", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
    {
-      "name": "HD Link 2:Barcelona vs Elche", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
+      "name": "HD Link 2:Barcelona vs Club Brugge", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=445260"
    
     }
   ]

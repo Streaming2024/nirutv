@@ -3,9 +3,9 @@
     "title": "IND vs AUS",
     "date": "31 Oct 2025",
     "time": "02:00 PM NST",
-    "stadium": "Optus Stadium",
+    "stadium": "Carrara Ova",
     "league": "T20I Series",
-    "round": "2nd match",
+    "round": "4th match",
     "broadcaster": ", TNT ,WillowTV, FOX",
     "banner_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVyzHlp4MHHzXEbiuis8yFsWTVhFhLMQlSXQ&s",
     "lineup_published": true
@@ -21,11 +21,11 @@
   "telecast_links": [
     {
       "name": "Best Link 1:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/links?id=india"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india"
     },
     {
       "name": "Best Link 2:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/tnt3"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/tnt2"
     },
     {
       "name": "Best Link 3:IND vs AUS", 
@@ -33,16 +33,16 @@
     },
     {
       "name": "HD Link 1:IND vs AUS(Hindi)", 
-      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/links?id=india2"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india2"
     },
    {
       "name": "HD Link 2:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://yonotv.pages.dev/links?id=india3"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india3"
     },
 
     {
       "name": "HD Link 3:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://dns-tv.pages.dev/link1?id=tnt3"
+      "url": "https://yonotv.pages.dev/page?src=https://dns-tv.pages.dev/link1?id=tnt2"
     
     }
   ]

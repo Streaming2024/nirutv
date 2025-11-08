@@ -21,11 +21,11 @@
   "telecast_links": [
     {
       "name": "Best Link 1:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india2"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india"
     },
     {
       "name": "Best Link 2:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india2"
     },
     {
       "name": "Best Link 3:IND vs AUS", 
@@ -33,7 +33,7 @@
     },
     {
       "name": "HD Link 1:IND vs AUS", 
-      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/tnt2"
+      "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/mdp?id=tnt3"
     },
    {
       "name": "HD Link 2:IND vs AUS", 

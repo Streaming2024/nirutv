@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Man City vs Bournemouth",
-    "date": "06 Nov 2025",
+    "title": "Man City vs Tottenham",
+    "date": "08 Nov 2025",
     "time": "01:45 AM NST",
     "stadium": "Etihad Stadium",
     "league": "Champions League",
     "round": "Round 10",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
-    "banner_image": "https://sportshub.cbsistatic.com/i/r/2021/04/05/f5d15291-4028-4a3c-9bef-c092227b8737/thumbnail/1200x675/04101511caf10b2ea0442769b235eab8/city-dortmund.png",
+    "banner_image": "https://theanalyst.com/wp-content/uploads/2025/08/man-city-v-spurs-preview-2025.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -15,28 +15,28 @@
     "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
   },
   "team2": {
-      "name": "Bournemouth", 
+      "name": "Tottenham", 
     "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1: Man City vs Bournemouth", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+      "name": "Best Link 1: Man City vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=351530"
     },
     {
-      "name": "Best Link 2: Man City vs Bournemouth", 
+      "name": "Best Link 2: Man City vs Tottenham", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3: Man City vs Bournemouth", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://www.tvguide.co.uk/channel/tnt-sports-1"
+      "name": "Best Link 3: Man City vs Tottenham", 
+      "url": "https://yonotv.pages.dev/page.html?src="
     },
     {
-      "name": "HD Link 1: Man City vs Bournemouth", 
+      "name": "HD Link 1: Man City vs Tottenham", 
       "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
-      "name": "HD Link 2: Man City vs Bournemouth", 
+      "name": "HD Link 2: Man City vs Tottenham", 
       "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=525090"
    
     }

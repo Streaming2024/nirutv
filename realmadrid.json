@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Real Madrid vs Liverpool",
-    "date": "05 Nov 2025",
-    "time": "01:45 AM NST",
+    "title": "Real Madrid vs Rayo Vallecano",
+    "date": "08 Nov 2025",
+    "time": "09:00 PM NST",
     "stadium": "Anfield Stadium",
-    "league": "Champions League",
-    "round": "Round 4",
+    "league": "La Liga",
+    "round": "Round 11",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/e211/live/ca2b0780-b64d-11f0-aa13-0b0479f6f42a.png",
+    "banner_image": "https://cdn.ratingbet.com/ratingbet/20251107/8e1a74aad14897ba7e6ea3dc26f5ba659b32a69f662e02c6ed8620cd2aeeae31-800-500.webp",
     "lineup_published": false
   },
   "team1": {
@@ -20,24 +20,24 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Real Madrid vs Liverpool", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+      "name": "Best Link 1:Real Madrid vs Rayo Vallecano", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
     },
     {
-      "name": "Best Link 2:Real Madrid vs Liverpool", 
+      "name": "Best Link 2:Real Madrid vs Rayo Vallecano", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Real Madrid vs Liverpool", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch3.php"
+      "name": "Best Link 3:Real Madrid vs Rayo Vallecano", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch6.php"
     },
     {
-      "name": "HD Link 1:Real Madrid vs Liverpool", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912104"
+      "name": "HD Link 1:Real Madrid vs Rayo Vallecano", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=525090"
     },
    {
-      "name": "HD Link 2:Real Madrid vs Liverpool", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
+      "name": "HD Link 2:Real Madrid vs Rayo Vallecano", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
     
    
     }

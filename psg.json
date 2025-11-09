@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "PSG vs Bayern",
-    "date": "05 Nov 2025",
-    "time": "01:45 AM NST",
+    "title": "PSG vs Lyon",
+    "date": "10 Nov 2025",
+    "time": "01:30 AM NST",
     "stadium": "Parc des Princes Stadium",
-    "league": " Champions League",
-      "round": "round 4",
+    "league": " Ligue1",
+      "round": "round 11",
     "broadcaster": "Amazon Prime, fuboTV,Canal+",
-    "banner_image": "https://www.forebet.com/images/g-previews/g-preview-2388805.jpg",
+    "banner_image": "https://images.daznservices.com/di/library/DAZN_News/17/71/psg-lyon_1t58reh74jwo71pp1f4pcs8rp9.png?t=490589039",
     "lineup_published": false
   },
   "team1": {
@@ -20,28 +20,28 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:PSG vs Bayern", 
+      "name": "Best Link 1:PSG vs Lyon", 
       "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
     },
     {
-      "name": "Best Link 2:PSG vs Bayern", 
+      "name": "Best Link 2:PSG vs Lyon", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:PSG vs Bayern", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
+      "name": "Best Link 3:PSG vs Lyon", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch7.php"
     },
     {
-      "name": "HD Link 1:PSG vs Bayern", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
+      "name": "HD Link 1:PSG vs Lyon", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
     },
    {
-      "name": "HD Link 2:PSG vs Bayern", 
-      "url": "https://yonotv.pages.dev/page2.html?src=https://dns-tv.pages.dev/Player/soco?id=513394"
+      "name": "HD Link 2:PSG vs Lyon", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=548860"
     },
 
     {
-      "name": "HD Link 3:PSG vs Bayern", 
+      "name": "HD Link 3:PSG vs Lyon", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

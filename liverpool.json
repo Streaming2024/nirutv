@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "Liverpool vs Aston Villa",
-    "date": "01 Nov 2025",
-    "time": "01:30 AM NST",
-    "stadium": "Anfield Stadium",
-    "league": "EFL Cup",
-    "round": "Round 9",
+    "title": "Liverpool vs Man City",
+    "date": "09 Nov 2025",
+    "time": "10:15 PM NST",
+    "stadium": "Etihad Stadium",
+    "league": "Premier League",
+    "round": "Round 11",
     "broadcaster": "Sky Sports ,beIN Sports,fuboTV",
-    "banner_image": "https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/f0d7/live/1634d160-0c72-11ef-82e8-cd354766a224.png",
+    "banner_image": "https://theanalyst.com/wp-content/uploads/2025/11/man-city-vs-liverpool-predictions.jpg",
     "lineup_published": false
   },
   "team1": {
@@ -20,24 +20,24 @@
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Liverpool vs Aston Villa", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=459401"
+      "name": "Best Link 1:Liverpool vs Man City", 
+      "url": "https://yonotv.pages.dev/pageads.html?src=https://dns-tv.pages.dev/Player/soco?id=327159"
     },
     {
-      "name": "Best Link 2:Liverpool vs Aston Villa", 
+      "name": "Best Link 2:Liverpool vs Man City", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Liverpool vs Aston Villa", 
-      "url": "https://yonotv.pages.dev/pageads.html?src=https://streamcenter.pro/embed/ch1.php"
+      "name": "Best Link 3:Liverpool vs Man City", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
     },
     {
-      "name": "HD Link 1:Liverpool vs Aston Villa", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
+      "name": "HD Link 1:Liverpool vs Man City", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
    {
-      "name": "HD Link 2:Liverpool vs Aston Villa", 
-      "url": "https://yonotv.pages.dev/page2ads.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "HD Link 2:Liverpool vs Man City", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/socohd?id=9912091"
   
    
     }

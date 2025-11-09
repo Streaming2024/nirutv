@@ -1,10 +1,10 @@
 {
   "match": {
-    "title": "Barcelona vs Club Brugge",
+    "title": "Barcelona vs Celta Vigo ",
     "date": "06 Nov 2025",
     "time": "01:45 AM NST",
     "stadium": "Jan Breydel Stadium",
-    "league": "Champions League",
+    "league": "La Liga",
     "round": "Round 10",
     "broadcaster": "beIN Sports,Sky Go UK,NBC",
     "banner_image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000010599/1761722000042681_UCL2526_Club_Brugge_vs_Barcelona_29oct_Dated_landscape.jpg",
@@ -15,29 +15,29 @@
     "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
   },
   "team2": {
-    "name": "Club Brugge", 
+    "name": "Celta Vigo ", 
     "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Barcelona vs Club Brugge", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
+      "name": "Best Link 1:Barcelona vs Celta Vigo ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=400722"
     },
     {
-      "name": "Best Link 2:Barcelona vs Club Brugge", 
+      "name": "Best Link 2:Barcelona vs Celta Vigo ", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Barcelona vs Club Brugge", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/tnt4"
+      "name": "Best Link 3:Barcelona vs Celta Vigo ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch6.php"
     },
     {
-      "name": "HD Link 1:Barcelona vs Club Brugge", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+      "name": "HD Link 1:Barcelona vs Celta Vigo ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=414317"
     },
    {
-      "name": "HD Link 2:Barcelona vs Club Brugge", 
-      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=445260"
+      "name": "HD Link 2:Barcelona vs Celta Vigo ", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
    
     }
   ]

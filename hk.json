@@ -1,44 +1,44 @@
 {
   "match": {
-    "title": "Hong Kong Sixes",
-    "date": "07 Nov 2025",
-    "time": "06:55 AM NST",
-    "stadium": "Mission Road Ground",
-    "league": "Hong Kong Sixes, 2025",
+    "title": "Janakpur  vs Kathmandu",
+    "date": "17 Nov 2025",
+    "time": "04:00 PM NST",
+    "stadium": "TU Cricket Stadium",
+    "league": "Nepal Premier League 2025",
       "round": "Group Stage",
     "broadcaster": "Fancode ,KTV, YonoTV",
-    "banner_image": "https://cricketman2.com/wp-content/uploads/2025/11/Hong-Kong-Sixes-2025-Points-Table-.webp",
-    "lineup_published": false
+    "banner_image": "https://resultofipo.com/wp-content/uploads/2024/12/Result-of-IPO-65.jpg",
+    "lineup_published": true
   },
   "team1": {
-    "name": "Nepal",
-    "lineup": "Sharad Vesawkar(C), Sundeep Jora, Lokesh Bam(wk), Basir Ahamad, Mohammad Aadil Alam, Rashid Khan, and Rupesh Kumar Singh"
+    "name": "Janakpur",
+    "lineup": "Anil Sah(c, wk),Bikash Aagri,Sachin Bhatta,Shubh Kansakar,Aaditya Mahata,Kishore Mahato,Lahiru Milantha(wk),Wayne Parnell,Lalit Rajbanshi,Aasif, Sheikh(wk)Rupesh Singh,Imran Tahir,Tul Thapa,Mayan Yadav"
   },
   "team2": {
-    "name": "Afghanistan ", 
-    "lineup": "Gulbadin Naib(C), Noor ul Rahman, Sediqullah Pacha, Ijaz Ahmadzai, Farmanullah Safi, Sharafuddin Ashraf, and Karim Janat."
+    "name": "Kathmandu", 
+    "lineup": "Karan KC (c),Mohammad Aadil Alam,Shahab Alam,Ben Charlesworth,Gerhard Erasmus,Dipesh Kandel,Milind Kumar,Rashid Khan,Uttam Magar(wk,Sunny Patel,Natarajan Shah,Bhim Sharki,John Simpson (wk),Pratik Shrestha,Aakash Tripathi,Tul B Thapa,Ricardo Vasconcelos (wk),Santosh Yadav,"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Hong Kong Sixes", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np"
+      "name": "Best Link 1:Janakpur  vs Kathmandu", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL"
     },
     {
-      "name": "Best Link 2:Hong Kong Sixes", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np2"
+      "name": "Best Link 2:Janakpur  vs Kathmandu", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL2"
     },
     {
-      "name": "Best Link 3:Hong Kong Sixes", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np3"
+      "name": "Best Link 3:Janakpur  vs Kathmandu", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL3"
     },
     {
-      "name": "HD Link 1:Hong Kong Sixes", 
-      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=np4"
+      "name": "HD Link 1:Janakpur  vs Kathmandu", 
+      "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL4"
     },
    
 
     {
-      "name": "HD Link 3:Hong Kong Sixes", 
+      "name": "HD Link 3:Janakpur  vs Kathmandu", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     

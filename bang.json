@@ -1,47 +1,47 @@
 {
   "match": {
-    "title": "Bangladesh vs West Indies",
-    "date": "31 Oct 2025",
-    "time": "05:45 PM NST",
-    "stadium": "Hagley Oval",
-    "league": "ODI Series",
-    "round": "3nd match",
+    "title": "Bangladesh vs Ireland",
+    "date": "11 Nov 2025",
+    "time": "09:15 PM NST",
+    "stadium": "Sylhet Cricket Stadium",
+    "league": "Test Series",
+    "round": "1st match",
     "broadcaster": "Fancode ,WillowTV",
-    "banner_image": "https://styxsports.b-cdn.net/styxsports-public/banner/1760340773517-140268004.webp",
-    "lineup_published": true
+    "banner_image": "https://crickettimes.com/wp-content/uploads/2023/05/Ireland-versus-Bangladesh-ODI-Series-Broadcast-details.jpg",
+    "lineup_published": false
   },
   "team1": {
     "name": "Bangladesh",
     "lineup": "Tanzid Hasan, Saif Hassan, Litton Das (c & wk), Jaker Ali, Shamim Hossain, Towhid Hridoy, Taskin Ahmed/Shoriful Islam, Rishad Hossain, Tanzim Hasan Sakib, Nasum Ahmed, Mustafizur Rahman"
   },
   "team2": {
-    "name": "West Indies", 
+    "name": "Ireland", 
     "lineup": "Brandon King, Alick Athanaze, Shai Hope (c & wk), Roston Chase, Sherfane Rutherford, Rovman Powell, Romario Shepherd, Jason Holder, Khary Pierre, Akeal Hosein, Jayden Seales"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:Bangladesh vs West Indies", 
+      "name": "Best Link 1:Bangladesh vs Ireland", 
       "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/fc"
     },
     {
-      "name": "Best Link 2:Bangladesh vs West Indies", 
+      "name": "Best Link 2:Bangladesh vs Ireland", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Best Link 3:Bangladesh vs West Indies", 
+      "name": "Best Link 3:Bangladesh vs Ireland", 
       "url": "https://yonotv.pages.dev/page.html?src=https://kasin-tv.com/hi/play.php?id=137705"
     },
     {
-      "name": "HD Link 1:Bangladesh vs West Indies", 
+      "name": "HD Link 1:Bangladesh vs Ireland", 
       "url": "https://yonotv.pages.dev/page2.html?src=https://kasin-tv.com/hi/play.php?id=137705"
     },
    {
-      "name": "HD Link 2:Bangladesh vs West Indies", 
+      "name": "HD Link 2:Bangladesh vs Ireland", 
       "url": "https://yonotv.pages.dev/page2.html?src=https://me.webcric.com/frame8.htm"
     },
 
     {
-      "name": "HD Link 3:Bangladesh vs West Indies", 
+      "name": "HD Link 3:Bangladesh vs Ireland", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
    
     }

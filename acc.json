@@ -1,0 +1,41 @@
+{
+  "match": {
+    "title": "PAK-A vs Oamn",
+    "date": "14 Nov 2025",
+    "time": "12:15 PM NST",
+    "stadium": "West End Park Stadium, Doha",
+    "league": "Rising Stars Asia Cup ",
+      "round": "Group Stage",
+    "broadcaster": "Fancode ,Sony Sports ,TEN Network , Sony LIV",
+    "banner_image": "https://img.ipl.com/upload/20251110/668dbdfc1e9b672dd95833ea048e083c.webp",
+    "lineup_published": true
+  },
+  "team1": {
+    "name": "UAE",
+    "lineup": "Muhammad Waseem (C), Aryansh Sharma (WK), Vishnu Sukumaran, Alishan Sharafu, Rahul Chopra, Ali Naseer, Basil Hameed, Aayan Afzal Khan, Junaid Siddique, Rahul Bhatia, and Muhammad Jawadullah"
+  },
+  "team2": {
+    "name": "USA", 
+    "lineup": " Monank Patel (C), Smit Patel (WK), Andries Gous, Saiteja Mukkamalla, Milind Kumar, Shayan Jahangir, Harmeet Singh, Jasdeep Singh, Nosthush Kenjige, Saurabh Netravalkar, and Juanoy Drysdale"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1:PAK-A vs Oamn", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=acc1"
+    },
+    {
+      "name": "Best Link 2:PAK-A vs Oamn", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3:PAK-A vs Oamn", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=acc2"
+    },
+    {
+      "name": "HD Link 1:PAK-A vs Oamn", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://freeplyrr.pages.dev/LNK2?id=acc3"
+  
+   
+    }
+  ]
+}

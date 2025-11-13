@@ -1,0 +1,44 @@
+{
+  "match": {
+    "title": "Portugal vs Ireland",
+    "date": "14 Nov 2025",
+    "time": "01:30 AM NST",
+    "stadium": "Etihad Stadium",
+    "league": "world cup qualifiers",
+    "round": "Round 05",
+    "broadcaster": "beIN Sports,Sky Go UK,NBC",
+    "banner_image": "https://cdn.resfu.com/media/img_news/portugal-vs-ireland--world-cup-qualifiers--group-f--11-10-2025--preview--besoccer.png",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "Man City",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+      "name": "Tottenham", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1: Portugal vs Ireland", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=291277"
+    },
+    {
+      "name": "Best Link 2: Portugal vs Ireland", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3: Portugal vs Ireland", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch3.php"
+    },
+    {
+      "name": "HD Link 1: Portugal vs Ireland", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=400722"
+    },
+   {
+      "name": "HD Link 2: Portugal vs Ireland", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=531989"
+   
+    }
+  ]
+}

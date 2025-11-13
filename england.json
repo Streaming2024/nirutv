@@ -1,0 +1,44 @@
+{
+  "match": {
+    "title": "England vs Serbia",
+    "date": "14 Nov 2025",
+    "time": "01:30 AM NST",
+    "stadium": "Wembley Stadium",
+    "league": "world cup qualifiers",
+    "round": "Round 5",
+    "broadcaster": ",Sky Go UK,NBC",
+    "banner_image": "https://s3-eu-west-1.amazonaws.com/prod-media-racingpost/prod/images/169_1008/d80503202bc3-football-predictions-eng-v-serb.jpg",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "Man City",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+      "name": "Tottenham", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1: England vs Serbia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=511367"
+    },
+    {
+      "name": "Best Link 2: England vs Serbia", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3: England vs Serbia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch1.php"
+    },
+    {
+      "name": "HD Link 1: England vs Serbia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=387694"
+    },
+   {
+      "name": "HD Link 2: England vs Serbia", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=527383"
+   
+    }
+  ]
+}

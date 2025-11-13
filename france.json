@@ -1,0 +1,44 @@
+{
+  "match": {
+    "title": "France vs Ukraine",
+    "date": "14 Nov 2025",
+    "time": "01:30 AM NST",
+    "stadium": "Parc des Princes stadium",
+    "league": "world cup qualifiers",
+    "round": "Round 05",
+    "broadcaster": "beIN Sports,Sky Go UK,NBC",
+    "banner_image": "https://ichef.bbci.co.uk/images/ic/1200x675/p0jdbvdq.jpg",
+    "lineup_published": false
+  },
+  "team1": {
+    "name": "Man City",
+    "lineup": "Rohit, Sompal, Dipendra, Sandip, Karan, Aasif, Gulsan, Bibek, Kushal, Abinash, Pratish"
+  },
+  "team2": {
+      "name": "Tottenham", 
+    "lineup": "Ivan Dyulgerov, Ivan Turitsov, Valentin Antov, Hristiyan Petrov, Andrea Hristov, Dominik Yankov, Ivaylo Chochev, Kiril Despodov, Marin Petkov, Georgi Rusev, Martin Minchev"
+  },
+  "telecast_links": [
+    {
+      "name": "Best Link 1: France vs Ukraine", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=494201"
+    },
+    {
+      "name": "Best Link 2: France vs Ukraine", 
+      "url": "https://dns-tv.pages.dev/VIP/ads.html"
+    },
+    {
+      "name": "Best Link 3: France vs Ukraine", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://streamcenter.pro/embed/ch2.php"
+    },
+    {
+      "name": "HD Link 1: France vs Ukraine", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=484845"
+    },
+   {
+      "name": "HD Link 2: France vs Ukraine", 
+      "url": "https://yonotv.pages.dev/page.html?src=https://dns-tv.pages.dev/Player/soco?id=380460"
+   
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 [
   {
-    "league": "Football | Int. Friendly Games",
+    "league": "🏆Football | Int. Friendly Games",
     "match_link": "https://example.com/match-1",
     "home_team": "South Korea",
     "home_flag": "https://flagcdn.com/w40/kr.png",
@@ -10,7 +10,7 @@
     "end_time": "2025-11-15T01:00:00+05:45"
   },
   {
-    "league": "Boxing | ONE Fighting Championship",
+    "league": "🏆Boxing | ONE Fighting Championship",
     "match_link": "https://example.com/match-2",
     "home_team": "Mike Tyson",
     "home_flag": "🥊",

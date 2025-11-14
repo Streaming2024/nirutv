@@ -7,6 +7,9 @@
     font-weight: 700;
     margin: 1px;
 	color: #fff;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mnajiri {
@@ -17,6 +20,8 @@
   box-shadow: rgba(0, 0, 0, 0.57) 0pt 18.75pt 0.208333333in -15.75pt;
   border-radius: 3.75pt;
   transition: box-shadow 0.3s;
+  width: 100%;
+  max-width: 500px;
 }
 
 .mnajiri img {
@@ -89,11 +94,16 @@
 .mpart1 {
   height: 36pt;
   line-height: 1.875pc;
+  position: relative;
+  width: 100%;
 }
 
 .fname {
     text-align: center;
     line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
 }
 
 .mpart1 strong {
@@ -109,6 +119,10 @@
   text-align: center;
   border-bottom: 2px solid darkred;
   border-radius: 0 10px 0 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notetext {
@@ -128,6 +142,8 @@ div#match_today h2 {
   color: #fff;
   background: darkred;
   margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .left_match {
@@ -170,13 +186,13 @@ div#match_today h2 {
   font-variant: normal;
   font-weight: bold;
   font-stretch: normal;
-  font-size: 0.15625in;
+  font-size: 14px;
   line-height: normal;
   font-size-adjust: none;
   font-kerning: auto;
-  margin: 0.0625pc;
-  min-width: 60pt;
-  padding: 0.05in 0.108333333in 0.06in;
+  margin: 4px;
+  min-width: 80px;
+  padding: 8px 12px;
   text-align: center;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -184,15 +200,178 @@ div#match_today h2 {
 
 .genzaitv:hover {
   border-color: #fff;
-  box-shadow: 0 1px 0.1875pc rgba(255, 56, 56, 0.6);
+  box-shadow: 0 1px 3px rgba(255, 56, 56, 0.6);
   color: darkred;
 }
 
-.activebtn, .genzaitv:hover {
-  background-color: darkblue;
-  color: white;
+.activebtn {
+  background-color: darkblue !important;
+  color: white !important;
 }
 
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .match_today.container {
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .livematch-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mnajiri {
+    margin: 10px auto;
+    width: 100%;
+    max-width: 400px;
+    min-width: 320px;
+  }
+  
+  .mpart1 {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .left_match, .right_match {
+    float: none;
+    width: 40%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .left_match {
+    order: 1;
+  }
+  
+  .right_match {
+    order: 3;
+  }
+  
+  .mpart1 strong {
+    position: relative;
+    float: none;
+    order: 2;
+    width: 80px;
+    height: 36px;
+    margin: 0;
+    top: auto;
+    right: auto;
+    margin-right: 0;
+  }
+  
+  .right_tech, .left_tech {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .fname {
+    font-size: 11px;
+    line-height: 14px;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  #myDIV {
+    padding: 8px 5px;
+  }
+  
+  .genzaitv {
+    font-size: 12px;
+    min-width: 70px;
+    padding: 6px 10px;
+    margin: 3px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mnajiri {
+    max-width: 350px;
+    min-width: 300px;
+  }
+  
+  .mpart1 {
+    height: 110px;
+  }
+  
+  .fname {
+    font-size: 10px;
+    line-height: 13px;
+  }
+  
+  .mpart1 strong {
+    width: 70px;
+    height: 32px;
+    font-size: 12px;
+  }
+  
+  .genzaitv {
+    font-size: 11px;
+    min-width: 60px;
+    padding: 5px 8px;
+  }
+  
+  .mnajiri img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .mnajiri {
+    max-width: 320px;
+    min-width: 280px;
+  }
+  
+  .mpart1 {
+    height: 100px;
+  }
+  
+  .fname {
+    font-size: 9px;
+    line-height: 12px;
+  }
+  
+  .mpart1 strong {
+    width: 65px;
+    height: 30px;
+    font-size: 11px;
+  }
+  
+  .mnajiri img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Ensure exact same layout on all screens */
+.left_match, .right_match, .mpart1 strong {
+  /* Force exact positioning */
+  position: relative;
+}
+
+.mpart1 {
+  /* Ensure consistent layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hide unnecessary elements on mobile */
 @media screen and (max-width: 700px) {
   .liga_mdw {
     display: none;
@@ -206,28 +385,33 @@ div#match_today h2 {
     background-color: #532855;
     border-radius: 0 0 0 6pt;
   }
-  
-  .mpart1 strong {
-    top: 20px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .gadwal {
-    font-size: 10.5pt;
-    width: 106%;
-    background: #fff;
-  }
-}
-
-@media (max-width: 768px) {
-  .separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header {
-    padding: 10px;
-  }
 }
 
 :root {
   --link-text-hover: #fff;
+}
+
+/* Container styles for proper centering */
+.entry-content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* Center everything properly */
+center#myDIV {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+#match_today {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
 

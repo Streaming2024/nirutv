@@ -2,10 +2,10 @@
   {
     "league": "🏆Football | Int. Friendly Games",
     "match_link": "https://example.com/match-1",
-    "home_team": "Nepal",
-    "home_flag": "https://flagpedia.net/data/flags/w1160/np.webp",
-    "away_team": "Bolivia",
-    "away_flag": "https://flagpedia.net/data/flags/w1160/in.webp",
+    "home_team": "Kathmandu",
+    "home_flag": "https://dns-tv.pages.dev/logo/ktm.png",
+    "away_team": "Janakpur",
+    "away_flag": "https://dns-tv.pages.dev/logo/janakpur.png",
     "start_time": "2025-11-14T21:30:00+05:45",
     "end_time": "2025-11-14T23:00:00+05:45"
   },

@@ -1,73 +1,32 @@
 [
   {
-    "data": [
-      {
-        "id": "11",
-        "title": "Nepal Premier League",
-        "homeTeam": "Biratnagar Kings",
-        "awayTeam": "Janakpur Bolts",
-        "homeImg": "https://media.cricnepal.com/assets/Biratnagar-Kings-NPL-logo.webp",
-        "awayImg": "https://media.cricnepal.com/assets/Janakpur-Bolts-NPL-logo.webp",
-        "href": "https://freelive2025.blogspot.com/p/npl.html",
-        "time": "2025-11-15T12:00:00+05:45",
-        "type": "cricketz"
-      },
-      {
-        "id": "12",
-        "title": "Nepal Premier League",
-        "homeTeam": "Kathmandu Gurkhas",
-        "awayTeam": "Chitwan Rhinos",
-        "homeImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/392000/392043.png",
-        "awayImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/392000/392044.jpg",
-        "href": "https://cricket.genzaitv.com/nepal-premier-league-npl-2024/",
-        "time": "2025-11-17T20:00:00+05:45",
-        "type": "cricketz"
-      },
-      {
-        "id": "13",
-        "title": "Nepal Premier League",
-        "homeTeam": "Janakpur Bolts",
-        "awayTeam": "Karnali Yaks",
-        "homeImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/392000/392045.png",
-        "awayImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/392000/392046.png",
-        "href": "https://cricket.genzaitv.com/nepal-premier-league-npl-2024/",
-        "time": "2025-11-19T16:00:00+05:45",
-        "type": "cricketz"
-      },
-      {
-        "id": "14",
-        "title": "Nepal Premier League",
-        "homeTeam": "SudurPaschim Royals",
-        "awayTeam": "Biratnagar Kings",
-        "homeImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/391900/391989.png",
-        "awayImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/391900/391936.jpg",
-        "href": "https://cricket.genzaitv.com/nepal-premier-league-npl-2024/",
-        "time": "2025-11-20T16:00:00+05:45",
-        "type": "cricketz"
-      },
-      {
-        "id": "15",
-        "title": "Nepal Premier League",
-        "homeTeam": "Pokhara Avengers",
-        "awayTeam": "Chitwan Rhinos",
-        "homeImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/391900/391990.png",
-        "awayImg": "https://img1.hscicdn.com/image/upload/f_auto,t_ds_square_w_160,q_50/lsci/db/PICTURES/CMS/392000/392044.jpg",
-        "href": "https://cricket.genzaitv.com/nepal-premier-league-npl-2024/",
-        "time": "2025-11-21T02:10:00+09:00",
-        "type": "cricketz"
-      },
-     
-      {
-        "id": "12506061",
-        "title": "T20 International",
-        "homeTeam": "Zimbabwe",
-        "awayTeam": "Pakistan",
-        "homeImg": "https://api.sofascore.app/api/v1/team/187745/image",
-        "awayImg": "https://api.sofascore.app/api/v1/team/187754/image",
-        "href": "https://cricket.genzaitv.com/",
-        "time": "2025-11-22T02:10:00+09:00",
-        "type": "cricket"
-      }
-    ]
+    "league": "Football | Int. Friendly Games",
+    "match_link": "https://example.com/match-1",
+    "home_team": "South Korea",
+    "home_flag": "https://flagcdn.com/w40/kr.png",
+    "away_team": "Bolivia",
+    "away_flag": "https://flagcdn.com/w40/bo.png",
+    "start_time": "2025-11-14T23:43:00+05:45",
+    "end_time": "2025-11-15T01:00:00+05:45"
+  },
+  {
+    "league": "Boxing | ONE Fighting Championship",
+    "match_link": "https://example.com/match-2",
+    "home_team": "Mike Tyson",
+    "home_flag": "🥊",
+    "away_team": "Roy Jones Jr",
+    "away_flag": "🥊",
+    "start_time": "2025-11-14T18:15:00+05:45",
+    "end_time": "2025-11-14T20:00:00+05:45"
+  },
+  {
+    "league": "Football | Int. Friendly Games",
+    "match_link": "https://example.com/match-3",
+    "home_team": "Brazil",
+    "home_flag": "https://flagcdn.com/w40/br.png",
+    "away_team": "Argentina",
+    "away_flag": "https://flagcdn.com/w40/ar.png",
+    "start_time": "2025-11-14T20:45:00+05:45",
+    "end_time": "2025-11-14T22:45:00+05:45"
   }
 ]

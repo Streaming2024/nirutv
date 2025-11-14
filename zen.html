@@ -10,6 +10,7 @@
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    text-align: center;
 }
 
 .mnajiri {
@@ -58,30 +59,6 @@
   border: 0 solid currentColor;
 }
 
-.details_match .liga_mdw {
-  border: 0 none currentColor;
-}
-
-.first_match::before,
-.liga_mdw::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 2.25pc;
-  background-color: darkslateblue;
-  border-radius: 0 0 0.5pc 0;
-}
-
-.first_match::before {
-  transform: skew(-20deg);
-  right: -12px;
-}
-
-.liga_mdw::before {
-  transform: skew(20deg);
-  left: -9pt;
-}
-
 .fullink {
   display: block;
   position: absolute;
@@ -92,30 +69,29 @@
 }
 
 .mpart1 {
-  height: 36pt;
-  line-height: 1.875pc;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
-  width: 100%;
+  padding: 0 10px;
 }
 
 .fname {
     text-align: center;
-    line-height: 20px;
+    line-height: 16px;
     font-size: 12px;
     font-weight: bold;
     margin-top: 5px;
+    width: 100%;
 }
 
 .mpart1 strong {
-  width: 0.833333333in;
+  width: 80px;
   height: 36px;
-  line-height: 0.375in;
-  position: absolute;
+  line-height: 36px;
+  position: relative;
   color: #fff;
-  right: 50%;
-  top: 30px;
-  z-index: 1;
-  margin-right: -0.416666667in;
   text-align: center;
   border-bottom: 2px solid darkred;
   border-radius: 0 10px 0 10px;
@@ -123,6 +99,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  order: 2;
+  margin: 0 10px;
 }
 
 .notetext {
@@ -147,17 +125,21 @@ div#match_today h2 {
 }
 
 .left_match {
-  float: left;
-  width: 45%;
-  padding-right: 1.875pc;
-  position: relative;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  order: 1;
 }
 
 .right_match {
-  float: right;
-  width: 45%;
-  padding-left: 1.875pc;
-  position: relative;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  order: 3;
 }
 
 .najiri1 {
@@ -172,10 +154,6 @@ div#match_today h2 {
   background-color: #4caf50;
 }
 
-.dark-mode .mpart1 {
-  color: black !important;
-}
-
 .genzaitv {
   background: #fff none repeat scroll 0 0;
   border: 0.75pt solid #d0cbcb;
@@ -188,8 +166,6 @@ div#match_today h2 {
   font-stretch: normal;
   font-size: 14px;
   line-height: normal;
-  font-size-adjust: none;
-  font-kerning: auto;
   margin: 4px;
   min-width: 80px;
   padding: 8px 12px;
@@ -209,7 +185,80 @@ div#match_today h2 {
   color: white !important;
 }
 
-/* Mobile Responsive Styles */
+/* Desktop Styles - Fixed Layout */
+@media screen and (min-width: 769px) {
+  .mnajiri {
+    max-width: 600px;
+    margin: 15px auto;
+  }
+  
+  .mpart1 {
+    height: 140px;
+    padding: 0 20px;
+  }
+  
+  .left_match, .right_match {
+    width: 45%;
+  }
+  
+  .mpart1 strong {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0 15px;
+  }
+  
+  .fname {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  .mnajiri img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .genzaitv {
+    font-size: 16px;
+    min-width: 100px;
+    padding: 10px 16px;
+    margin: 5px;
+  }
+  
+  #myDIV {
+    padding: 12px 15px;
+  }
+}
+
+/* Large Desktop Styles */
+@media screen and (min-width: 1200px) {
+  .mnajiri {
+    max-width: 700px;
+  }
+  
+  .mpart1 {
+    height: 150px;
+    padding: 0 30px;
+  }
+  
+  .mpart1 strong {
+    width: 120px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .fname {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  
+  .mnajiri img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* Mobile Styles */
 @media screen and (max-width: 768px) {
   .match_today.container {
     padding: 0 10px;
@@ -233,57 +282,17 @@ div#match_today h2 {
   
   .mpart1 {
     height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .left_match, .right_match {
-    float: none;
-    width: 40%;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .left_match {
-    order: 1;
-  }
-  
-  .right_match {
-    order: 3;
-  }
-  
-  .mpart1 strong {
-    position: relative;
-    float: none;
-    order: 2;
-    width: 80px;
-    height: 36px;
-    margin: 0;
-    top: auto;
-    right: auto;
-    margin-right: 0;
-  }
-  
-  .right_tech, .left_tech {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
   }
   
   .fname {
     font-size: 11px;
     line-height: 14px;
-    margin-top: 5px;
-    text-align: center;
-    width: 100%;
-    word-wrap: break-word;
-    hyphens: auto;
+  }
+  
+  .mpart1 strong {
+    width: 80px;
+    height: 36px;
+    font-size: 14px;
   }
   
   #myDIV {
@@ -358,19 +367,6 @@ div#match_today h2 {
   }
 }
 
-/* Ensure exact same layout on all screens */
-.left_match, .right_match, .mpart1 strong {
-  /* Force exact positioning */
-  position: relative;
-}
-
-.mpart1 {
-  /* Ensure consistent layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 /* Hide unnecessary elements on mobile */
 @media screen and (max-width: 700px) {
   .liga_mdw {
@@ -379,11 +375,6 @@ div#match_today h2 {
 
   .details_match span {
     width: 100%;
-  }
-
-  .thany::before {
-    background-color: #532855;
-    border-radius: 0 0 0 6pt;
   }
 }
 
@@ -413,6 +404,15 @@ center#myDIV {
   flex-direction: column;
   align-items: center;
 }
+
+/* Ensure consistent team layout */
+.right_tech, .left_tech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 </style>
 
 <div class="entry-content" itemprop="text">
@@ -427,7 +427,7 @@ center#myDIV {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// Updated JavaScript code for the new JSON structure
+// JavaScript code remains the same as before
 var url = "https://yonotv.pages.dev/api.json";
 var dateToday = new Date();
 var arr = [];
@@ -446,14 +446,12 @@ fetch(url)
   .then(data => {
     console.log("Data loaded successfully:", data);
     
-    // Handle the array structure: data is an array with one object containing data property
     if (Array.isArray(data) && data.length > 0 && data[0].data) {
       var matchData = data[0].data;
       buttons(matchData);
       
-      // Sort by time and convert string dates to Date objects
       arr = matchData
-        .filter(match => match.time) // Filter out matches without time
+        .filter(match => match.time)
         .sort(function(a, b) { 
           return new Date(a.time) - new Date(b.time); 
         });
@@ -462,7 +460,7 @@ fetch(url)
       matches(arr);
     } else {
       console.error("Invalid data structure:", data);
-      $(".livematch-content").html('<div class="notetext">No match data available. Data structure is invalid.</div>');
+      $(".livematch-content").html('<div class="notetext">No match data available.</div>');
     }
   })
   .catch(error => {
@@ -471,16 +469,13 @@ fetch(url)
   });
 
 function buttons(arr) {
-  // Clear existing buttons
   $("#myDIV").empty();
   
-  // Add "All" button
   var btn = `<a class="genzaitv activebtn" id="all" href="#" onClick="onClick(this.id)">All</a>`;
   $("#myDIV").append(btn);
   
   var leagueList = [];
   
-  // Create league filter buttons
   for (let i = 0; i < arr.length; i++) {
     try {
       if (arr[i].title && !leagueList.includes(arr[i].title)) {
@@ -511,14 +506,12 @@ function matches(arr) {
       var matchTime = new Date(arr[i].time);
       var now = new Date();
       
-      // Show matches that are in the future or recently started (within last 6 hours)
       var timeUntilMatch = matchTime - now;
       var sixHoursInMs = 6 * 60 * 60 * 1000;
       
       if (timeUntilMatch > -sixHoursInMs) {
         hasMatches = true;
         
-        // Add date header if not already displayed
         var dateKey = matchTime.toDateString();
         if (!displayedDates.has(dateKey)) {
           displayedDates.add(dateKey);
@@ -537,7 +530,6 @@ function matches(arr) {
           $(".livematch-content").append(site);
         }
 
-        // Create match element
         var timeDisplay = formatMatchTime(matchTime);
         var timeClass = "najiri1";
         var timeStyle = timeDisplay === "LIVE" ? 'style="background:#8b0000"' : '';
@@ -580,7 +572,6 @@ function matches(arr) {
 }
 
 function onClick(response) {
-  // Update button styles
   $(".genzaitv").removeClass("activebtn").css({"background-color": otherColor, "color": "black"});
   $("#" + response).addClass("activebtn").css({"background-color": activeColor, "color": "white"});
   
@@ -606,14 +597,11 @@ function formatMatchTime(matchTime) {
   if (timeDiff <= 0) {
     return "LIVE";
   } else {
-    // Show time in HH:MM format
     return matchTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
   }
 }
 
-// Initialize button click handlers
 $(document).ready(function() {
-  // This will be called after the buttons are created in the buttons() function
   setTimeout(function() {
     var headeractive = document.getElementById("myDIV");
     if (headeractive) {

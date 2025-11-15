@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Card Generator</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        header h1 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-section, .preview-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .time-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .dropdown-item img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        
+        .add-new-btn {
+            background-color: var(--success-color);
+            margin-top: 10px;
+        }
+        
+        .add-new-btn:hover {
+            background-color: #219653;
+        }
+        
+        .match-preview {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .match-teams {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .team-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .vs {
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--dark-color);
+        }
+        
+        .league-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .match-time {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .end-badge {
+            background-color: var(--danger-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .json-output {
+            margin-top: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .modal h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .cancel-btn {
+            background-color: #95a5a6;
+        }
+        
+        .save-btn {
+            background-color: var(--success-color);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Match Card Generator</h1>
+            <p>Create match cards for your sports events</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="form-section">
+                <h2>Match Details</h2>
+                
+                <div class="form-group">
+                    <label for="home-team">Home Team</label>
+                    <div class="dropdown">
+                        <input type="text" id="home-team" placeholder="Search home team...">
+                        <div class="dropdown-content" id="home-team-dropdown"></div>
+                    </div>
+                    <input type="hidden" id="home-team-logo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="away-team">Away Team</label>
+                    <div class="dropdown">
+                        <input type="text" id="away-team" placeholder="Search away team...">
+                        <div class="dropdown-content" id="away-team-dropdown"></div>
+                    </div>
+                    <input type="hidden" id="away-team-logo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="league">League</label>
+                    <div class="dropdown">
+                        <input type="text" id="league" placeholder="Search league...">
+                        <div class="dropdown-content" id="league-dropdown"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Match Time</label>
+                    <div class="time-inputs">
+                        <input type="date" id="match-date">
+                        <input type="time" id="match-time">
+                        <select id="time-period">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="match-link">Match Link (Optional)</label>
+                    <input type="url" id="match-link" placeholder="https://example.com/match-1">
+                </div>
+                
+                <button id="generate-btn">Generate Match Card Code</button>
+            </section>
+            
+            <section class="preview-section">
+                <h2>Match Preview</h2>
+                
+                <div class="match-preview">
+                    <div class="league-name" id="preview-league">🏆 Premier League</div>
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo">
+                                <img id="preview-home-logo" src="" alt="Home Team">
+                            </div>
+                            <div id="preview-home-team">Home Team</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">
+                                <img id="preview-away-logo" src="" alt="Away Team">
+                            </div>
+                            <div id="preview-away-team">Away Team</div>
+                        </div>
+                    </div>
+                    <div class="match-time" id="preview-time">Match Time</div>
+                    <div class="end-badge" id="end-badge" style="display: none;">END</div>
+                </div>
+                
+                <div class="json-output">
+                    <h3>JSON Output</h3>
+                    <textarea id="json-output" readonly></textarea>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Add New Team Modal -->
+    <div class="modal" id="add-team-modal">
+        <div class="modal-content">
+            <h3>Add New Team</h3>
+            <div class="form-group">
+                <label for="new-team-name">Team Name</label>
+                <input type="text" id="new-team-name" placeholder="Enter team name">
+            </div>
+            <div class="form-group">
+                <label for="new-team-logo">Team Logo URL</label>
+                <input type="url" id="new-team-logo" placeholder="https://example.com/logo.png">
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancel-team">Cancel</button>
+                <button class="save-btn" id="save-team">Save Team</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add New League Modal -->
+    <div class="modal" id="add-league-modal">
+        <div class="modal-content">
+            <h3>Add New League</h3>
+            <div class="form-group">
+                <label for="new-league-name">League Name</label>
+                <input type="text" id="new-league-name" placeholder="Enter league name">
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancel-league">Cancel</button>
+                <button class="save-btn" id="save-league">Save League</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="modal" id="loading-modal" style="display: flex;">
+        <div class="modal-content">
+            <div class="loading">
+                <h3>Loading Data...</h3>
+                <p>Please wait while we load team and league data.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const homeTeamInput = document.getElementById('home-team');
+        const awayTeamInput = document.getElementById('away-team');
+        const leagueInput = document.getElementById('league');
+        const homeTeamDropdown = document.getElementById('home-team-dropdown');
+        const awayTeamDropdown = document.getElementById('away-team-dropdown');
+        const leagueDropdown = document.getElementById('league-dropdown');
+        const homeTeamLogo = document.getElementById('home-team-logo');
+        const awayTeamLogo = document.getElementById('away-team-logo');
+        const matchDateInput = document.getElementById('match-date');
+        const matchTimeInput = document.getElementById('match-time');
+        const timePeriodSelect = document.getElementById('time-period');
+        const matchLinkInput = document.getElementById('match-link');
+        const generateBtn = document.getElementById('generate-btn');
+        const previewHomeTeam = document.getElementById('preview-home-team');
+        const previewAwayTeam = document.getElementById('preview-away-team');
+        const previewHomeLogo = document.getElementById('preview-home-logo');
+        const previewAwayLogo = document.getElementById('preview-away-logo');
+        const previewLeague = document.getElementById('preview-league');
+        const previewTime = document.getElementById('preview-time');
+        const endBadge = document.getElementById('end-badge');
+        const jsonOutput = document.getElementById('json-output');
+        const addTeamModal = document.getElementById('add-team-modal');
+        const addLeagueModal = document.getElementById('add-league-modal');
+        const newTeamName = document.getElementById('new-team-name');
+        const newTeamLogo = document.getElementById('new-team-logo');
+        const newLeagueName = document.getElementById('new-league-name');
+        const saveTeamBtn = document.getElementById('save-team');
+        const cancelTeamBtn = document.getElementById('cancel-team');
+        const saveLeagueBtn = document.getElementById('save-league');
+        const cancelLeagueBtn = document.getElementById('cancel-league');
+        const loadingModal = document.getElementById('loading-modal');
+
+        // Variables to track current dropdown and team type
+        let currentDropdown = null;
+        let currentTeamType = null;
+        let teams = [];
+        let leagues = [];
+
+        // Set today's date as default
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        matchDateInput.value = formattedDate;
+
+        // Load data from external file
+        async function loadExternalData() {
+            try {
+                loadingModal.style.display = 'flex';
+                
+                // Load from external data file
+                const response = await fetch('https://yonotv.pages.dev/data.js');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load data');
+                }
+                
+                const dataText = await response.text();
+                
+                // Extract the data from the JS file (assuming it's in window.matchCardData)
+                // We'll use a regex to extract the JSON part
+                const match = dataText.match(/window\.matchCardData\s*=\s*({.*?});/s);
+                
+                if (match && match[1]) {
+                    const data = JSON.parse(match[1]);
+                    teams = data.teams || [];
+                    leagues = data.leagues || [];
+                } else {
+                    throw new Error('Invalid data format');
+                }
+                
+                // Initialize the app with the loaded data
+                initDropdowns();
+                updatePreview();
+                loadingModal.style.display = 'none';
+            } catch (error) {
+                console.error('Error loading external data:', error);
+                
+                // Fallback to empty arrays if external data fails to load
+                teams = [];
+                leagues = [];
+                
+                // Initialize with empty data
+                initDropdowns();
+                updatePreview();
+                loadingModal.style.display = 'none';
+                
+                alert('Failed to load external data. Please check the data file URL.');
+            }
+        }
+
+        // Initialize dropdowns
+        function initDropdowns() {
+            populateDropdown(homeTeamDropdown, teams, 'home');
+            populateDropdown(awayTeamDropdown, teams, 'away');
+            populateLeagueDropdown();
+            
+            // Set up event listeners for inputs
+            homeTeamInput.addEventListener('input', () => handleTeamInput('home'));
+            awayTeamInput.addEventListener('input', () => handleTeamInput('away'));
+            leagueInput.addEventListener('input', handleLeagueInput);
+            
+            // Set up event listeners for dropdown items
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown')) {
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        // Populate team dropdown
+        function populateDropdown(dropdown, items, type) {
+            dropdown.innerHTML = '';
+            
+            items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'dropdown-item';
+                itemElement.innerHTML = `
+                    <img src="${item.logo}" alt="${item.name}">
+                    <span>${item.name}</span>
+                `;
+                itemElement.addEventListener('click', () => {
+                    selectTeam(item, type);
+                    closeAllDropdowns();
+                });
+                dropdown.appendChild(itemElement);
+            });
+            
+            // Add "Add New Team" option
+            const addNewElement = document.createElement('div');
+            addNewElement.className = 'dropdown-item';
+            addNewElement.innerHTML = '<span>+ Add New Team</span>';
+            addNewElement.addEventListener('click', () => {
+                openAddTeamModal(type);
+                closeAllDropdowns();
+            });
+            dropdown.appendChild(addNewElement);
+        }
+
+        // Populate league dropdown
+        function populateLeagueDropdown() {
+            leagueDropdown.innerHTML = '';
+            
+            leagues.forEach(league => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'dropdown-item';
+                itemElement.textContent = league;
+                itemElement.addEventListener('click', () => {
+                    selectLeague(league);
+                    closeAllDropdowns();
+                });
+                leagueDropdown.appendChild(itemElement);
+            });
+            
+            // Add "Add New League" option
+            const addNewElement = document.createElement('div');
+            addNewElement.className = 'dropdown-item';
+            addNewElement.innerHTML = '<span>+ Add New League</span>';
+            addNewElement.addEventListener('click', () => {
+                openAddLeagueModal();
+                closeAllDropdowns();
+            });
+            leagueDropdown.appendChild(addNewElement);
+        }
+
+        // Handle team input for search
+        function handleTeamInput(type) {
+            const input = type === 'home' ? homeTeamInput : awayTeamInput;
+            const dropdown = type === 'home' ? homeTeamDropdown : awayTeamDropdown;
+            const searchTerm = input.value.toLowerCase();
+            
+            if (searchTerm) {
+                const filteredTeams = teams.filter(team => 
+                    team.name.toLowerCase().startsWith(searchTerm)
+                );
+                populateDropdown(dropdown, filteredTeams, type);
+                dropdown.style.display = 'block';
+                currentDropdown = dropdown;
+                currentTeamType = type;
+            } else {
+                populateDropdown(dropdown, teams, type);
+                dropdown.style.display = 'block';
+                currentDropdown = dropdown;
+                currentTeamType = type;
+            }
+        }
+
+        // Handle league input for search
+        function handleLeagueInput() {
+            const searchTerm = leagueInput.value.toLowerCase();
+            
+            if (searchTerm) {
+                const filteredLeagues = leagues.filter(league => 
+                    league.toLowerCase().includes(searchTerm)
+                );
+                
+                leagueDropdown.innerHTML = '';
+                
+                if (filteredLeagues.length > 0) {
+                    filteredLeagues.forEach(league => {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'dropdown-item';
+                        itemElement.textContent = league;
+                        itemElement.addEventListener('click', () => {
+                            selectLeague(league);
+                            closeAllDropdowns();
+                        });
+                        leagueDropdown.appendChild(itemElement);
+                    });
+                }
+                
+                // Always show "Add New League" option
+                const addNewElement = document.createElement('div');
+                addNewElement.className = 'dropdown-item';
+                addNewElement.innerHTML = '<span>+ Add New League</span>';
+                addNewElement.addEventListener('click', () => {
+                    openAddLeagueModal();
+                    closeAllDropdowns();
+                });
+                leagueDropdown.appendChild(addNewElement);
+                
+                leagueDropdown.style.display = 'block';
+                currentDropdown = leagueDropdown;
+            } else {
+                populateLeagueDropdown();
+                leagueDropdown.style.display = 'block';
+                currentDropdown = leagueDropdown;
+            }
+        }
+
+        // Select a team
+        function selectTeam(team, type) {
+            const input = type === 'home' ? homeTeamInput : awayTeamInput;
+            const logoField = type === 'home' ? homeTeamLogo : awayTeamLogo;
+            const previewTeam = type === 'home' ? previewHomeTeam : previewAwayTeam;
+            const previewLogo = type === 'home' ? previewHomeLogo : previewAwayLogo;
+            
+            input.value = team.name;
+            logoField.value = team.logo;
+            previewTeam.textContent = team.name;
+            previewLogo.src = team.logo;
+            previewLogo.style.display = 'block';
+            
+            updatePreview();
+        }
+
+        // Select a league
+        function selectLeague(league) {
+            leagueInput.value = league;
+            previewLeague.textContent = `🏆 ${league}`;
+            updatePreview();
+        }
+
+        // Close all dropdowns
+        function closeAllDropdowns() {
+            homeTeamDropdown.style.display = 'none';
+            awayTeamDropdown.style.display = 'none';
+            leagueDropdown.style.display = 'none';
+            currentDropdown = null;
+        }
+
+        // Open add team modal
+        function openAddTeamModal(type) {
+            currentTeamType = type;
+            newTeamName.value = '';
+            newTeamLogo.value = '';
+            addTeamModal.style.display = 'flex';
+        }
+
+        // Open add league modal
+        function openAddLeagueModal() {
+            newLeagueName.value = leagueInput.value || '';
+            addLeagueModal.style.display = 'flex';
+        }
+
+        // Save new team
+        saveTeamBtn.addEventListener('click', () => {
+            const name = newTeamName.value.trim();
+            const logo = newTeamLogo.value.trim();
+            
+            if (name && logo) {
+                const newTeam = { name, logo };
+                teams.push(newTeam);
+                
+                // Update dropdowns
+                populateDropdown(homeTeamDropdown, teams, 'home');
+                populateDropdown(awayTeamDropdown, teams, 'away');
+                
+                // Select the new team
+                selectTeam(newTeam, currentTeamType);
+                
+                addTeamModal.style.display = 'none';
+            } else {
+                alert('Please fill in both fields');
+            }
+        });
+
+        // Save new league
+        saveLeagueBtn.addEventListener('click', () => {
+            const name = newLeagueName.value.trim();
+            
+            if (name) {
+                leagues.push(name);
+                
+                // Update dropdown
+                populateLeagueDropdown();
+                
+                // Select the new league
+                selectLeague(name);
+                
+                addLeagueModal.style.display = 'none';
+            } else {
+                alert('Please enter a league name');
+            }
+        });
+
+        // Cancel buttons
+        cancelTeamBtn.addEventListener('click', () => {
+            addTeamModal.style.display = 'none';
+        });
+
+        cancelLeagueBtn.addEventListener('click', () => {
+            addLeagueModal.style.display = 'none';
+        });
+
+        // Generate match card
+        generateBtn.addEventListener('click', generateMatchCard);
+
+        // Update preview when inputs change
+        [homeTeamInput, awayTeamInput, leagueInput, matchDateInput, matchTimeInput, timePeriodSelect, matchLinkInput].forEach(input => {
+            input.addEventListener('change', updatePreview);
+            input.addEventListener('input', updatePreview);
+        });
+
+        // Update preview function
+        function updatePreview() {
+            // Update team names and logos in preview
+            previewHomeTeam.textContent = homeTeamInput.value || 'Home Team';
+            previewAwayTeam.textContent = awayTeamInput.value || 'Away Team';
+            
+            if (homeTeamLogo.value) {
+                previewHomeLogo.src = homeTeamLogo.value;
+                previewHomeLogo.style.display = 'block';
+            } else {
+                previewHomeLogo.style.display = 'none';
+            }
+            
+            if (awayTeamLogo.value) {
+                previewAwayLogo.src = awayTeamLogo.value;
+                previewAwayLogo.style.display = 'block';
+            } else {
+                previewAwayLogo.style.display = 'none';
+            }
+            
+            // Update league in preview
+            previewLeague.textContent = leagueInput.value ? `🏆 ${leagueInput.value}` : '🏆 League Name';
+            
+            // Update time in preview
+            const timeString = generateTimeString();
+            previewTime.textContent = timeString || 'Match Time';
+            
+            // Check if match has ended
+            checkIfMatchEnded();
+        }
+
+        // Generate time string for preview
+        function generateTimeString() {
+            const date = matchDateInput.value;
+            const time = matchTimeInput.value;
+            const period = timePeriodSelect.value;
+            
+            if (!date || !time) return '';
+            
+            // Convert to 24-hour format
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours);
+            
+            if (period === 'PM' && hours < 12) {
+                hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes}`;
+            
+            // Format date for display
+            const dateObj = new Date(date);
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString('en-US', options);
+            
+            return `${formattedDate} at ${formattedTime}`;
+        }
+
+        // Generate ISO time string with timezone
+        function generateISOTimeString() {
+            const date = matchDateInput.value;
+            const time = matchTimeInput.value;
+            const period = timePeriodSelect.value;
+            
+            if (!date || !time) return '';
+            
+            // Convert to 24-hour format
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours);
+            
+            if (period === 'PM' && hours < 12) {
+                hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            // Create date object
+            const dateObj = new Date(`${date}T${hours.toString().padStart(2, '0')}:${minutes}:00`);
+            
+            // Get timezone offset
+            const timezoneOffset = -dateObj.getTimezoneOffset();
+            const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
+            const offsetMinutes = Math.abs(timezoneOffset) % 60;
+            const offsetSign = timezoneOffset >= 0 ? '+' : '-';
+            
+            // Format to required string
+            const year = dateObj.getFullYear();
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+            const day = dateObj.getDate().toString().padStart(2, '0');
+            const hour = dateObj.getHours().toString().padStart(2, '0');
+            const minute = dateObj.getMinutes().toString().padStart(2, '0');
+            
+            return `${year}-${month}-${day}T${hour}:${minute}:00${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`;
+        }
+
+        // Check if match has ended
+        function checkIfMatchEnded() {
+            const startTime = generateISOTimeString();
+            if (!startTime) return;
+            
+            const startDate = new Date(startTime);
+            const endDate = new Date(startDate.getTime() + 90 * 60 * 1000); // 1.5 hours later
+            
+            if (endDate < new Date()) {
+                endBadge.style.display = 'inline-block';
+            } else {
+                endBadge.style.display = 'none';
+            }
+        }
+
+        // Generate match card JSON
+        function generateMatchCard() {
+            const startTime = generateISOTimeString();
+            if (!startTime) {
+                alert('Please enter match date and time');
+                return;
+            }
+            
+            // Calculate end time (1.5 hours after start)
+            const startDate = new Date(startTime);
+            const endDate = new Date(startDate.getTime() + 90 * 60 * 1000);
+            
+            // Format end time same as start time
+            const timezoneOffset = -endDate.getTimezoneOffset();
+            const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
+            const offsetMinutes = Math.abs(timezoneOffset) % 60;
+            const offsetSign = timezoneOffset >= 0 ? '+' : '-';
+            
+            const year = endDate.getFullYear();
+            const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
+            const day = endDate.getDate().toString().padStart(2, '0');
+            const hour = endDate.getHours().toString().padStart(2, '0');
+            const minute = endDate.getMinutes().toString().padStart(2, '0');
+            
+            const endTime = `${year}-${month}-${day}T${hour}:${minute}:00${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`;
+            
+            // Create match card object
+            const matchCard = {
+                "league": `🏆${leagueInput.value}`,
+                "match_link": matchLinkInput.value || "https://example.com/match-1",
+                "home_team": homeTeamInput.value || "Home Team",
+                "home_flag": homeTeamLogo.value || "https://dns-tv.pages.dev/logo/ktm.png",
+                "away_team": awayTeamInput.value || "Away Team",
+                "away_flag": awayTeamLogo.value || "https://dns-tv.pages.dev/logo/janakpur.png",
+                "start_time": startTime,
+                "end_time": endTime
+            };
+            
+            // Update JSON output
+            jsonOutput.value = JSON.stringify(matchCard, null, 2);
+            
+            // Update preview
+            updatePreview();
+        }
+
+        // Initialize the application by loading external data
+        loadExternalData();
+    </script>
+</body>
+</html>

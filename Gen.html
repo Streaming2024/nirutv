@@ -281,6 +281,31 @@
             color: var(--secondary-color);
             font-size: 18px;
         }
+        
+        .copy-btn {
+            background-color: var(--success-color);
+            margin-bottom: 10px;
+            width: auto;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        
+        .copy-btn:hover {
+            background-color: #219653;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -374,10 +399,16 @@
                 
                 <div class="json-output">
                     <h3>JSON Output</h3>
+                    <button class="copy-btn" id="copy-btn">Copy Code</button>
                     <textarea id="json-output" readonly></textarea>
                 </div>
             </section>
         </div>
+    </div>
+    
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copy-notification">
+        Code copied to clipboard!
     </div>
     
     <!-- Add New Team Modal -->
@@ -470,6 +501,8 @@
         const previewTime = document.getElementById('preview-time');
         const endBadge = document.getElementById('end-badge');
         const jsonOutput = document.getElementById('json-output');
+        const copyBtn = document.getElementById('copy-btn');
+        const copyNotification = document.getElementById('copy-notification');
         const addTeamModal = document.getElementById('add-team-modal');
         const addLeagueModal = document.getElementById('add-league-modal');
         const newTeamName = document.getElementById('new-team-name');
@@ -490,8 +523,12 @@
         function initializeDateTime() {
             const now = new Date();
             
-            // Set current date for both start and end
-            const formattedDate = now.toISOString().split('T')[0];
+            // Set current date for both start and end in YYYY-MM-DD format
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            
             matchDateInput.value = formattedDate;
             endDateInput.value = formattedDate;
             
@@ -760,6 +797,14 @@
         // Generate match card
         generateBtn.addEventListener('click', generateMatchCard);
 
+        // Copy code to clipboard
+        copyBtn.addEventListener('click', copyToClipboard);
+
+        // Auto-select text when clicking on textarea
+        jsonOutput.addEventListener('click', function() {
+            this.select();
+        });
+
         // Update preview when inputs change
         [homeTeamInput, awayTeamInput, leagueInput, matchDateInput, matchTimeInput, endDateInput, endTimeInput, matchLinkInput].forEach(input => {
             input.addEventListener('change', updatePreview);
@@ -921,6 +966,34 @@
             
             // Update preview
             updatePreview();
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard() {
+            // Select the text
+            jsonOutput.select();
+            jsonOutput.setSelectionRange(0, 99999); // For mobile devices
+            
+            // Copy the text
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    // Show notification
+                    copyNotification.style.display = 'block';
+                    setTimeout(() => {
+                        copyNotification.style.display = 'none';
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                // Fallback for modern browsers
+                navigator.clipboard.writeText(jsonOutput.value).then(() => {
+                    copyNotification.style.display = 'block';
+                    setTimeout(() => {
+                        copyNotification.style.display = 'none';
+                    }, 2000);
+                });
+            }
         }
 
         // Initialize the application

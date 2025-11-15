@@ -1,13 +1,13 @@
 {
   "match": {
-    "title": "IND vs AUS",
-    "date": "08 Nov 2025",
-    "time": "02:00 PM NST",
-    "stadium": "Carrara Ova",
-    "league": "T20I Series",
-    "round": "5th match",
+    "title": "IND vs SA",
+    "date": "14 Nov 2025",
+    "time": "09:45 AM NST",
+    "stadium": "Eden Gardens",
+    "league": "Test Series",
+    "round": "1th match",
     "broadcaster": ", TNT ,WillowTV, FOX",
-    "banner_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVyzHlp4MHHzXEbiuis8yFsWTVhFhLMQlSXQ&s",
+    "banner_image": "https://img.cricketnmore.com/uploads/2025/11/india-vs-south-africa-1st-test-who-will-win-today-ind-vs-sa-match.jpg",
     "lineup_published": true
   },
   "team1": {
@@ -15,33 +15,33 @@
     "lineup": "Abhishek Sharma, Shubman Gill, Suryakumar Yadav (c), Tilak Varma, Sanju Samson (wk), Shivam Dube, Axar Patel, Harshit Rana, Kuldeep Yadav, Varun Chakaravarthy, Jasprit Bumrah"
   },
   "team2": {
-    "name": "AUS", 
+    "name": "SA", 
     "lineup": "Mitchell Marsh (c), Travis Head, Josh Inglis (wk), Tim David, Mitchell Owen, Marcus Stoinis, Matthew Short, Xavier Bartlett, Nathan Ellis, Matthew Kuhnemann, Josh Hazlewood"
   },
   "telecast_links": [
     {
-      "name": "Best Link 1:IND vs AUS", 
+      "name": "Best Link 1:IND vs SA", 
       "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india"
     },
     {
-      "name": "Best Link 2:IND vs AUS", 
+      "name": "Best Link 2:IND vs SA", 
       "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india2"
     },
     {
-      "name": "Best Link 3:IND vs AUS", 
+      "name": "Best Link 3:IND vs SA", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "HD Link 1:IND vs AUS(Hindi)", 
+      "name": "HD Link 1:IND vs SA(Hindi)", 
       "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india3"
     },
    {
-      "name": "HD Link 2:IND vs AUS", 
+      "name": "HD Link 2:IND vs SA", 
       "url": "https://yonotv.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=india4"
     },
 
     {
-      "name": "HD Link 3:IND vs AUS", 
+      "name": "HD Link 3:IND vs SA", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     
     }

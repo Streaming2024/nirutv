@@ -268,6 +268,19 @@
             padding: 20px;
             color: var(--secondary-color);
         }
+        
+        .time-section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .time-section h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -307,15 +320,31 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Match Time</label>
-                    <div class="time-inputs">
-                        <input type="date" id="match-date">
-                        <input type="time" id="match-time">
-                        <select id="time-period">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
+                <div class="time-section">
+                    <h3>Match Start Time</h3>
+                    <div class="form-group">
+                        <div class="time-inputs">
+                            <input type="date" id="match-date">
+                            <input type="time" id="match-time">
+                            <select id="time-period">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="time-section">
+                    <h3>Match End Time</h3>
+                    <div class="form-group">
+                        <div class="time-inputs">
+                            <input type="date" id="end-date">
+                            <input type="time" id="end-time">
+                            <select id="end-time-period">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 
@@ -393,17 +422,39 @@
         </div>
     </div>
 
-    <!-- Loading Indicator -->
-    <div class="modal" id="loading-modal" style="display: flex;">
-        <div class="modal-content">
-            <div class="loading">
-                <h3>Loading Data...</h3>
-                <p>Please wait while we load team and league data.</p>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // Load data from external file
+        async function loadExternalData() {
+            try {
+                // Try to load from external data file
+                const response = await fetch('https://yonotv.pages.dev/data.js');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load data');
+                }
+                
+                const dataText = await response.text();
+                
+                // Extract the data from the JS file
+                const match = dataText.match(/window\.matchCardData\s*=\s*({[\s\S]*?});/);
+                
+                if (match && match[1]) {
+                    // Use Function constructor to safely evaluate the JSON
+                    const data = (new Function('return ' + match[1]))();
+                    return {
+                        teams: data.teams || [],
+                        leagues: data.leagues || []
+                    };
+                } else {
+                    throw new Error('Invalid data format in external file');
+                }
+            } catch (error) {
+                console.error('Error loading external data:', error);
+                // Return empty data if external loading fails
+                return { teams: [], leagues: [] };
+            }
+        }
+
         // DOM elements
         const homeTeamInput = document.getElementById('home-team');
         const awayTeamInput = document.getElementById('away-team');
@@ -416,6 +467,9 @@
         const matchDateInput = document.getElementById('match-date');
         const matchTimeInput = document.getElementById('match-time');
         const timePeriodSelect = document.getElementById('time-period');
+        const endDateInput = document.getElementById('end-date');
+        const endTimeInput = document.getElementById('end-time');
+        const endTimePeriodSelect = document.getElementById('end-time-period');
         const matchLinkInput = document.getElementById('match-link');
         const generateBtn = document.getElementById('generate-btn');
         const previewHomeTeam = document.getElementById('preview-home-team');
@@ -435,7 +489,6 @@
         const cancelTeamBtn = document.getElementById('cancel-team');
         const saveLeagueBtn = document.getElementById('save-league');
         const cancelLeagueBtn = document.getElementById('cancel-league');
-        const loadingModal = document.getElementById('loading-modal');
 
         // Variables to track current dropdown and team type
         let currentDropdown = null;
@@ -443,55 +496,35 @@
         let teams = [];
         let leagues = [];
 
-        // Set today's date as default
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-        matchDateInput.value = formattedDate;
-
-        // Load data from external file
-        async function loadExternalData() {
-            try {
-                loadingModal.style.display = 'flex';
-                
-                // Load from external data file
-                const response = await fetch('https://yonotv.pages.dev/data.js');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to load data');
-                }
-                
-                const dataText = await response.text();
-                
-                // Extract the data from the JS file (assuming it's in window.matchCardData)
-                // We'll use a regex to extract the JSON part
-                const match = dataText.match(/window\.matchCardData\s*=\s*({.*?});/s);
-                
-                if (match && match[1]) {
-                    const data = JSON.parse(match[1]);
-                    teams = data.teams || [];
-                    leagues = data.leagues || [];
-                } else {
-                    throw new Error('Invalid data format');
-                }
-                
-                // Initialize the app with the loaded data
-                initDropdowns();
-                updatePreview();
-                loadingModal.style.display = 'none';
-            } catch (error) {
-                console.error('Error loading external data:', error);
-                
-                // Fallback to empty arrays if external data fails to load
-                teams = [];
-                leagues = [];
-                
-                // Initialize with empty data
-                initDropdowns();
-                updatePreview();
-                loadingModal.style.display = 'none';
-                
-                alert('Failed to load external data. Please check the data file URL.');
+        // Initialize with current date and time for both start and end
+        function initializeDateTime() {
+            const now = new Date();
+            
+            // Set current date for both start and end
+            const formattedDate = now.toISOString().split('T')[0];
+            matchDateInput.value = formattedDate;
+            endDateInput.value = formattedDate;
+            
+            // Set current time in 12-hour format for both start and end
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let period = 'AM';
+            
+            if (hours >= 12) {
+                period = 'PM';
+                if (hours > 12) hours -= 12;
             }
+            if (hours === 0) hours = 12;
+            
+            // Format minutes with leading zero if needed
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            // Set time inputs for both start and end
+            matchTimeInput.value = `${hours}:${minutes}`;
+            timePeriodSelect.value = period;
+            
+            endTimeInput.value = `${hours}:${minutes}`;
+            endTimePeriodSelect.value = period;
         }
 
         // Initialize dropdowns
@@ -504,6 +537,19 @@
             homeTeamInput.addEventListener('input', () => handleTeamInput('home'));
             awayTeamInput.addEventListener('input', () => handleTeamInput('away'));
             leagueInput.addEventListener('input', handleLeagueInput);
+            
+            // Show dropdown when input is focused (clicked)
+            homeTeamInput.addEventListener('focus', () => {
+                handleTeamInput('home');
+            });
+            
+            awayTeamInput.addEventListener('focus', () => {
+                handleTeamInput('away');
+            });
+            
+            leagueInput.addEventListener('focus', () => {
+                handleLeagueInput();
+            });
             
             // Set up event listeners for dropdown items
             document.addEventListener('click', (e) => {
@@ -575,19 +621,19 @@
             const searchTerm = input.value.toLowerCase();
             
             if (searchTerm) {
+                // Filter teams by name (beginning letters)
                 const filteredTeams = teams.filter(team => 
                     team.name.toLowerCase().startsWith(searchTerm)
                 );
                 populateDropdown(dropdown, filteredTeams, type);
-                dropdown.style.display = 'block';
-                currentDropdown = dropdown;
-                currentTeamType = type;
             } else {
+                // Show all teams if no search term
                 populateDropdown(dropdown, teams, type);
-                dropdown.style.display = 'block';
-                currentDropdown = dropdown;
-                currentTeamType = type;
             }
+            
+            dropdown.style.display = 'block';
+            currentDropdown = dropdown;
+            currentTeamType = type;
         }
 
         // Handle league input for search
@@ -686,6 +732,7 @@
             if (name && logo) {
                 const newTeam = { name, logo };
                 teams.push(newTeam);
+                localStorage.setItem('teams', JSON.stringify(teams));
                 
                 // Update dropdowns
                 populateDropdown(homeTeamDropdown, teams, 'home');
@@ -706,6 +753,7 @@
             
             if (name) {
                 leagues.push(name);
+                localStorage.setItem('leagues', JSON.stringify(leagues));
                 
                 // Update dropdown
                 populateLeagueDropdown();
@@ -732,7 +780,7 @@
         generateBtn.addEventListener('click', generateMatchCard);
 
         // Update preview when inputs change
-        [homeTeamInput, awayTeamInput, leagueInput, matchDateInput, matchTimeInput, timePeriodSelect, matchLinkInput].forEach(input => {
+        [homeTeamInput, awayTeamInput, leagueInput, matchDateInput, matchTimeInput, timePeriodSelect, endDateInput, endTimeInput, endTimePeriodSelect, matchLinkInput].forEach(input => {
             input.addEventListener('change', updatePreview);
             input.addEventListener('input', updatePreview);
         });
@@ -796,8 +844,8 @@
             return `${formattedDate} at ${formattedTime}`;
         }
 
-        // Generate ISO time string with timezone
-        function generateISOTimeString() {
+        // Generate ISO time string with timezone for start time
+        function generateStartISOTimeString() {
             const date = matchDateInput.value;
             const time = matchTimeInput.value;
             const period = timePeriodSelect.value;
@@ -833,13 +881,49 @@
             return `${year}-${month}-${day}T${hour}:${minute}:00${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`;
         }
 
+        // Generate ISO time string with timezone for end time
+        function generateEndISOTimeString() {
+            const date = endDateInput.value;
+            const time = endTimeInput.value;
+            const period = endTimePeriodSelect.value;
+            
+            if (!date || !time) return '';
+            
+            // Convert to 24-hour format
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours);
+            
+            if (period === 'PM' && hours < 12) {
+                hours += 12;
+            } else if (period === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            // Create date object
+            const dateObj = new Date(`${date}T${hours.toString().padStart(2, '0')}:${minutes}:00`);
+            
+            // Get timezone offset
+            const timezoneOffset = -dateObj.getTimezoneOffset();
+            const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
+            const offsetMinutes = Math.abs(timezoneOffset) % 60;
+            const offsetSign = timezoneOffset >= 0 ? '+' : '-';
+            
+            // Format to required string
+            const year = dateObj.getFullYear();
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+            const day = dateObj.getDate().toString().padStart(2, '0');
+            const hour = dateObj.getHours().toString().padStart(2, '0');
+            const minute = dateObj.getMinutes().toString().padStart(2, '0');
+            
+            return `${year}-${month}-${day}T${hour}:${minute}:00${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`;
+        }
+
         // Check if match has ended
         function checkIfMatchEnded() {
-            const startTime = generateISOTimeString();
-            if (!startTime) return;
+            const endTime = generateEndISOTimeString();
+            if (!endTime) return;
             
-            const startDate = new Date(startTime);
-            const endDate = new Date(startDate.getTime() + 90 * 60 * 1000); // 1.5 hours later
+            const endDate = new Date(endTime);
             
             if (endDate < new Date()) {
                 endBadge.style.display = 'inline-block';
@@ -850,29 +934,18 @@
 
         // Generate match card JSON
         function generateMatchCard() {
-            const startTime = generateISOTimeString();
+            const startTime = generateStartISOTimeString();
+            const endTime = generateEndISOTimeString();
+            
             if (!startTime) {
                 alert('Please enter match date and time');
                 return;
             }
             
-            // Calculate end time (1.5 hours after start)
-            const startDate = new Date(startTime);
-            const endDate = new Date(startDate.getTime() + 90 * 60 * 1000);
-            
-            // Format end time same as start time
-            const timezoneOffset = -endDate.getTimezoneOffset();
-            const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
-            const offsetMinutes = Math.abs(timezoneOffset) % 60;
-            const offsetSign = timezoneOffset >= 0 ? '+' : '-';
-            
-            const year = endDate.getFullYear();
-            const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
-            const day = endDate.getDate().toString().padStart(2, '0');
-            const hour = endDate.getHours().toString().padStart(2, '0');
-            const minute = endDate.getMinutes().toString().padStart(2, '0');
-            
-            const endTime = `${year}-${month}-${day}T${hour}:${minute}:00${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`;
+            if (!endTime) {
+                alert('Please enter match end date and time');
+                return;
+            }
             
             // Create match card object
             const matchCard = {
@@ -893,8 +966,21 @@
             updatePreview();
         }
 
-        // Initialize the application by loading external data
-        loadExternalData();
+        // Initialize the application
+        async function initializeApp() {
+            // Load external data
+            const externalData = await loadExternalData();
+            teams = externalData.teams.length > 0 ? externalData.teams : JSON.parse(localStorage.getItem('teams')) || [];
+            leagues = externalData.leagues.length > 0 ? externalData.leagues : JSON.parse(localStorage.getItem('leagues')) || [];
+            
+            // Initialize UI
+            initializeDateTime();
+            initDropdowns();
+            updatePreview();
+        }
+
+        // Start the application
+        initializeApp();
     </script>
 </body>
 </html>

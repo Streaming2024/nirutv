@@ -2,12 +2,12 @@
   {
     "league": "🏆Cricket | Nepal Premier League",
     "match_link": "https://example.com/match-1",
-    "home_team": "Kathmandu",
+    "home_team": "Kathmandu Gorkhas",
     "home_flag": "https://dns-tv.pages.dev/logo/ktm.png",
-    "away_team": "Janakpur",
+    "away_team": "Janakpur Bolts",
     "away_flag": "https://dns-tv.pages.dev/logo/janakpur.png",
-    "start_time": "2025-11-16T08:30:00+05:45",
-    "end_time": "2025-11-16T23:00:00+05:45"
+    "start_time": "2025-11-16T09:25:00+05:45",
+    "end_time": "2025-11-16T11:45:00+05:45"
   },
 
   {
@@ -17,8 +17,8 @@
     "home_flag": "🥊",
     "away_team": "Roy Jones Jr",
     "away_flag": "🥊",
-    "start_time": "2025-11-16T01:24:00+05:45",
-    "end_time": "2025-11-16T01:34:00+05:45"
+    "start_time": "2025-11-16T20:24:00+05:45",
+    "end_time": "2025-11-16T22:34:00+05:45"
   },
   
   {

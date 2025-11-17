@@ -1,36 +1,5 @@
 [
-  {
-  "league": "🏆ODI Series",
-  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=pak",
-  "home_team": "Pakistan",
-  "home_flag": "https://aimages.willow.tv/teamLogos/pakistan.png",
-  "away_team": "Sri Lanka",
-  "away_flag": "https://aimages.willow.tv/teamLogos/srilanka.png",
-  "start_time": "2025-11-16T15:15:00+05:45",
-  "end_time": "2025-11-16T22:15:00+05:45"
-},
-
- {
-  "league": "🏆Asia Cup Rising Stars",
-  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=acc",
-  "home_team": "UAE",
-  "home_flag": "https://aimages.willow.tv/teamLogos/uae.png",
-  "away_team": "Oman",
-  "away_flag": "https://aimages.willow.tv/teamLogos/oman.png",
-  "start_time": "2025-11-16T15:15:00+05:45",
-  "end_time": "2025-11-16T18:45:00+05:45"
-},
   
-  {
-  "league": "🏆Asia Cup Rising Stars",
-  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=acc",
-  "home_team": "India-A",
-  "home_flag": "https://aimages.willow.tv/teamLogos/india.png",
-  "away_team": "Pakistan-A",
-  "away_flag": "https://aimages.willow.tv/teamLogos/pakistan.png",
-  "start_time": "2025-11-16T20:15:00+05:45",
-  "end_time": "2025-11-17T00:15:00+05:45"
-},
   {
   "league": "🏆Asia Cup Rising Stars",
   "match_link": "https://www.newsecrettips.com/p/match-details.html?id=acc",
@@ -56,9 +25,9 @@
   {
   "league": "🏆Asia Cup Rising Stars",
   "match_link": "https://www.newsecrettips.com/p/match-details.html?id=acc",
-  "home_team": "Bangladesh",
+  "home_team": "Bangladesh-A",
   "home_flag": "https://aimages.willow.tv/teamLogos/bangladesh.png",
-  "away_team": "Afghanistan",
+  "away_team": "Afghanistan-A",
   "away_flag": "https://aimages.willow.tv/teamLogos/afghanistan.png",
   "start_time": "2025-11-17T20:15:00+05:45",
   "end_time": "2025-11-18T00:15:00+05:45"
@@ -71,9 +40,40 @@
   "home_flag": "https://dns-tv.pages.dev/logo/chitwan.png",
   "away_team": "Karnali Yaks",
   "away_flag": "https://dns-tv.pages.dev/logo/karnali.png",
-  "start_time": "2025-11-18T23:45:00+05:45",
+  "start_time": "2025-11-18T11:45:00+05:45",
   "end_time": "2025-11-18T16:00:00+05:45"
+},
+{
+  "league": "🏆Asia Cup Rising Stars",
+  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=acc",
+  "home_team": "Pakistan-A",
+  "home_flag": "https://aimages.willow.tv/teamLogos/pakistan.png",
+  "away_team": "UAE",
+  "away_flag": "https://aimages.willow.tv/teamLogos/uae.png",
+  "start_time": "2025-11-18T15:15:00+05:45",
+  "end_time": "2025-11-18T20:00:00+05:45"
+},
+  {
+  "league": "🏆Nepal Premier League",
+  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=npl",
+  "home_team": "Biratnagar King",
+  "home_flag": "https://dns-tv.pages.dev/logo/biratnagar.png",
+  "away_team": "Pokhara Avenger",
+  "away_flag": "https://dns-tv.pages.dev/logo/pokhara.png",
+  "start_time": "2025-11-18T16:00:00+05:45",
+  "end_time": "2025-11-18T20:30:00+05:45"
+},
+  {
+  "league": "🏆T20I Tri-Series",
+  "match_link": "https://www.newsecrettips.com/p/match-details.html?id=pak",
+  "home_team": "Pakistan",
+  "home_flag": "https://aimages.willow.tv/teamLogos/pakistan.png",
+  "away_team": "Zimbabwe",
+  "away_flag": "https://aimages.willow.tv/teamLogos/zimbabwe.png",
+  "start_time": "2025-11-18T18:45:00+05:45",
+  "end_time": "2025-11-18T23:00:00+05:45"
 }
+  
 
 
 

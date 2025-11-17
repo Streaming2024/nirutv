@@ -1,14 +1,14 @@
 {
   "match": {
-    "title": "Janakpur  vs Kathmandu",
-    "date": "17 Nov 2025",
-    "time": "04:00 PM NST",
+    "title": "Chitwan vs Karnali",
+    "date": "18 Nov 2025",
+    "time": "11:45 AM NST",
     "stadium": "TU Cricket Stadium",
     "league": "Nepal Premier League 2025",
       "round": "Group Stage",
     "broadcaster": "Fancode ,KTV, YonoTV",
-    "banner_image": "https://i.ibb.co/N67DQv2k/Result-of-IPO-65.jpg",
-    "lineup_published": true
+    "banner_image": "https://republicaimg.nagariknewscdn.com/shared/web/uploads/media/oDLkxiW9CDNyE1kZ8XxgqjsGINYoFEf69HzcWF0Q.jpg",
+    "lineup_published": false
   },
   "team1": {
     "name": "Janakpur",
@@ -20,29 +20,29 @@
   },
   "telecast_links": [
     {
-      "name": "Smooth Link 1:Janakpur  vs Kathmandu", 
+      "name": "Smooth Link 1:Chitwan vs Karnali", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL"
     },
     {
-      "name": "Smooth Link 2:Janakpur  vs Kathmandu", 
+      "name": "Smooth Link 2:Chitwan vs Karnali", 
       "url": "https://dns-tv.pages.dev/VIP/ads.html"
     },
     {
-      "name": "Smooth Link 3:Janakpur  vs Kathmandu", 
+      "name": "Smooth Link 3:Chitwan vs Karnali", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL2"
     },
     {
-      "name": "HD Link 1:Janakpur  vs Kathmandu", 
+      "name": "HD Link 1:Chitwan vs Karnali", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL3"
     },
     
  {
-      "name": "HD Link 2:Janakpur  vs Kathmandu", 
+      "name": "HD Link 2:Chitwan vs Karnali", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL4"
     },
 
  {
-      "name": "HD Link 3:Janakpur  vs Kathmandu", 
+      "name": "HD Link 3:Chitwan vs Karnali", 
       "url": "https://freeplyrr.pages.dev/page?src=https://freeplyrr.pages.dev/LNK2?id=NPL5"
     }
    

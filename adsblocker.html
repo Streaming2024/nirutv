@@ -1,0 +1,159 @@
+<!-- Anti-Adblock Popup -->
+<div class='adb' id='adb'>
+  <div class='adbs'>
+    <h3>Ad-blocker/Brave Shields Detected!</h3>
+    <p id='adb-msg'>Please disable your adblocker or Brave Shields or DNS to continue browsing this site.</p>
+    <small id='adb-note'>Use Chrome browser and refresh the page after disabling your adblocker</small>
+  </div>
+</div>
+
+<style>
+.adb {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.adbs {
+  background: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+.adbs h3 {
+  color: #d00;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.adbs p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.adbs small {
+  font-size: 12px;
+  color: #ff0000;
+  display: block;
+  margin-top: 5px;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 0px #ff0000; }
+  to { text-shadow: 0 0 1px #ff0000; }
+}
+</style>
+
+<script type='text/javascript'>
+// <![CDATA[
+function showPopup(reason = "Adblock Detected") {
+  const adb = document.getElementById("adb");
+  const msg = document.getElementById("adb-msg");
+  const note = document.getElementById("adb-note");
+
+  adb.style.display = "flex"; // show popup
+  msg.innerText = "Please disable your adblocker or Brave Shields or DNS to continue browsing this site.";
+
+  if (reason.includes("Brave")) {
+    msg.innerHTML = `
+      To Continue YoNoTV, Please Turnoff Adblocker or Brave Shields or Private DNS. We really appreciate your support..<br>
+    `;
+    note.style.fontWeight = "bold";
+   
+  }
+
+  console.warn("⚠️ Popup Triggered:", reason);
+}
+
+// ----------------- Adblock Detection -----------------
+async function detectAdblock() {
+  let detected = false;
+
+  const bait = document.createElement("div");
+  bait.className = "ad adsbox ad-banner adsense ad-container sponsored";
+  bait.style.cssText = "width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;";
+  document.body.appendChild(bait);
+
+  const img = document.createElement("img");
+  img.src = "https://pagead2.googlesyndication.com/pagead/imgad?id=CAASFeDxyz";
+  img.style.cssText = "width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;";
+  img.onerror = () => { detected = true; };
+  document.body.appendChild(img);
+
+  const iframe = document.createElement("iframe");
+  iframe.src = "https://googleads.g.doubleclick.net/pagead/html/r2023/sample-ad.html";
+  iframe.style.cssText = "width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;";
+  iframe.onerror = () => { detected = true; };
+  document.body.appendChild(iframe);
+
+  const script = document.createElement("script");
+  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+  script.async = true;
+  script.onerror = () => { detected = true; };
+  document.head.appendChild(script);
+
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  if (
+    window.getComputedStyle(bait).display === "none" ||
+    bait.offsetHeight === 0 ||
+    bait.offsetParent === null
+  ) {
+    detected = true;
+  }
+
+  bait.remove();
+  img.remove();
+  iframe.remove();
+  script.remove();
+
+  return detected;
+}
+
+// ----------------- Brave Shields Detection -----------------
+async function detectBraveShields() {
+  try {
+    let res = await fetch("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
+      method: "GET",
+      cache: "no-store",
+      mode: "no-cors"
+    });
+
+    if (res.type === "opaque") {
+      try {
+        const buf = await res.clone().arrayBuffer();
+        return buf.byteLength >= 100; // true = Shields ON
+      } catch {
+        return true;
+      }
+    }
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+// ----------------- Main -----------------
+window.addEventListener("load", async () => {
+  const shieldsOn = await detectBraveShields();
+  if (shieldsOn) {
+    showPopup("Brave Shields Detected");
+    return;
+  }
+
+  const adblocker = await detectAdblock();
+  if (adblocker) {
+    showPopup("Adblock Detected");
+  }
+});
+// ]]>
+</script>
+
+<!-- Anti-Adblock / Brave Shields Popup -->

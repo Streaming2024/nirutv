@@ -118,6 +118,10 @@ window.matchCardData = {
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8603.png"
     },
     {
+      "name": "Cincinnati",
+      "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/722265.png"
+    },
+    {
       "name": "Las Palmas",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8306.png"
     },

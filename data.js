@@ -104,6 +104,11 @@ window.matchCardData = {
       "name": "Athletic ",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8315.png"
     },
+   {
+      "name": "Elche",
+      "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/10268.png"
+    },
+    
     {
       "name": "Real Sociedad",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8560.png"

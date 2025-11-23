@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16:9 Image</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black; /* optional */
+    }
+
+    .image-container {
+      width: 90%;       /* adjust width as needed */
+      max-width: 1920px; /* optional max size */
+      aspect-ratio: 16 / 9;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* fills container while keeping aspect ratio */
+      border-radius: 4px; /* optional styling */
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="https://i.ibb.co/Z1Kxw25v/Picsart-25-11-23-17-36-28-583.jpg" alt="16:9 Image">
+  </div>
+</body>
+</html>

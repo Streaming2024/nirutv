@@ -1268,6 +1268,11 @@ window.matchCardData = {
       "name": "Thailand",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/5788.png"
     },
+    
+    {
+      "name": "Leeds United",
+      "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8463.png"
+    },
     {
       "name": "Venezia",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/7881.png"

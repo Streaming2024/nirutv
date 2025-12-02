@@ -57,7 +57,7 @@
 <script>
 // Auto-check every 10 seconds to switch exactly on time
 setInterval(() => {
-    fetch('json/11.json?t=' + Date.now())
+    fetch('soon.json?t=' + Date.now())
         .then(r => r.json())
         .then(data => {
             let start = new Date(data.match_start).getTime();

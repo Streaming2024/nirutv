@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Live Match Starting Soon</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: white;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container {
+        padding: 20px;
+        margin-top: -40px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+        font-weight: 600;
+        animation: pulse 2.2s infinite ease-in-out;
+        margin-bottom: 10px;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.4; transform: scale(0.98); }
+        50% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0.4; transform: scale(0.98); }
+    }
+
+    @keyframes fade {
+        0% { opacity: 0.25; }
+        50% { opacity: 1; }
+        100% { opacity: 0.25; }
+    }
+
+    @media (min-width: 768px) {
+        .title { font-size: 3rem; }
+    }
+
+    @media (min-width: 1200px) {
+        .title { font-size: 3.4rem; }
+    }
+</style>
+
+<script>
+// Auto-check every 10 seconds to switch exactly on time
+setInterval(() => {
+    fetch('json/11.json?t=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
+            let start = new Date(data.match_start).getTime();
+            let now = new Date().getTime();
+            if (now >= start) {
+                window.location.href = data.stream_url;
+            }
+        });
+}, 10000);
+</script>
+
+</head>
+
+<body>
+    <div class='container'>
+        <div class='title'>Live Match Starting Soon</div>
+    </div>
+
+</body>
+</html>

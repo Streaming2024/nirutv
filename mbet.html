@@ -529,30 +529,49 @@ $(document).ready(function() {
   </div>
 
   <!-- Ads here -->
-  <div style='
-    text-align:center;
-    display:block;
-    max-width:320px;
-    height:auto;
-    overflow:hidden;
-    margin:auto;
-  '>
+ <!-- Ads here -->
+<div style='
+  text-align:center;
+  display:block;
+  max-width:320px;
+  height:auto;
+  overflow:hidden;
+  margin:auto;
+'>
 
-    <a href="https://your-click-link.com"
-       target="_blank"
-       rel="nofollow sponsored">
-      <img src="https://yonotv.pages.dev/mbet.png"
-           alt="Advertisement"
-           style="width:320px;height:250px;display:block;margin:auto;">
-    </a>
-
-  </div>
+  <a id="adLink" href="#" target="_blank" rel="nofollow sponsored">
+    <img id="adImage"
+         src=""
+         alt="Advertisement"
+         style="width:320px;height:250px;display:block;margin:auto;">
+  </a>
 
 </div>
 
+<script>
+  // Add your ads here
+  const ads = [
+    {
+      img: "https://yonotv.pages.dev/mbet.png",
+      link: "https://example-link-1.com"
+    },
+    {
+      img: "https://yonotv.pages.dev/mbet2.png",
+      link: "https://example-link-2.com"
+    },
+    
+  ];
 
-    </div>
-    </div>
+  // Pick random ad
+  const randomAd = ads[Math.floor(Math.random() * ads.length)];
+
+  document.getElementById("adImage").src = randomAd.img;
+  document.getElementById("adLink").href = randomAd.link;
+</script>
+
+
+</div>
+    
 
 </body>
 </html>

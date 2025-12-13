@@ -343,7 +343,45 @@
     
     <div class="notice">Wait for Loading or Try other Links & Please Refresh if Lag  </div>
      <!-- Ads here -->
- 
+ <!-- Auto Rotating 320x50 Center Banner -->
+<div style="width:100%;text-align:center;margin:15px 0;">
+
+  <a id="bannerLink" href="#" target="_blank" rel="nofollow sponsored">
+    <img id="bannerImg"
+         alt="Advertisement"
+        
+  </a>
+
+</div>
+
+<script>
+  const banners = [
+    {
+      img: "https://yonotv.pages.dev/mbet3.png",
+      link: "https://8unx689.com/"
+    },
+    {
+      img: "https://yonotv.pages.dev/mbet4.png",
+      link: "https://8unx689.com/"
+    }
+    
+  ];
+
+  let index = 0;
+
+  function rotateBanner() {
+    document.getElementById("bannerImg").src = banners[index].img;
+    document.getElementById("bannerLink").href = banners[index].link;
+    index = (index + 1) % banners.length;
+  }
+
+  // First load
+  rotateBanner();
+
+  // Change every 10 seconds
+  setInterval(rotateBanner, 10000);
+</script>
+
     <!-- Video Container -->
     <div class="video-container">
         <iframe id="video-frame" sandbox="allow-scripts allow-forms allow-same-origin" allowfullscreen></iframe>
@@ -553,12 +591,12 @@ $(document).ready(function() {
   const ads = [
     {
       img: "https://yonotv.pages.dev/mbet.png",
-      link: "https://example-link-1.com"
+      link: "https://8unx689.com"
     },
     {
       img: "https://yonotv.pages.dev/mbet2.png",
-      link: "https://example-link-2.com"
-    },
+      link: "https://8unx689.com"
+    }
     
   ];
 

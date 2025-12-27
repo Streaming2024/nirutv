@@ -1289,6 +1289,30 @@ window.matchCardData = {
     {
       "name": "Doncaster",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/9903.png"
+    },
+     {
+      "name": "Royals",
+      "logo": "https://cricketvectors.akamaized.net/Teams/AL.png"
+    },
+     {
+      "name": "Warriors",
+      "logo": "https://cricketvectors.akamaized.net/Teams/AH.png"
+    },
+     {
+      "name": "Riders",
+      "logo": "https://cricketvectors.akamaized.net/Teams/5T.png"
+    },
+     {
+      "name": "Capitals",
+      "logo": "https://cricketvectors.akamaized.net/Teams/UC.png"
+    },
+    {
+      "name": "Titans",
+      "logo": "https://cricketvectors.akamaized.net/Teams/7G.png"
+    },
+    {
+      "name": "Express",
+      "logo": "https://cricketvectors.akamaized.net/Teams/1E1.png"
     }
   ],
   "leagues": [
@@ -1296,8 +1320,8 @@ window.matchCardData = {
     "ODI Series", 
     "Test Series",
     "Nepal Premier League",
-    "T20 world cup",
-    "ODI world cup",
+    "T20 World Cup",
+    "ODI World Cup",
     "Women's Asia Cup",
     "Women's World Cup",
     "Men's Asia cup",
@@ -1306,6 +1330,8 @@ window.matchCardData = {
     "FIFA Club World Cup",
     "Ligue 1",
     "Premier League",
+    "ILT20 League 2025",
+    "Bangladesh Premier League",
     "ICC CWC League 2",
     "Bundesliga",
     "Serie A",

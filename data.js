@@ -386,8 +386,8 @@ window.matchCardData = {
       "logo": "https://aimages.willow.tv/teamLogos/bermuda.png"
     },
     {
-      "name": "Willow",
-      "logo": "https://aimages.willow.tv/teamLogos/_____.png"
+      "name": "Sunderland",
+      "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8472.png"
     },
     {
       "name": "West Indies",

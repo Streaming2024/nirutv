@@ -1317,7 +1317,11 @@ window.matchCardData = {
     {
       "name": "IPL",
       "logo": "https://dns-tv.pages.dev/logo/ipl.png"
-    }
+    },
+    {
+      "name": "PSL",
+      "logo": "https://dns-tv.pages.dev/logo/psl.png"
+    },
   ],
   "leagues": [
     "T20I Series",

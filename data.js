@@ -1313,6 +1313,10 @@ window.matchCardData = {
     {
       "name": "Express",
       "logo": "https://cricketvectors.akamaized.net/Teams/1E1.png"
+    },
+    {
+      "name": "IPL",
+      "logo": "https://dns-tv.pages.dev/logo/ipl.png"
     }
   ],
   "leagues": [

@@ -1074,29 +1074,38 @@ window.matchCardData = {
       "logo": "https://dns-tv.pages.dev/logo/janakpur.png"
     },
     {
-      "name": "MS",
+      "name": "Multan",
       "logo": "https://aimages.willow.tv/teamLogos/multansultans.png"
     },
     {
-      "name": "ISL",
+      "name": "Islamabad",
       "logo": "https://aimages.willow.tv/teamLogos/islamabadunited.png"
     },
     {
-      "name": "KAR",
+      "name": "Karachi",
       "logo": "https://aimages.willow.tv/teamLogos/karachikings.png"
     },
     {
-      "name": "LQ",
+      "name": "Lahore",
       "logo": "https://aimages.willow.tv/teamLogos/lahoreqalandars.png"
     },
     {
-      "name": "PES",
+      "name": "Peshawar",
       "logo": "https://aimages.willow.tv/teamLogos/peshawarzalmi.png"
     },
     {
-      "name": "QG",
+      "name": "Quetta",
       "logo": "https://aimages.willow.tv/teamLogos/quettagladiators.png"
     },
+    {
+      "name": "Hyderabad",
+      "logo": "https://psl-t20.com/wp-content/uploads/2026/03/Hyderabad-Kingsmen-logo-1.png"
+    },
+    {
+      "name": "Rawalpindiz",
+      "logo": "https://psl-t20.com/wp-content/uploads/2026/03/Rawalpindiz-Logo.png"
+    },
+    
     {
       "name": "Earthquake",
       "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6603.png"

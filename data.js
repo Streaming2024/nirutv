@@ -1364,6 +1364,7 @@ window.matchCardData = {
     "Women's International Friendly",
     "Tri-Nation Series",
     "Indian Premier League",
+    " Pakistan Super League",
     "Women's Premier League",
     "MLS",
     "Club Friendly",

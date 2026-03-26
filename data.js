@@ -1099,11 +1099,11 @@ window.matchCardData = {
     },
     {
       "name": "Hyderabad",
-      "logo": "https://psl-t20.com/wp-content/uploads/2026/03/Hyderabad-Kingsmen-logo-1.png"
+      "logo": "https://static.cricbuzz.com/a/img/v1/0x0/i1/c883179/hyderabad-kingsmen.jpg"
     },
     {
       "name": "Rawalpindiz",
-      "logo": "https://psl-t20.com/wp-content/uploads/2026/03/Rawalpindiz-Logo.png"
+      "logo": "https://static.cricbuzz.com/a/img/v1/0x0/i1/c883174/rawalpindi-pindiz.jpg"
     },
     
     {

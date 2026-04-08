@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOTBALL STREAM</title>
+
+   
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            font-family: Tahoma, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #000;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+       
+    </style>
+</head>
+<body>
+  
+    
+    <iframe id="player" loading="lazy" allowfullscreen></iframe>
+    
+    <script>
+        const channels = { 
+            //START SOON
+            startsoon: "https://dns-tv.pages.dev", 
+            //START SOON
+             NEP2: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/71426314.m3u8", 
+            NEP:"https://yonotv-now.pages.dev/ytplyrr?id=HN6KK8ndgkQ",
+            
+            
+           
+            //MATCH 2
+            REALMADRID: "https://streams.center/embed/ch1.php", 
+            REALMADRID2: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/97312754.m3u8", 
+            REALMADRID3: "https://playreport.link/homes/blog1/", 
+            REALMADRID4: "https://yonotv-now.pages.dev/dplyrr?src=https://hls.cdnok9.com/live/LUBO/index.m3u8", 
+            REALMADRID5: "https://yonotv-now.pages.dev/dplyrr?src=https://live5.msrktz.app/live/24561735.m3u8", 
+            
+          
+             //MATCH 3
+            BARCA: "https://yonotv-now.pages.dev/tsn", 
+            BARCA2: "https://yonotv-now.pages.dev/bein2", 
+            BARCA3: "https://streams.center/embed/ch6.php", 
+            BARCA4: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/07428422.m3u8", 
+            BARCA5: "https://yonotv-now.pages.dev/fc", 
+            BARCA6: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/41943555.m3u8", 
+       
+
+            //MATCH 4
+             MANCITY2: "https://yonotv-now.pages.dev/tnt1", 
+             MANCITY: "https://yonotv-now.pages.dev/hlsplyrr?src=https://darmasaki888.s3.us-east-1.amazonaws.com/hornets.m3u8", 
+             MANCITY3: "https://yonotv-now.pages.dev/hlsplyrr?src=https://live5.msrktz.app/live/97312754.m3u8", 
+             MANCITY4: "https://streams.center/embed/ch1.php", 
+             MANCITY5: "https://yonotv-now.pages.dev/hlsplyrr?src=https://smarthard.click/hls/sabrouchespndeportes/index.m3u8", 
+             MANCITY6: "https://yonotv-now.pages.dev/hlsplyrr?src=https://a1.kora-plus.dad/watch/b3.m3u8", 
+             //MATCH 5
+             INTER: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/02456966.m3u8", 
+             INTER2: "https://yonotv-now.pages.dev/splyrr?src=https://live5.msrktz.app/live/90725470.m3u8", 
+             INTER3: "https://yonotv-now.pages.dev/soco?id=494201", 
+             INTER4: "https://yonotv-now.pages.dev/splyrr?src=https://live5.msrktz.app/live/14830711.m3u8", 
+             INTER5: "https://yonotv-now.pages.dev/soco?id=531989", 
+            
+             //MATCH 6
+             ARSENAL: "https://streams.center/embed/ch2.php", 
+             ARSENAL2: "https://yonotv-now.pages.dev/hlsplyrr?src=https://live5.msrktz.app/live/78905744.m3u8", 
+             ARSENAL3: "https://playreport.link/homes/blog2/", 
+             ARSENAL4: "https://yonotv-now.pages.dev/splyrr?src=https://hls.cdnok9.com/live/URA/index.m3u8", 
+             ARSENAL5: "https://yonotv-now.pages.dev/dplyrr?src=https://live5.msrktz.app/live/43612277.m3u8", 
+             
+
+             FRANCE: "https://streams.center/embed/ch7.php", 
+             FRANCE2: "https://yonotv-now.pages.dev/sky", 
+             FRANCE3: "https://w2.sportzsonline.click/channels/hd/hd2.php", 
+             FRANCE4: "https://yonotv-now.pages.dev/soco?id=582342", 
+             FRANCE5: "https://12.sportsurges.online/albaplayer/bein-1/", 
+            
+             ITALY: "https://yonotv-now.pages.dev/fox1", 
+             ITALY2: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/97312754.m3u8", 
+             ITALY3: "https://yonotv-now.pages.dev/sportv", 
+             ITALY4: "https://12.sportsurges.online/albaplayer/1bein1/", 
+             ITALY5: "https://w2.sportzsonline.click/channels/hd/hd2.php", 
+
+
+
+
+            
+        };
+
+       
+
+        // Initialize player without any embed protection
+        function initializePlayer() {
+          
+            const urlParams = new URLSearchParams(window.location.search);
+            const channel = urlParams.get('id');
+            const iframe = document.getElementById('player');
+            
+            if (channel && channels[channel]) {
+                iframe.src = channels[channel];
+            } else {
+                // Default channel if none specified
+                iframe.src = channels.startsoon;
+            }
+            
+            
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePlayer);
+    </script>
+</body>
+</html>

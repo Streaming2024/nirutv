@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.15/dist/hls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dplayer@1.27.1/dist/DPlayer.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #dplayer {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    iframe { z-index: 999999 !important; }
+    #dplayer video { pointer-events: none; }
+
+    #qualityMenu {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      background: rgba(0,0,0,0.9);
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: none;
+      z-index: 99999;
+    }
+
+    .quality-item {
+      padding: 8px 12px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .quality-item:hover { background: rgba(255,255,255,0.2); }
+    .quality-item.active { color: #00d4ff; font-weight: bold; }
+
+    /* ── Refresh Overlay ── */
+    #refreshOverlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.45);
+    }
+
+    #refreshOverlay.visible { display: flex; }
+
+    #refreshBtn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 14px;
+      padding: 20px 24px;
+      transition: background 0.2s;
+      user-select: none;
+    }
+
+    #refreshBtn:hover { background: rgba(255,255,255,0.2); }
+
+    #refreshBtn .material-icons {
+      font-size: 44px;
+      color: #fff;
+    }
+
+    #refreshBtn span.label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-family: sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Countdown ring ── */
+    #countdownWrap {
+      position: relative;
+      width: 48px;
+      height: 48px;
+    }
+    #countdownWrap svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg);
+    }
+    #countdownWrap circle {
+      fill: none;
+      stroke: rgba(255,255,255,0.2);
+      stroke-width: 4;
+    }
+    #countdownWrap circle.progress {
+      stroke: #00d4ff;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 138.2;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+    #countdownNum {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    /* ── Unmute nudge ── */
+    #unmuteBtn {
+      display: none;
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10000;
+      background: rgba(0,212,255,0.92);
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      padding: 9px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 18px rgba(0,212,255,0.4);
+      font-family: sans-serif;
+    }
+    #unmuteBtn.visible { display: block; }
+  </style>
+</head>
+
+<body>
+
+  <div id="dplayer"></div>
+  <div id="qualityMenu"></div>
+
+  <div id="refreshOverlay">
+    <div id="refreshBtn">
+      <span class="material-icons">refresh</span>
+      <div id="countdownWrap">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <circle cx="24" cy="24" r="22"/>
+          <circle class="progress" id="progressCircle" cx="24" cy="24" r="22"/>
+        </svg>
+        <div id="countdownNum">5</div>
+      </div>
+      <span class="label">Auto-refreshing… tap to refresh now</span>
+    </div>
+  </div>
+
+  <button id="unmuteBtn">🔇 Tap to unmute</button>
+
+  <script>
+    (async () => {
+
+      /* ── Domain lock ── */
+      const ALLOWED_DOMAIN = "yonotv.pages.dev";
+      if (window.location.hostname !== ALLOWED_DOMAIN) {
+        document.body.innerHTML = "";
+        window.location.replace("about:blank");
+        return;
+      }
+
+      const DEFAULT_CHANNEL = "deepak";
+      const container      = document.getElementById("dplayer");
+      const qualityMenu    = document.getElementById("qualityMenu");
+      const refreshOverlay = document.getElementById("refreshOverlay");
+      const refreshBtn     = document.getElementById("refreshBtn");
+      const progressCircle = document.getElementById("progressCircle");
+      const countdownNum   = document.getElementById("countdownNum");
+      const unmuteBtn      = document.getElementById("unmuteBtn");
+
+      const CIRCUMFERENCE  = 2 * Math.PI * 22; // ≈ 138.23
+      const STALL_SECONDS  = 5;
+
+      const params  = new URLSearchParams(window.location.search);
+      const channel = params.get("id") || DEFAULT_CHANNEL;
+
+      /* ════════════════════════════════════════════
+         COUNTDOWN + OVERLAY
+      ════════════════════════════════════════════ */
+      let countdownInt = null;
+      let secondsLeft  = STALL_SECONDS;
+
+      function showRefresh() {
+        if (refreshOverlay.classList.contains("visible")) return;
+        refreshOverlay.classList.add("visible");
+        startCountdown();
+      }
+
+      function hideRefresh() {
+        refreshOverlay.classList.remove("visible");
+        cancelCountdown();
+      }
+
+      function startCountdown() {
+        secondsLeft = STALL_SECONDS;
+        countdownNum.textContent = secondsLeft;
+        progressCircle.style.strokeDashoffset = 0;
+
+        countdownInt = setInterval(() => {
+          secondsLeft--;
+          if (secondsLeft <= 0) {
+            clearInterval(countdownInt);
+            doRefresh(); // auto-fires when countdown hits 0
+          } else {
+            countdownNum.textContent = secondsLeft;
+            progressCircle.style.strokeDashoffset =
+              CIRCUMFERENCE * (1 - secondsLeft / STALL_SECONDS);
+          }
+        }, 1000);
+      }
+
+      function cancelCountdown() {
+        clearInterval(countdownInt);
+        countdownInt = null;
+        secondsLeft  = STALL_SECONDS;
+        countdownNum.textContent = STALL_SECONDS;
+        progressCircle.style.strokeDashoffset = 0;
+      }
+
+      /* ════════════════════════════════════════════
+         STALL TIMER  (shows overlay after 5 s freeze)
+      ════════════════════════════════════════════ */
+      let stallTimer = null;
+
+      function startStallTimer(videoEl) {
+        if (stallTimer) return;
+        stallTimer = setTimeout(() => {
+          if (videoEl && !videoEl.paused) showRefresh();
+        }, STALL_SECONDS * 1000);
+      }
+
+      function cancelStallTimer() {
+        clearTimeout(stallTimer);
+        stallTimer = null;
+      }
+
+      /* ════════════════════════════════════════════
+         AUTOPLAY  — works on every browser & device
+         Strategy:
+           1. Start muted (always allowed)
+           2. Silently try to unmute
+           3. If still muted → show "Tap to unmute" pill
+           4. If play() itself is blocked → wait for
+              first user interaction, then play+unmute
+      ════════════════════════════════════════════ */
+      async function attemptAutoplay(videoEl) {
+        try {
+          videoEl.muted = true;
+          await videoEl.play();
+          try { videoEl.muted = false; } catch (_) {}
+          if (videoEl.muted) showUnmute();
+        } catch (err) {
+          // play() blocked — unlock on first gesture
+          showUnmute();
+          const unlock = async () => {
+            videoEl.muted = true;
+            await videoEl.play().catch(() => {});
+            videoEl.muted = false;
+            hideUnmute();
+          };
+          document.addEventListener("click",      unlock, { once: true });
+          document.addEventListener("touchstart", unlock, { once: true });
+          document.addEventListener("keydown",    unlock, { once: true });
+        }
+      }
+
+      function showUnmute() { unmuteBtn.classList.add("visible"); }
+      function hideUnmute() { unmuteBtn.classList.remove("visible"); }
+
+      unmuteBtn.addEventListener("click", () => {
+        const vid = container.querySelector("video");
+        if (vid) { vid.muted = false; vid.play().catch(() => {}); }
+        hideUnmute();
+      });
+
+      /* ════════════════════════════════════════════
+         FETCH STREAM URL  (your original logic)
+      ════════════════════════════════════════════ */
+      let playbackUrl = "";
+      try {
+        const res  = await fetch(`https://kick.com/api/v2/channels/${channel}`);
+        const data = await res.json();
+        if (!data.playback_url) { showRefresh(); return; }
+        playbackUrl = data.playback_url;
+      } catch (e) {
+        console.error("Kick API error", e);
+        showRefresh();
+        return;
+      }
+
+      /* ════════════════════════════════════════════
+         doRefresh  — shared by auto-countdown AND
+                       manual tap on overlay card
+      ════════════════════════════════════════════ */
+      function doRefresh() {
+        hideRefresh();
+        cancelStallTimer();
+        player.switchVideo({ url: playbackUrl, type: "hls" });
+        player.play();
+        const vid = container.querySelector("video");
+        if (vid) setTimeout(() => attemptAutoplay(vid), 400);
+      }
+
+      /* Tap card = instant refresh (same as auto) */
+      refreshBtn.addEventListener("click", doRefresh);
+
+      /* ════════════════════════════════════════════
+         INIT DPLAYER  (your original config)
+      ════════════════════════════════════════════ */
+      const player = new DPlayer({
+        container,
+        autoplay: true,  // DPlayer internal flag
+        muted:    true,  // start muted → autoplay always fires
+        video: { url: playbackUrl, type: "hls" }
+      });
+
+      const videoEl = container.querySelector("video");
+
+      /* Kick off cross-browser autoplay after short settle */
+      if (videoEl) setTimeout(() => attemptAutoplay(videoEl), 600);
+
+      /* ════════════════════════════════════════════
+         VIDEO EVENT HOOKS  (your original + additions)
+      ════════════════════════════════════════════ */
+      if (videoEl) {
+        videoEl.addEventListener("playing",  () => { cancelStallTimer(); hideRefresh(); });
+        videoEl.addEventListener("play",     () => { cancelStallTimer(); hideRefresh(); });
+        videoEl.addEventListener("waiting",  () => startStallTimer(videoEl));
+        videoEl.addEventListener("stalled",  () => startStallTimer(videoEl));
+        videoEl.addEventListener("suspend",  () => startStallTimer(videoEl));
+        videoEl.addEventListener("progress", () => { cancelStallTimer(); hideRefresh(); });
+        videoEl.addEventListener("error",    () => { cancelStallTimer(); showRefresh(); });
+      }
+
+      player.on("error",   () => { cancelStallTimer(); showRefresh(); });
+      player.on("playing", () => { cancelStallTimer(); hideRefresh(); });
+
+      /* ════════════════════════════════════════════
+         HLS QUALITY PARSING  (your original logic)
+      ════════════════════════════════════════════ */
+      async function getQualities() {
+        const text  = await fetch(playbackUrl).then(r => r.text());
+        const regex = /#EXT-X-STREAM-INF:.*RESOLUTION=\d+x(\d+)[^\n]*\n([^\n]+)/g;
+        let match;
+        const out = [];
+        while ((match = regex.exec(text)) !== null) {
+          out.push({
+            label: match[1] + "p",
+            url:   new URL(match[2].trim(), playbackUrl).href
+          });
+        }
+        return out;
+      }
+
+      const qualities = await getQualities();
+
+      qualities.forEach((q, i) => {
+        const item = document.createElement("div");
+        item.className   = "quality-item";
+        item.textContent = q.label;
+        if (i === 0) item.classList.add("active");
+
+        item.onclick = () => {
+          cancelStallTimer();
+          hideRefresh();
+          player.switchVideo({ url: q.url, type: "hls" });
+          player.play();
+          document.querySelectorAll(".quality-item").forEach(el => el.classList.remove("active"));
+          item.classList.add("active");
+        };
+
+        qualityMenu.appendChild(item);
+      });
+
+      /* ════════════════════════════════════════════
+         QUALITY ⚙ BUTTON  (your original logic)
+      ════════════════════════════════════════════ */
+      player.on("loadedmetadata", () => {
+        setTimeout(() => {
+          const rightIcons = document.querySelector(".dplayer-icons-right");
+          if (!rightIcons || document.querySelector(".quality-btn")) return;
+
+          const btn = document.createElement("div");
+          btn.className   = "quality-btn material-icons";
+          btn.textContent = "settings";
+          btn.style.cursor     = "pointer";
+          btn.style.fontSize   = "22px";
+          btn.style.color      = "#0505f5";
+          btn.style.marginLeft = "10px";
+
+          btn.onclick = e => {
+            e.stopPropagation();
+            qualityMenu.style.display =
+              qualityMenu.style.display === "block" ? "none" : "block";
+          };
+
+          rightIcons.appendChild(btn);
+        }, 500);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

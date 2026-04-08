@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Stram ID</title>
+ <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+   <script src="/app.js"></script>
+    <script src="/block.js"></script>
+     <script src="/click.js"></script>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            font-family: Tahoma, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #000;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+       
+    </style>
+</head>
+<body>
+  
+    
+    <iframe id="player" loading="lazy" allowfullscreen></iframe>
+    
+    <script>
+        const channels = { 
+            //START SOON
+            startsoon: "https://dns-tv.pages.dev", 
+            //START SOON
+            //LLC
+             C5:"https://yonotv-now.pages.dev/plyrr?src=https://ru-001.local-honduras-center.sbs/secure/api/v1/lchd-fs501.m3u8", 
+            C4:"https://yonotv-now.pages.dev/plyrr?src=https://ru-001.local-honduras-center.sbs/secure/api/v1/lchd-ipltata.m3u8",
+             LLC1: "https://player.kick.com/ipl2025live?muted=false&autoplay=true", 
+             LLC22: "https://yonotv-now.pages.dev/plyrr?src=https://imgs-001.juno-api-noe.icu/secure/api/v1/lchd-fs501.m3u8", 
+             LLC33: "https://yonotv-now.pages.dev/plyrr?src=https://imgs-001.juno-api-noe.icu/secure/api/v1/lchd-ipltata.m3u8", 
+              //PSL
+            PSL1: "https://yonotv-now.pages.dev/wtv", 
+            PSL22: "https://yonotv-now.pages.dev/hlsplyrr?src=https://pslurdu.bigbaat.app/out/v1/0ef369b90c7b4025b76621e46ee5fb70/index.m3u8", 
+            PSL33: "https://yonotv-now.pages.dev/hlsplyrr?src=https://webott.viatv.com.np/v0t1/ASportsHd/playlist.m3u8", 
+            PSL44: "https://yonotv-now.pages.dev/hlsplyrr?src=https://psl.bigbaat.app/out/v1/f342445c31dd475bbf30c7304dbad14f/index.m3u8", 
+            //IPL
+            YUB: "https://yonotv-now.pages.dev/kickk?id=yonotv2026", 
+          YUB2:"https://wapgoo.pages.dev/?id=Star%20Sports%201%20HD", 
+           YUB3:"https://yonotv-now.pages.dev/kick4?id=yonotv2026",
+          YUB4:"https://voterole.net/embed/yzawfoo68", 
+          YUB5:"https://yonotv-now.pages.dev/hlsplyrr?src=https://newcdn.tamils.click/live/index.m3u8",
+
+
+
+
+
+            
+        
+        };
+        // Initialize player without any embed protection
+        function initializePlayer() {
+          
+            const urlParams = new URLSearchParams(window.location.search);
+            const channel = urlParams.get('id');
+            const iframe = document.getElementById('player');
+            
+            if (channel && channels[channel]) {
+                iframe.src = channels[channel];
+            } else {
+                // Default channel if none specified
+                iframe.src = channels.startsoon;
+            }
+            
+            
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePlayer);
+    </script>
+</body>
+</html>

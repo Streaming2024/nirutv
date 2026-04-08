@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CricLife Max</title>
+  <title>TNT2</title>
+    <script src="/app.js"></script>
+    <script src="/block.js"></script>
+     <script src="/click.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">
   <style>
@@ -39,7 +42,7 @@
 </head>
 <body>
   <div class="shaka-video-container" data-shaka-player>
-    <video autoplay playsinline preload="metadata" poster="https://nirutv.online/logo/image.png"></video>
+    <video autoplay playsinline preload="metadata" poster="https://dns-tv.pages.dev/logo/image.png"></video>
   </div>
 
   <script>
@@ -78,11 +81,11 @@
       // DASH DRM ClearKey config for CricLife Max
       let drmConfig = {
         clearKeys: {
-          "9f51f3dc6313ac8bc668e2d9d1c04dfa": "74bc63e5a193454a91ca494975db33f9"
+          "f288380ca4cef9ad3f27a92a08e9bb8b":"9f18d26291d9230833501f7f822f6875"
         }
       };
 
-      let streamUrl = "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/bsaaetko8v/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd";
+      let streamUrl = "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/fb6jy4pxts/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd";
 
       player.configure({
         drm: drmConfig,

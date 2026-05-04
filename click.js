@@ -1,6 +1,6 @@
 document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
-    window.location.href = 'https://yonotv-now.pages.dev/ADS.html';
+    window.location.href = 'https://www.google.com';
 });
 
 document.addEventListener('keydown', function(event) {
@@ -23,7 +23,7 @@ document.addEventListener('keydown', function(event) {
             (combo.ctrl && (event.ctrlKey || event.metaKey)) && 
             (!combo.shift || event.shiftKey)) {
             event.preventDefault();
-            window.location.href = 'https://yonotv-now.pages.dev/ADS.html';
+            window.location.href = 'https://www.google.com';
             return;
         }
     }
@@ -31,6 +31,6 @@ document.addEventListener('keydown', function(event) {
     // Block F12 (DevTools)
     if (event.key === 'F12') {
         event.preventDefault();
-        window.location.href = 'https://yonotv-now.pages.dev/ADS.html';
+        window.location.href = 'https://www.google.com';
     }
 });

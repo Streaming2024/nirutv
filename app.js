@@ -25,7 +25,7 @@
 
   // Block direct access, hotlink, or unknown referrer
   if (!isIframe || !allowed) {
-    window.location.replace("https://yonotv-now.pages.dev/ADS");
+    window.location.replace("https://www.google.com");
     return;
   }
 

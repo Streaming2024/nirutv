@@ -1,136 +1,83 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Willow</title>    
-     <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
-   <script src="/app.js"></script>
-    <script src="/block.js"></script>
-     <script src="/click.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">  
-      
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Prime TV</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
+    <style>
+        body { background-color: #000; margin: 0; }
+        .watermark {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        img { position:relative; right:130; bottom:10; margin:auto auto; max-width:20%; max-height:20%; object-fit:contain; pointer-events:none; }
+        .shaka-spinner-container { display:none; }
+        .uc { pointer-events:none; }
+        .shaka-current-time, .shaka-time-container { display: none; } /* Hide time display */
+    </style>
+</head>
+<body>
+    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <video autoplay muted data-shaka-player id="video" poster="https://dns-tv.pages.dev/logo/image.png" style="width:100%; height:100%"></video>
+    </div>
+    <script>
+       const mpdUrl ='https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/clients/dash/enc/nyhtosqh5k/out/v1/170ea63dc5ab4a09b1ee549b92b6e15f/cenc.mpd';
+    const kid = '222545886018e93c2db68f393d748faf';
+    const key = '50c45f45da5fb19842ab6b495e79e8a4';
+    let player;
+    let ui;
+       
+        function initApp() {
+            shaka.polyfill.installAll();
 
-  <style>  
-   * { margin: 0; padding: 0; box-sizing: border-box; }  
-    html, body {  
-      background: #000;  
-      height: 100vh;  
-      width: 100vw;  
-      overflow: hidden;  
-      font-family: system-ui, -apple-system, sans-serif;  
-    }  
-    .shaka-video-container {  
-      position: absolute;  
-      inset: 0;  
-      width: 100%;  
-      height: 100%;  
-    }  
-    video {  
-      width: 100%;  
-      height: 100%;  
-      background: #000;  
-      object-fit: contain;  
-    }  
-    .shaka-spinner-container,  
-    .shaka-spinner,  
-    .shaka-spinner-svg {  
-      display: none !important;  
-      visibility: hidden !important;  
-      opacity: 0 !important;  
-    }  
-  </style>  
-</head>  
+            shaka.Player.probeSupport().then(function() {
+                const video = document.getElementById('video');
+                player = new shaka.Player(video);
 
- 
-  
-  <body>  
-  <div class="shaka-video-container" data-shaka-player>  
-    <video autoplay playsinline preload="metadata" poster="https://dns-tv.pages.dev/logo/image.png"></video>  
-  </div>  
-  
-  <script>  
-    document.addEventListener('DOMContentLoaded', async () => {  
-      shaka.polyfill.installAll();  
-  
-      if (!shaka.Player.isBrowserSupported()) {  
-        console.error('Browser not supported');  
-        return;  
-      }  
-  
-      const video = document.querySelector('video');  
-      const player = new shaka.Player();  
-      await player.attach(video);  
-  
-      const container = document.querySelector('.shaka-video-container');  
-      const ui = new shaka.ui.Overlay(player, container, video);  
-  
-      ui.configure({  
-        controlPanelElements: [  
-          'play_pause', 'time_and_duration', 'mute', 'volume',  
-          'spacer', 'language', 'captions', 'picture_in_picture',  
-          'quality', 'fullscreen'  
-        ],  
-        volumeBarColors: {  
-  base: 'rgba(0, 136, 255, 0.3)',  
-  level: 'rgb(0, 136, 255)'  
-},  
-seekBarColors: {  
-  base: 'rgba(0, 136, 255, 0.3)',  
-  buffered: 'rgba(0, 136, 255, 0.6)',  
-  played: 'rgb(0, 136, 255)'  
-}
-      });  
-  
-      // ✅ Your DRM Key + MPD URL  
-      let drmConfig = {  
-        clearKeys: {  
-          "222545886018e93c2db68f393d748faf":
- "50c45f45da5fb19842ab6b495e79e8a4"  
-        }  
-      };  
-  
-      let streamUrl = "https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/clients/dash/enc/nyhtosqh5k/out/v1/170ea63dc5ab4a09b1ee549b92b6e15f/cenc.mpd"; 
-  
-      player.configure({  
-        drm: drmConfig,  
-        streaming: {  
-          lowLatencyMode: true,  
-          bufferingGoal: 15,  
-          rebufferingGoal: 2,  
-          bufferBehind: 15,  
-          retryParameters: {  
-            timeout: 10000,  
-            maxAttempts: 5,  
-            baseDelay: 300,  
-            backoffFactor: 1.2  
-          },  
-          segmentRequestTimeout: 8000,  
-          segmentPrefetchLimit: 2,  
-          useNativeHlsOnSafari: true  
-        },  
-        manifest: {  
-          retryParameters: {  
-            timeout: 8000,  
-            maxAttempts: 3  
-          }  
-        }  
-      });  
-  
-      player.addEventListener('error', (event) => {  
-        console.error('Shaka Player Error:', event.detail);  
-      });  
-  
-      try {  
-        await player.load(streamUrl);  
-        console.log("Stream loaded successfully");  
-      } catch (error) {  
-        console.error('Load error:', error);  
-      }  
-    });  
-  </script>  
- 
-  
-  </body>  
+                // Attach the player to the window to make it easy to access in the console
+                window.player = player;
+
+                const drmConfig = {
+                    drm: {
+                        clearKeys: {
+                            [kid]: key // Set Clear Key
+                        }
+                    }
+                };
+                player.configure(drmConfig);
+
+                player.load(mpdUrl).then(function() {
+                    console.log('The video has now been loaded!');
+                }).catch(onPlayerError);
+
+                initializeUI(video);
+            }).catch(onPlayerError);
+        }
+
+        function initializeUI(video) {
+            const container = document.querySelector('[data-shaka-player-container]');
+
+            // Create UI elements with Shaka's default configuration
+            ui = new shaka.ui.Overlay(player, container, video);
+            ui.getControls(); // This loads the default controls
+
+            // Set fullscreen button visibility if needed
+            ui.getControls().setEnabled(true);
+        }
+
+        function onPlayerError(event) {
+            console.error('Player error', event);
+        }
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+    </body>
+    <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <script disable-devtool-auto src="https://yonotv-now.pages.dev/click.js"></script>
 </html>

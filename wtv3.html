@@ -82,15 +82,16 @@ seekBarColors: {
 }
       });  
   
-  // ✅ Your DRM Key + MPD URL  
+ // ✅ Your DRM Key + MPD URL  
       let drmConfig = {  
         clearKeys: {  
-          "4d346b1d1ae64d4a800409cffa14983e":
- "208c972bd2da4359ac94e6944fe378b6"  
+          "01c9bbf8137e58378a5ead514998a7b4":
+ "fb01e61809e80e5e93a889cd31daab22"  
         }  
       };  
   
-      let streamUrl = "https://dice-live-oc.akamaized.net/exp=1779532322~acl=%2f*~id=675df4b5-3dc2-4cb2-9c28-082465d2d4a0~data=hdntl,aXA9MzguMTM3LjIwLjE2MiZleHA9MTc3OTQ0NTk1MSZlaWQ9ODM3OTE3Jm9pZD0yMiZ0eXBlPVZPRCZ1aWQ9bnVsbCZjaWQ9bnVsbCZwdD1udWxs~hmac=fef9ee0a38781c1608d8ae187d51488ece19f7eceee29d4206fd937e2b310408/dash/live/2093666/294921-318514/manifest-d.mpd"; 
+      let streamUrl = "https://dck1-ac-live.cdn.indazn.com/v1/dash/dd9ef956a8aeac50cfbdf4d7897caa9186ef8f9b/dazn-strex-sports-live-drm-session/out/v1/814bffb9b389f652/d65feac5647949e6b45b2674d4715398/index_1011063_dynamic2.mpd?aws.sessionId=7c60ebad-590c-49bc-ab2e-b0a9cb24ab7b&start=2026-05-23T23%3A50%3A00%2B10%3A00&dazn-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InV1aWRfMSJ9.eyJwYXRocyI6WyIvb3V0L3YxLzgxNGJmZmI5YjM4OWY2NTIvZDY1ZmVhYzU2NDc5NDllNmI0NWIyNjc0ZDQ3MTUzOTgiXSwiZXhjIjpbXSwiaGVhZGVycyI6WyJ1c2VyLWFnZW50Il0sImNvIjp0cnVlLCJpcCI6ZmFsc2UsImFzbiI6WyI0ODA0Il0sImludHNpZyI6IkZER0tKX3hMMWtqX2dndWpsb1FPemxQTERXdC1NX2o5NXZveFJOTzZIUDQiLCJpYXQiOjE3Nzk1NDQyNjQsImV4cCI6MTc3OTYzMDY2NH0.BRndBEW2L6xhlL5z1_e6cJB7rvz5Qm5w7D4SDqpsQ5Y";  
+  
       player.configure({  
         drm: drmConfig,  
         streaming: {  

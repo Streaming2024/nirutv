@@ -82,15 +82,16 @@ seekBarColors: {
 }
       });  
   
-  // ✅ Your DRM Key + MPD URL  
+   // ✅ Your DRM Key + MPD URL  
       let drmConfig = {  
         clearKeys: {  
-          "688d8c827ef18b5258ad18c1173f673b":
- "d26b95548e8812e72e3706b8be5030bc"  
+          "4d346b1d1ae64d4a800409cffa14983e":
+ "208c972bd2da4359ac94e6944fe378b6"  
         }  
       };  
   
-      let streamUrl = "https://a57live-pv-ta-amazon.akamaized.net/iad-nitro/live/clients/dash/enc/2gvz3ny1qt/out/v1/7f41f2d7317249de95ed9dfa4103bde4/cenc.mpd";
+      let streamUrl = "https://dice-live-oc.akamaized.net/hdntl=exp=1780148566~acl=%2f*~id=60177268-3267-48d1-83ac-24bbdcfe0d43~data=hdntl,dWlkPVZndzRwYnw4MmQ3NzUyNy04YWQ4LTRlMjgtYWVkYy1kZjM3MGRkNjYyMGEmaXA9MTE0LjIzLjExOC4yMzEmZXhwPTE3ODAxNDg1OTMmZWlkPTI5NDkyMSZjaWQ9ZGNlLnNreW56Jm9pZD0zMTgmdHlwZT1MSVZF~hmac=6b54e159b69f9c073ca20ebabb49c4fd2595f96be5f3d2166e7705cb476886dc/dash/live/2093666/294921-318514/manifest-d.mpd";  
+  
       player.configure({  
         drm: drmConfig,  
         streaming: {  

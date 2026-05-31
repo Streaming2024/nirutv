@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cricket Stream HD | Auto-Play & Fullscreen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* premium full-frame player container */
+        .player-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 1;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: #000;
+        }
+
+        /* subtle loading indicator (optional, fades quickly) */
+        .loading-tip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            color: #0f0;
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-family: monospace;
+            z-index: 2;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            transition: opacity 1s;
+        }
+
+        @media (max-width: 640px) {
+            .loading-tip { font-size: 10px; bottom: 12px; right: 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="player-container">
+    <iframe id="player" 
+            allowfullscreen 
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope; clipboard-write"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-popups-to-escape-sandbox"
+            title="Cricket Live Stream"></iframe>
+</div>
+<div class="loading-tip" id="statusMsg">⚡ AUTO-PLAY ENABLED • FULLSCREEN • EME</div>
+
+<script>
+    (function() {
+        // --------------------------------------------------------------
+        // ORIGINAL CHANNELS MAP (PRESERVED FULLY, AS PROVIDED)
+        // --------------------------------------------------------------
+        const channels = { 
+            //START SOON
+            startsoon: "https://dns-tv.pages.dev", 
+            //START SOON
+            NEP2: "https://yonotv-now.pages.dev/plyrr?src=https://live5.msrktz.app/live/71426314.m3u8", 
+            NEP:"https://yonotv-now.pages.dev/ytplyrr?id=HN6KK8ndgkQ",
+            
+            WOMEN:"https://www.youtube.com/embed/ukamQLFigtU",
+            WOMEN2:"https://yonotv-now.pages.dev/ytplyrr?id=ukamQLFigtU",
+            
+            NEP:"https://www.youtube.com/embed/andmUT3OK-A",      // latest NEP (YouTube)
+            NEP2:"https://yonotv-now.pages.dev/ytplyrr2?id=andmUT3OK-A",
+            NEP3:"https://yonotv-now.pages.dev/ytplyrr?id=andmUT3OK-A",
+            
+            NPL:"https://www.youtube.com/embed/o-bu0zdzs3U",
+            NPL2:"https://yonotv-now.pages.dev/ytplyrr2?id=o-bu0zdzs3U",
+            NPL3:"https://yonotv-now.pages.dev/ytplyrr?id=o-bu0zdzs3U",
+                    
+            AUS:"https://yonotv.pages.dev/fox501",
+            AUS2:"https://yonotv-now.pages.dev/jwplyrr?src=https://premierleagpl23.akamaized.net/hls/live/2107108/Tapmad-PaKvZIm/master.m3u8",
+            AUS3:"https://yonotv.pages.dev/ptv",
+            AUS4:"https://yonotv.pages.dev/wtv",
+            
+            YUB:"https://yonotv-now.pages.dev/kickplayer",
+            YUB4:"https://yonotv.pages.dev/fox501",
+            YUB3:"https://yonotv.pages.dev/hindi",
+            YUB5:"https://yonotv.pages.dev/wtv2",
+            YUB2:"https://yonotv-now.pages.dev/plyrr?src=https://tvsen5.aynaott.com/willowhd/index.m3u8",
+            YUB6:"https://yonotv.pages.dev/wtv3",
+        };
+
+        // --------------------------------------------------------------
+        // ADVANCED AUTO-PLAY & MUTE ENHANCER (SMART URL PARAM INJECTION)
+        // Supports YouTube, yonotv domains, generic players with autoplay
+        // Also preserves existing query parameters & fragments
+        // --------------------------------------------------------------
+        function enhanceUrlWithAutoPlay(rawUrl) {
+            if (!rawUrl || typeof rawUrl !== 'string') return rawUrl;
+            
+            // Edge: if URL seems empty
+            if (rawUrl.trim() === '') return rawUrl;
+            
+            try {
+                // Use URL constructor for robust parsing (absolute URLs only)
+                const urlObj = new URL(rawUrl);
+                const hostname = urlObj.hostname.toLowerCase();
+                
+                // ----- YOUTUBE EMBED (AUTOPLAY + MUTE = guaranteed autoplay) -----
+                if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) {
+                    // YouTube requires 'autoplay=1' and 'mute=1' for autoplay without interaction
+                    urlObj.searchParams.set('autoplay', '1');
+                    urlObj.searchParams.set('mute', '1');
+                    // optional: playsinline for better mobile fullscreen
+                    urlObj.searchParams.set('playsinline', '1');
+                    // Enable controls? not needed but keep user friendly
+                    urlObj.searchParams.set('controls', '1');
+                    // disable related videos (clean)
+                    if (!urlObj.searchParams.has('rel')) urlObj.searchParams.set('rel', '0');
+                    return urlObj.toString();
+                }
+                
+                // ----- YONOTV & CUSTOM PLAYERS (supports autoplay & mute params) -----
+                if (hostname.includes('yonotv-now.pages.dev') || hostname.includes('yonotv.pages.dev')) {
+                    // Force autoplay + mute to bypass browser restrictions
+                    urlObj.searchParams.set('autoplay', '1');
+                    urlObj.searchParams.set('muted', '1');     // many custom players respect 'muted'
+                    urlObj.searchParams.set('mute', '1');      // fallback param
+                    // Also for players that use 'autoPlay' flag
+                    if (!urlObj.searchParams.has('autoPlay')) urlObj.searchParams.set('autoPlay', 'true');
+                    return urlObj.toString();
+                }
+                
+                // ----- GENERIC DOMAINS: add autoplay (respect best-effort) -----
+                // For any other streaming service / player pages
+                urlObj.searchParams.set('autoplay', '1');
+                // some players might also accept 'muted' for autoplay; set it silently
+                urlObj.searchParams.set('muted', '0');  // not forcing mute for non-youtube to keep audio if allowed
+                // but we keep autoplay=1; allow attribute covers permissions
+                return urlObj.toString();
+            } 
+            catch (e) {
+                // Fallback for malformed or relative URLs: simple string append
+                console.warn("[Enhancer] URL parse fallback for:", rawUrl, e);
+                if (rawUrl.includes('?')) {
+                    // avoid duplicate autoplay
+                    if (rawUrl.includes('autoplay=')) return rawUrl;
+                    return rawUrl + '&autoplay=1';
+                } else {
+                    return rawUrl + '?autoplay=1';
+                }
+            }
+        }
+
+        // --------------------------------------------------------------
+        // GET CHANNEL WITH AUTO-PLAY & MUTE ENHANCEMENTS
+        // --------------------------------------------------------------
+        function getEnhancedChannelSrc(channelKey) {
+            const rawSrc = channels[channelKey];
+            if (!rawSrc) return null;
+            // apply auto-play enhancement (mute, autoplay params, EME ready)
+            return enhanceUrlWithAutoPlay(rawSrc);
+        }
+
+        // --------------------------------------------------------------
+        // IFRAME FULL CONTROL: apply latest security + media permissions
+        // Also ensure iframe sandbox allows full EME & fullscreen
+        // --------------------------------------------------------------
+        function applyOptimalIframeSettings(iframe) {
+            if (!iframe) return;
+            // set explicit allow attribute: auto-play, fullscreen, encrypted-media (Widevine/PlayReady)
+            iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope; clipboard-write');
+            iframe.setAttribute('allowfullscreen', 'true');
+            // optional: seamless look, remove borders
+            iframe.style.border = 'none';
+            iframe.style.outline = 'none';
+            // For better iOS support
+            iframe.setAttribute('webkitallowfullscreen', 'true');
+            iframe.setAttribute('mozallowfullscreen', 'true');
+        }
+
+        // --------------------------------------------------------------
+        // LOAD STREAM: read 'id' param, apply autoplay enhanced URL
+        // with full DRM + autoplay support
+        // --------------------------------------------------------------
+        function initializePlayer() {
+            const iframe = document.getElementById('player');
+            if (!iframe) {
+                console.error("Player iframe not found!");
+                return;
+            }
+            
+            // Apply full permissions (autoplay, encrypted-media, fullscreen)
+            applyOptimalIframeSettings(iframe);
+            
+            // get channel identifier from URL (?id=CHANNEL_NAME)
+            const urlParams = new URLSearchParams(window.location.search);
+            let channelId = urlParams.get('id');
+            let selectedSrc = null;
+            
+            // Validate channel exists
+            if (channelId && channels[channelId]) {
+                selectedSrc = getEnhancedChannelSrc(channelId);
+                // update status tip
+                const statusDiv = document.getElementById('statusMsg');
+                if (statusDiv) statusDiv.innerHTML = `🎥 STREAM: ${channelId.toUpperCase()} • AUTO-PLAY ✓ • FULLSCREEN ✓ • ENCRYPTED MEDIA ✓`;
+            } 
+            else {
+                // DEFAULT: 'startsoon' with auto-play enhancement
+                if (channels.startsoon) {
+                    selectedSrc = getEnhancedChannelSrc('startsoon');
+                    if (selectedSrc) {
+                        channelId = 'startsoon';
+                        const statusDiv = document.getElementById('statusMsg');
+                        if (statusDiv) statusDiv.innerHTML = `📡 DEFAULT CHANNEL • AUTO-PLAY ACTIVE • FULLSCREEN READY • ENABLED EME`;
+                    }
+                } else {
+                    // ultimate fallback (extremely unlikely)
+                    selectedSrc = "https://dns-tv.pages.dev?autoplay=1";
+                }
+            }
+            
+            // Set final iframe source with enhanced URL
+            if (selectedSrc) {
+                iframe.src = selectedSrc;
+                // Additional safety: reload iframe if any loading error? but fine
+                console.log(`[Cricket Stream] Loaded enhanced source: ${selectedSrc.substring(0, 120)}...`);
+            } else {
+                // emergency fallback (should not happen)
+                iframe.src = "https://dns-tv.pages.dev?autoplay=1";
+                console.warn("Fallback to default startsoon");
+            }
+            
+            // ----------------------------------------------------------
+            // EXTRA AUTO-PLAY "insurance": due to cross-origin we can't force play()
+            // but we ensure iframe focus to help autoplay detection for some players
+            // ----------------------------------------------------------
+            setTimeout(() => {
+                try {
+                    // focusing iframe may help some players to initiate autoplay after load
+                    iframe.focus();
+                    // Also dispatch a visibility event? not needed but safe
+                } catch(e) { /* ignore cross-origin focus side effects */ }
+            }, 500);
+        }
+
+        // --------------------------------------------------------------
+        // DYNAMIC WATCH FOR FULLSCREEN CHANGES (optional UI polish)
+        // Also ensure that iframe 'allow' remains intact after any parent intervention
+        // --------------------------------------------------------------
+        function enforcePlayerPermissions() {
+            const iframe = document.getElementById('player');
+            if (iframe) {
+                applyOptimalIframeSettings(iframe);
+            }
+        }
+        
+        // observe DOM changes (in case some external script tampers with iframe attributes)
+        if (window.MutationObserver) {
+            const observer = new MutationObserver(() => {
+                enforcePlayerPermissions();
+            });
+            const playerContainer = document.querySelector('.player-container');
+            if (playerContainer) {
+                observer.observe(playerContainer, { childList: true, subtree: true, attributes: true, attributeFilter: ['allow', 'allowfullscreen'] });
+            }
+            // also observe iframe directly
+            const iframeElem = document.getElementById('player');
+            if (iframeElem) {
+                observer.observe(iframeElem, { attributes: true, attributeFilter: ['allow', 'allowfullscreen', 'src'] });
+            }
+        }
+        
+        // --------------------------------------------------------------
+        // BOOTSTRAP: when page fully loaded, also after potential lazy loads
+        // --------------------------------------------------------------
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePlayer);
+        } else {
+            initializePlayer();
+        }
+        
+        // Additional re-apply when page becomes visible (some browsers pause media)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                const iframe = document.getElementById('player');
+                if (iframe && iframe.src) {
+                    // re-focus to encourage auto-resume, but no src reload needed
+                    iframe.focus();
+                }
+            }
+        });
+        
+        // Fullscreen API enhancements: double-tap / fullscreen request from UI is already allowed
+        // because we have allow="fullscreen" and allowfullscreen
+        window.addEventListener('load', () => {
+            // ensure final status message fade after 4 seconds
+            const msgDiv = document.getElementById('statusMsg');
+            if (msgDiv) {
+                setTimeout(() => {
+                    msgDiv.style.opacity = '0.3';
+                    setTimeout(() => { if(msgDiv) msgDiv.style.opacity = '0'; }, 1500);
+                }, 4500);
+            }
+        });
+        
+        // For debugging or further DRM support: log that encrypted-media is permitted
+        console.log("[Cricket Stream] Player ready — Autoplay: ENABLED | Fullscreen: ENABLED | EncryptedMedia: ALLOWED");
+    })();
+</script>
+</body>
+</html>

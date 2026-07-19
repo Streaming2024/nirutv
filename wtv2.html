@@ -1,156 +1,251 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="referrer" content="no-referrer">
-<title>Sonu // Live Stream</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/controls.css">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
-.shaka-video-container{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
-video{width:100%;height:100%;object-fit:contain;background:#000}
-video.mode-fill{object-fit:fill}
-video.mode-cover{object-fit:cover}
-.shaka-spinner-container,.shaka-spinner,.shaka-spinner-svg{display:none!important}
-.shaka-controls-container button{color:#fff!important}
-.shaka-fit-btn{background:transparent!important;border:none!important;cursor:pointer!important;padding:0 10px!important;opacity:.85;display:flex;align-items:center;justify-content:center;height:100%;transition:opacity .15s}
-.shaka-fit-btn:hover{opacity:1}
-.shaka-fit-btn svg{width:18px;height:18px;display:block}
-#loader{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
-#loader.on{opacity:1}
-.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#38bdf8;border-radius:50%;animation:sp .75s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="no-referrer">
+    <title>beIN ENGLISH | Live Stream</title>
+    <!-- Disable DevTools (preserved) -->
+    <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <!-- Shaka Player & UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
+    <style>
+        * {
+            user-select: none;
+        }
+        body {
+            background-color: #000;
+            margin: 0;
+            overflow: hidden;
+        }
+        /* hide spinner and time elements (original styling) */
+        .shaka-spinner-container {
+            display: none;
+        }
+        .uc {
+            pointer-events: none;
+        }
+        .shaka-current-time, 
+        .shaka-time-container {
+            display: none;
+        }
+        /* ensure fullscreen container */
+        [data-shaka-player-container] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* no popups, no toasts, no overlays — completely silent */
+    </style>
 </head>
 <body>
+    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <!-- 
+            muted attribute removed to enable sound. 
+            autoplay + playsinline for mobile compatibility.
+        -->
+        <video autoplay playsinline data-shaka-player id="video" poster="https://dns-tv.pages.dev/logo/image.png" style="width:100%; height:100%"></video>
+    </div>
 
-<div class="shaka-video-container" id="pc">
-  <video id="v" autoplay playsinline preload="metadata"></video>
-  <div id="loader"><div class="spin"></div></div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/shaka-player.ui.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  shaka.polyfill.installAll();
-  if (!shaka.Player.isBrowserSupported()) return;
-
-  const video     = document.getElementById('v');
-  const container = document.getElementById('pc');
-  const loader    = document.getElementById('loader');
-
-  let playing = false;
-  const showLoader = () => { if (playing) loader.classList.add('on'); };
-  const hideLoader = () => { playing = true; loader.classList.remove('on'); };
-
-  video.addEventListener('waiting',    showLoader);
-  video.addEventListener('stalled',    showLoader);
-  video.addEventListener('seeking',    showLoader);
-  video.addEventListener('playing',    hideLoader);
-  video.addEventListener('canplay',    hideLoader);
-  video.addEventListener('timeupdate', () => { if (!video.paused && video.currentTime > 0) hideLoader(); });
-
-  const player = new shaka.Player();
-  await player.attach(video);
-
-  const ui = new shaka.ui.Overlay(player, container, video);
-  ui.configure({
-    controlPanelElements: ['play_pause','time_and_duration','spacer','quality','fullscreen','overflow_menu'],
-    overflowMenuButtons:  ['language','captions','playback_rate','picture_in_picture'],
-    seekBarColors: { base:'rgba(209,213,219,.25)', buffered:'rgba(139,0,0,.45)', played:'#22c55e' },
-    fadeDelay: 3
-  });
-
-  const STREAM_URL = 'https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/enc/g7faygjpo6/out/v1/290a0f3e44b141c4afdd8b3a49954749/cenc.mpd';
-  const RAW_KEYS = '5be2590ab12743d21a1d377d8b5e7900:ff08faff3b5d2c874b62ec09e2db888c';
-  const clearKeys = Object.fromEntries(
-    RAW_KEYS.split(',').map(pair => pair.trim().split(':'))
-  );
-
-  player.configure({
-    drm: { clearKeys },
-    manifest: {
-      defaultPresentationDelay: 4,
-      ignoreTextStreamFailures: true,
-      dash: { autoCorrectDrift: true, ignoreMinBufferTime: true }
-    },
-    abr: {
-      enabled: true,
-      defaultBandwidthEstimate: 2000000,
-      bandwidthUpgradeTarget: 0.85,
-      bandwidthDowngradeTarget: 0.95,
-      restrictions: { maxHeight: 1080 }
-    }
-  });
-  player.configurationForLowLatency({
-    streaming: {
-      inaccurateManifestTolerance: 0,
-      segmentPrefetchLimit: 2,
-      updateIntervalSeconds: 0.1,
-      maxDisabledTime: 1,
-      bufferingGoal: 10,
-      rebufferingGoal: 2,
-      bufferBehind: 30,
-      safeSeekOffset: 3,
-      retryParameters: { baseDelay: 100, maxAttempts: 5, backoffFactor: 1.5, fuzzFactor: 0.5 }
-    },
-    manifest: {
-      dash: { autoCorrectDrift: true },
-      retryParameters: { baseDelay: 100 }
-    },
-    drm: {
-      retryParameters: { baseDelay: 100 }
-    }
-  });
-
-  player.getNetworkingEngine().registerRequestFilter((type, request) => {
-    request.headers['Referer']    = 'https://www.cricbuzz.com/';
-    request.headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36';
-  });
-
-  try { await player.load(STREAM_URL); } catch (_) {}
-
-  const MODES = ['contain','fill','cover'];
-  const ICONS = {
-    contain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/></svg>',
-    fill:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
-    cover:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 7l3 3m0 0H7m2 0V8m9-1l-3 3m0 0h2m-2 0V8M6 13l3-3m0 0H7m2 0v2m9 1l-3-3m0 0h2m-2 0v2"/></svg>'
-  };
-  let modeIdx = 0;
-
-  function injectFitButton(cnt, vid) {
-    const poll = setInterval(() => {
-      const panel = cnt.querySelector('.shaka-controls-button-panel');
-      if (!panel) return;
-      clearInterval(poll);
-      const btn = document.createElement('button');
-      btn.className = 'shaka-fit-btn';
-      btn.title     = 'Toggle fit mode';
-      btn.innerHTML = ICONS.contain;
-      const anchor = panel.querySelector('.shaka-fullscreen-button');
-      if (anchor) panel.insertBefore(btn, anchor); else panel.appendChild(btn);
-      function applyMode(idx) {
-        modeIdx = idx;
-        const m = MODES[idx];
-        vid.classList.remove('mode-fill','mode-cover');
-        if (m === 'fill')  vid.classList.add('mode-fill');
-        if (m === 'cover') vid.classList.add('mode-cover');
-        btn.innerHTML = ICONS[m];
-      }
-      btn.addEventListener('click', e => { e.stopPropagation(); applyMode((modeIdx + 1) % MODES.length); });
-      ['fullscreenchange','webkitfullscreenchange'].forEach(ev => {
-        document.addEventListener(ev, () => {
-          if (!(document.fullscreenElement || document.webkitFullscreenElement)) applyMode(0);
-        });
-      });
-    }, 50);
-  }
-
-  injectFitButton(container, video);
-});
-</script>
+    <script>
+        (function() {
+            // ---------- Configuration ----------
+            const mpdUrl = 'https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/enc/g7faygjpo6/out/v1/290a0f3e44b141c4afdd8b3a49954749/cenc.mpd';
+            const kid = '5be2590ab12743d21a1d377d8b5e7900';
+            const key = 'ff08faff3b5d2c874b62ec09e2db888c';
+            
+            let player = null;
+            let ui = null;
+            const video = document.getElementById('video');
+            let soundUnlocked = false;
+            
+            // ---- Force unmute and maximum volume ----
+            function enforceSound() {
+                if (!video) return;
+                if (video.muted) {
+                    video.muted = false;
+                }
+                if (video.volume === 0 || video.volume < 0.9) {
+                    video.volume = 1.0;
+                }
+            }
+            
+            // ---- Attempt to play with sound (used after user interaction) ----
+            function attemptPlayWithSound() {
+                if (!video) return false;
+                enforceSound();
+                if (video.paused) {
+                    const playPromise = video.play();
+                    if (playPromise && typeof playPromise.catch === 'function') {
+                        playPromise.catch(err => {
+                            // silently ignore errors, no UI shown
+                            console.debug('play retry error:', err.name);
+                        });
+                    }
+                }
+                soundUnlocked = true;
+                return true;
+            }
+            
+            // ---- Silent global click handler: unlocks sound without any popup ----
+            function silentGlobalUnlock() {
+                if (soundUnlocked) return;
+                if (!video) return;
+                enforceSound();
+                attemptPlayWithSound();
+                // remove listeners after success to be clean
+                document.removeEventListener('click', silentGlobalUnlock);
+                document.removeEventListener('touchstart', silentGlobalUnlock);
+            }
+            
+            // ---- Shaka Player initialization ----
+            function initShakaPlayer() {
+                shaka.polyfill.installAll();
+                
+                shaka.Player.probeSupport().then(() => {
+                    if (!video) return;
+                    
+                    // ensure video starts unmuted and with full volume
+                    video.muted = false;
+                    video.volume = 1.0;
+                    video.removeAttribute('muted');
+                    
+                    player = new shaka.Player(video);
+                    window.player = player; // optional debug
+                    
+                    // DRM clearkeys configuration
+                    const drmConfig = {
+                        drm: {
+                            clearKeys: {
+                                [kid]: key
+                            }
+                        }
+                    };
+                    player.configure(drmConfig);
+                    
+                    // Load the stream
+                    player.load(mpdUrl).then(() => {
+                        console.log('Stream loaded successfully');
+                        // after loading, ensure sound settings again
+                        enforceSound();
+                        
+                        // try autoplay with sound — might be blocked by browser policies
+                        const autoPlayPromise = video.play();
+                        if (autoPlayPromise !== undefined) {
+                            autoPlayPromise.then(() => {
+                                // success: sound is playing automatically
+                                soundUnlocked = true;
+                            }).catch((err) => {
+                                // Autoplay blocked (chrome, safari, etc.)
+                                console.debug('Autoplay with sound blocked, waiting for user interaction (silent)');
+                                // no popup, no notification – we'll rely on silent global click
+                                soundUnlocked = false;
+                            });
+                        }
+                    }).catch(err => {
+                        console.error('Player load error', err);
+                        // still try to keep sound enabled for any fallback
+                        enforceSound();
+                    });
+                    
+                    // Setup UI (without any extra popups)
+                    const container = document.querySelector('[data-shaka-player-container]');
+                    if (container) {
+                        ui = new shaka.ui.Overlay(player, container, video);
+                        ui.getControls();
+                        ui.getControls().setEnabled(true);
+                    }
+                    
+                    // ---- Observer to fight any external mute (e.g., UI button) ----
+                    const muteObserver = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.attributeName === 'muted' && video.muted === true) {
+                                // immediately unmute to guarantee sound
+                                video.muted = false;
+                                console.debug('auto-unmuted by observer');
+                            }
+                        });
+                    });
+                    muteObserver.observe(video, { attributes: true });
+                    
+                    // Volume restoration: if volume ever becomes 0, restore to 1
+                    video.addEventListener('volumechange', () => {
+                        if (video.volume === 0 && soundUnlocked) {
+                            video.volume = 1.0;
+                        }
+                        if (video.muted && soundUnlocked) {
+                            video.muted = false;
+                        }
+                    });
+                    
+                    // When video actually starts playing, mark sound as unlocked
+                    video.addEventListener('playing', () => {
+                        if (!soundUnlocked && !video.muted && video.volume > 0) {
+                            soundUnlocked = true;
+                        }
+                    });
+                    
+                }).catch(err => {
+                    console.error('Shaka probe error', err);
+                });
+            }
+            
+            // ---- Initial attempt to set sound and autoplay ----
+            if (video) {
+                // initial forced unmute
+                video.muted = false;
+                video.volume = 1.0;
+                
+                // Attach silent global event listeners once to unlock sound if autoplay fails
+                // No UI, no text, no popup – just invisible handler.
+                document.addEventListener('click', silentGlobalUnlock);
+                document.addEventListener('touchstart', silentGlobalUnlock);
+                
+                // Also, if video is already playing (very rare without interaction), mark unlocked
+                if (!video.paused && !video.muted && video.volume > 0) {
+                    soundUnlocked = true;
+                }
+            }
+            
+            // Start everything when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initShakaPlayer);
+            } else {
+                initShakaPlayer();
+            }
+            
+            // Extra safety: periodic check to keep sound alive (every 5 sec, but no UI)
+            setInterval(() => {
+                if (video && !soundUnlocked && !video.paused && !video.muted && video.volume > 0) {
+                    soundUnlocked = true;
+                }
+                if (video && soundUnlocked && video.muted) {
+                    video.muted = false;
+                }
+                if (video && soundUnlocked && video.volume === 0) {
+                    video.volume = 1.0;
+                }
+            }, 5000);
+            
+            // On visibility change, re-assert sound
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && video && soundUnlocked) {
+                    enforceSound();
+                    if (video.paused) {
+                        video.play().catch(() => {});
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

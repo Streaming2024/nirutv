@@ -2,369 +2,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="referrer" content="no-referrer">
-<title>D3X Sports</title>
-
-<!-- Shaka Player 5.1.8 (best DASH + DRM support) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/controls.css">
-<!-- Kanit font for the watermark (bold italic sports style) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
-
-<style>
-/* ---------- Base ---------- */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,sans-serif;-webkit-user-select:none;user-select:none}
-.shaka-video-container{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center}
-video{width:100%;height:100%;object-fit:contain;background:#000}
-
-/* Hide default Shaka spinner, use our own */
-.shaka-spinner-container,.shaka-spinner,.shaka-spinner-svg{display:none!important}
-.shaka-controls-container button{color:#fff!important}
-
-/* ---------- Custom loading spinner ---------- */
-#loader{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
-#loader.on{opacity:1}
-.spin{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:#f5b301;border-radius:50%;animation:sp .8s linear infinite}
-#loaderTxt{color:#fff;font-size:13px;letter-spacing:.5px;opacity:.85}
-@keyframes sp{to{transform:rotate(360deg)}}
-
-/* ---------- Status / error overlay ---------- */
-#status{position:absolute;inset:0;background:rgba(0,0,0,.82);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:12;text-align:center;padding:24px}
-#status.on{display:flex}
-#status h2{color:#fff;font-size:18px;font-weight:600}
-#status p{color:#bbb;font-size:13px;max-width:420px;line-height:1.5}
-#status button{background:#f5b301;color:#111;border:0;padding:11px 26px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:.5px}
-#status button:hover{background:#ffc21f}
-
-/* ---------- LIVE badge (click to jump to live edge) ---------- */
-#live{position:absolute;top:16px;left:16px;z-index:6;display:none;align-items:center;gap:7px;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:6px;cursor:pointer;transition:opacity .25s, top .25s}
-#live.show{display:flex}
-#live .dot{width:9px;height:9px;border-radius:50%;background:#ff3b30;box-shadow:0 0 0 0 rgba(255,59,48,.7);animation:pulse 1.8s infinite}
-#live.behind .dot{background:#888;animation:none}
-#live span{color:#fff;font-size:12px;font-weight:700;letter-spacing:1px}
-#live.behind span{color:#ccc}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,59,48,.7)}70%{box-shadow:0 0 0 7px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
-
-/* ---------- D3X Sports watermark (lower-middle) ---------- */
-#wm{
-  position:absolute;
-  left:50%;
-  bottom:14px;
-  transform:translateX(-50%);
-  z-index:5;
-  pointer-events:none;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:1px;
-  opacity:.55;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.9));
-  transition:opacity .25s, bottom .25s;
-}
-.wm-logo{
-  font-family:'Kanit','Segoe UI',sans-serif;
-  font-weight:800;
-  font-style:italic;
-  font-size:22px;
-  line-height:1;
-  letter-spacing:.5px;
-  white-space:nowrap;
-  text-transform:uppercase;
-}
-.wm-logo .d3x{color:#fff}
-.wm-logo .sports{color:#f5b301;margin-left:.12em}
-.wm-url{
-  font-family:'Kanit','Segoe UI',sans-serif;
-  font-weight:600;
-  font-style:italic;
-  font-size:10.5px;
-  letter-spacing:1.5px;
-  color:#fff;
-  opacity:.9;
-  white-space:nowrap;
-  text-transform:lowercase;
-}
-/* Lift watermark above the control bar when controls are visible */
-.controls-visible #wm{bottom:62px;opacity:.4}
-
-/* Small screens: shrink watermark */
-@media (max-width:600px){
-  .wm-logo{font-size:16px}
-  .wm-url{font-size:8.5px;letter-spacing:1px}
-  #live span{font-size:11px}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="no-referrer">
+    <title>beIN ENGLISH | Live Stream</title>
+    <!-- Disable DevTools (preserved) -->
+    <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <!-- Shaka Player & UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
+    <style>
+        * {
+            user-select: none;
+        }
+        body {
+            background-color: #000;
+            margin: 0;
+            overflow: hidden;
+        }
+        /* hide spinner and time elements (original styling) */
+        .shaka-spinner-container {
+            display: none;
+        }
+        .uc {
+            pointer-events: none;
+        }
+        .shaka-current-time, 
+        .shaka-time-container {
+            display: none;
+        }
+        /* ensure fullscreen container */
+        [data-shaka-player-container] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* no popups, no toasts, no overlays — completely silent */
+    </style>
 </head>
 <body>
-<div class="shaka-video-container" id="pc">
-  <!-- Video -->
-  <video id="v" autoplay playsinline muted preload="auto"></video>
+    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <!-- 
+            muted attribute removed to enable sound. 
+            autoplay + playsinline for mobile compatibility.
+        -->
+        <video autoplay playsinline data-shaka-player id="video" poster="https://dns-tv.pages.dev/logo/image.png" style="width:100%; height:100%"></video>
+    </div>
 
-  <!-- LIVE badge -->
-  <div id="live" title="Jump to live"><span class="dot"></span><span>LIVE</span></div>
-
-  <!-- Watermark -->
-  <div id="wm">
-    <div class="wm-logo"><span class="d3x">YoNoTV</span><span class="sports">LIVE</span></div>
-    <div class="wm-url">www.yonotv.net</div>
-  </div>
-
-  <!-- Loading spinner -->
-  <div id="loader"><div class="spin"></div><div id="loaderTxt">Loading stream…</div></div>
-
-  <!-- Status / error overlay -->
-  <div id="status">
-    <h2 id="statusTitle">Connection lost</h2>
-    <p id="statusMsg">We're trying to reconnect to the stream.</p>
-    <button id="statusBtn">Reload</button>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/shaka-player.ui.min.js"></script>
-<script>
-/* =======================================================
-   >>> TEST SWITCH <
-   TEST_MODE = true  -> free public DASH sample (no DRM)
-   TEST_MODE = false -> real D3X Sports live stream.
-======================================================= */
-const TEST_MODE = false;
-
-/* ---------- Stream + DRM ---------- */
-const REAL_STREAM_URL = "https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/enc/tofjtc2tfm/out/v1/237ce4699bb443f2bb71ea3b33845d83/cenc.mpd";
-const REAL_KEY_ID = "cf78ec80b0f9aed60fc6a338dd34c2aa";
-const REAL_KEY    = "886602ae8eeed61e39c85b625d15211f";
-
-const TEST_STREAM_URL = "https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd";
-
-const STREAM_URL = TEST_MODE ? TEST_STREAM_URL : REAL_STREAM_URL;
-const KEY_ID     = TEST_MODE ? "" : REAL_KEY_ID;
-const KEY        = TEST_MODE ? "" : REAL_KEY;
-
-/* ---------- Tunables (safe to adjust) ---------- */
-const PRESENTATION_DELAY   = 12;   // seconds behind live edge — more = smoother, less = closer to live
-const BUFFERING_GOAL       = 30;   // seconds of buffer to build ahead
-const REBUFFERING_GOAL     = 4;    // seconds of buffer needed before resuming after a stall
-const BUFFER_BEHIND        = 30;   // seconds of buffer kept behind playhead
-const LIVE_EDGE_TOLERANCE  = 20;   // if we fall more than this behind live, badge shows "BEHIND"
-const MAX_AUTO_RELOADS     = 6;    // auto-reconnect attempts before giving up
-/* ======================================================= */
-
-let player, videoEl, container, loader, loaderTxt, statusEl, statusTitle, statusMsg, statusBtn, liveBadge;
-let autoReloads = 0;
-let reloadTimer = null;
-let watchdogTimer = null;
-
-/* ---------- Error handling ---------- */
-function describeError(error){
-  let msg = `Error code: ${error.code}`;
-  if (!error.category) return msg;
-  if (error.category === shaka.util.Error.Category.NETWORK)  msg += " (Network)";
-  else if (error.category === shaka.util.Error.Category.DRM) msg += " (DRM / decryption key)";
-  else if (error.category === shaka.util.Error.Category.MANIFEST) msg += " (Manifest)";
-  return msg;
-}
-
-function onPlayerErrorEvent(event){ handleError(event.detail); }
-
-function handleError(error){
-  console.error("PLAYER ERROR:", describeError(error), error);
-  if (error.code === 6001 || error.code === 6007 || error.code === 6013){
-    showStatus("Stream is encrypted", "The decryption key is missing or incorrect. Please check the player configuration.", "Retry");
-    return;
-  }
-  scheduleAutoReload();
-}
-
-/* ---------- Auto-reconnect with backoff ---------- */
-function scheduleAutoReload(){
-  if (reloadTimer) return;
-  if (autoReloads >= MAX_AUTO_RELOADS){
-    showStatus("Can't reach the stream", "The stream may be offline or your connection dropped. Tap reload to try again.", "Reload");
-    return;
-  }
-  autoReloads++;
-  const delay = Math.min(1000 * Math.pow(1.6, autoReloads), 8000);
-  loaderTxt.textContent = `Reconnecting… (${autoReloads}/${MAX_AUTO_RELOADS})`;
-  loader.classList.add("on");
-  reloadTimer = setTimeout(async () => {
-    reloadTimer = null;
-    await loadStream();
-  }, delay);
-}
-
-function showStatus(title, msg, btnText){
-  loader.classList.remove("on");
-  statusTitle.textContent = title;
-  statusMsg.textContent = msg;
-  statusBtn.textContent = btnText || "Reload";
-  statusEl.classList.add("on");
-}
-function hideStatus(){ statusEl.classList.remove("on"); }
-
-/* ---------- Live-edge helpers ---------- */
-function seekToLive(){
-  try{
-    if (player.isLive()){
-      videoEl.currentTime = player.seekRange().end;
-      videoEl.play().catch(()=>{});
-    }
-  }catch(e){}
-}
-
-function updateLiveBadge(){
-  if (!player || !player.isLive()){ liveBadge.classList.remove("show"); return; }
-  liveBadge.classList.add("show");
-  try{
-    const behind = player.seekRange().end - videoEl.currentTime;
-    liveBadge.classList.toggle("behind", behind > LIVE_EDGE_TOLERANCE);
-  }catch(e){}
-}
-
-/* ---------- Stall watchdog ---------- */
-function startWatchdog(){
-  let lastTime = -1, stalls = 0;
-  clearInterval(watchdogTimer);
-  watchdogTimer = setInterval(() => {
-    updateLiveBadge();
-    if (videoEl.paused || videoEl.ended || videoEl.readyState < 2) { lastTime = videoEl.currentTime; return; }
-    if (Math.abs(videoEl.currentTime - lastTime) < 0.01){
-      stalls++;
-      if (stalls >= 4){
-        console.warn("Watchdog: playback frozen, jumping to live edge.");
-        seekToLive();
-        stalls = 0;
-      }
-    } else { stalls = 0; }
-    lastTime = videoEl.currentTime;
-  }, 1000);
-}
-
-/* ---------- Keyboard shortcuts ---------- */
-function bindKeys(){
-  document.addEventListener("keydown", (e) => {
-    switch (e.key.toLowerCase()){
-      case " ": case "k": e.preventDefault(); videoEl.paused ? videoEl.play() : videoEl.pause(); break;
-      case "f": document.fullscreenElement ? document.exitFullscreen() : container.requestFullscreen(); break;
-      case "m": videoEl.muted = !videoEl.muted; break;
-      case "l": seekToLive(); break;
-      case "arrowup":   e.preventDefault(); videoEl.volume = Math.min(1, videoEl.volume + 0.1); break;
-      case "arrowdown": e.preventDefault(); videoEl.volume = Math.max(0, videoEl.volume - 0.1); break;
-    }
-  });
-}
-
-/* ---------- Load / reload the stream ---------- */
-async function loadStream(){
-  hideStatus();
-  loaderTxt.textContent = autoReloads ? `Reconnecting… (${autoReloads}/${MAX_AUTO_RELOADS})` : "Loading stream…";
-  loader.classList.add("on");
-  try{
-    await player.load(STREAM_URL);
-    autoReloads = 0;
-    loader.classList.remove("on");
-    hideStatus();
-    if (player.isLive()) seekToLive();
-    try { await videoEl.play(); } catch(e){ console.warn("Autoplay prevented:", e); }
-    updateLiveBadge();
-  }catch(e){
-    handleError(e);
-  }
-}
-
-/* ---------- Boot ---------- */
-document.addEventListener("DOMContentLoaded", async () => {
-  shaka.polyfill.installAll();
-  if (!shaka.Player.isBrowserSupported()){
-    document.body.innerHTML = "<div style='color:#fff;padding:40px;font:16px sans-serif'>Your browser is not supported. Please use an up-to-date Chrome, Edge or Firefox.</div>";
-    return;
-  }
-
-  videoEl     = document.getElementById("v");
-  container   = document.getElementById("pc");
-  loader      = document.getElementById("loader");
-  loaderTxt   = document.getElementById("loaderTxt");
-  statusEl    = document.getElementById("status");
-  statusTitle = document.getElementById("statusTitle");
-  statusMsg   = document.getElementById("statusMsg");
-  statusBtn   = document.getElementById("statusBtn");
-  liveBadge   = document.getElementById("live");
-
-  player = new shaka.Player();
-  await player.attach(videoEl);
-
-  const ui = new shaka.ui.Overlay(player, container, videoEl);
-  ui.configure({
-    controlPanelElements: [
-      'play_pause', 'mute', 'volume', 'time_and_duration',
-      'spacer', 'picture_in_picture', 'playback_rate', 'quality', 'fullscreen'
-    ],
-    seekBarColors: { base:'rgba(255,255,255,0.3)', buffered:'rgba(255,255,255,0.65)', played:'#f5b301' },
-    fadeDelay: 2,
-    addBigPlayButton: true,
-    doubleClickForFullscreen: true,
-    tapSeekDistance: 10,
-  });
-
-  /* ---------- Player configuration ---------- */
-  const playerConfig = {
-    abr: {
-      enabled: true,
-      defaultBandwidthEstimate: 8000000,   // 8 Mbps start -> reaches 1080p fast on good connections
-      switchInterval: 8,
-      restrictToElementSize: true,         // fullscreen on a 1080p+ screen still serves 1080p; saves data on phones
-    },
-    manifest: {
-      defaultPresentationDelay: PRESENTATION_DELAY,
-      dash: { ignoreSuggestedPresentationDelay: true, ignoreMinBufferTime: false, autoCorrectDrift: true },
-      retryParameters: { maxAttempts: 6, baseDelay: 600, backoffFactor: 1.6, timeout: 30000 }
-    },
-    streaming: {
-      bufferingGoal:   BUFFERING_GOAL,
-      rebufferingGoal: REBUFFERING_GOAL,
-      bufferBehind:    BUFFER_BEHIND,
-      lowLatencyMode:  false,              // main buffering fix
-      jumpLargeGaps:   true,
-      gapDetectionThreshold: 0.5,
-      stallEnabled:    true,
-      stallThreshold:  1,
-      stallSkip:       0.1,
-      retryParameters: { maxAttempts: 8, baseDelay: 500, backoffFactor: 1.6, fuzzFactor: 0.5, timeout: 30000 }
-    }
-  };
-
-  if (KEY_ID && KEY){
-    playerConfig.drm = { clearKeys: { [KEY_ID]: KEY } };
-  }
-  player.configure(playerConfig);
-
-  /* ---------- Events ---------- */
-  player.addEventListener("error", onPlayerErrorEvent);
-  player.addEventListener("buffering", (e) => {
-    loader.classList.toggle("on", e.buffering);
-    if (e.buffering) loaderTxt.textContent = "Buffering…";
-  });
-  videoEl.addEventListener("playing", () => { loader.classList.remove("on"); hideStatus(); });
-  videoEl.addEventListener("waiting", () => { loader.classList.add("on"); });
-
-  const controlsContainer = container.querySelector(".shaka-controls-container");
-  if (controlsContainer){
-    new MutationObserver(() => {
-      container.classList.toggle("controls-visible", controlsContainer.getAttribute("shown") !== null);
-    }).observe(controlsContainer, { attributes:true, attributeFilter:["shown"] });
-  }
-
-  liveBadge.addEventListener("click", seekToLive);
-  statusBtn.addEventListener("click", () => { autoReloads = 0; loadStream(); });
-  container.addEventListener("contextmenu", (e) => e.preventDefault());
-
-  bindKeys();
-  startWatchdog();
-  await loadStream();
-});
-</script>
+    <script>
+        (function() {
+            // ---------- Configuration ----------
+            const mpdUrl = 'https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/5sivtxjxex/out/v1/ccd2772b4ac34b35bdee514bbb5d5b6a/cenc.mpd';
+            const kid = 'bf1e65f466c96e820f1864d3c83f24b7';
+            const key = '487857d720603a20a3b0e1bdbdb7cad6';
+            
+            let player = null;
+            let ui = null;
+            const video = document.getElementById('video');
+            let soundUnlocked = false;
+            
+            // ---- Force unmute and maximum volume ----
+            function enforceSound() {
+                if (!video) return;
+                if (video.muted) {
+                    video.muted = false;
+                }
+                if (video.volume === 0 || video.volume < 0.9) {
+                    video.volume = 1.0;
+                }
+            }
+            
+            // ---- Attempt to play with sound (used after user interaction) ----
+            function attemptPlayWithSound() {
+                if (!video) return false;
+                enforceSound();
+                if (video.paused) {
+                    const playPromise = video.play();
+                    if (playPromise && typeof playPromise.catch === 'function') {
+                        playPromise.catch(err => {
+                            // silently ignore errors, no UI shown
+                            console.debug('play retry error:', err.name);
+                        });
+                    }
+                }
+                soundUnlocked = true;
+                return true;
+            }
+            
+            // ---- Silent global click handler: unlocks sound without any popup ----
+            function silentGlobalUnlock() {
+                if (soundUnlocked) return;
+                if (!video) return;
+                enforceSound();
+                attemptPlayWithSound();
+                // remove listeners after success to be clean
+                document.removeEventListener('click', silentGlobalUnlock);
+                document.removeEventListener('touchstart', silentGlobalUnlock);
+            }
+            
+            // ---- Shaka Player initialization ----
+            function initShakaPlayer() {
+                shaka.polyfill.installAll();
+                
+                shaka.Player.probeSupport().then(() => {
+                    if (!video) return;
+                    
+                    // ensure video starts unmuted and with full volume
+                    video.muted = false;
+                    video.volume = 1.0;
+                    video.removeAttribute('muted');
+                    
+                    player = new shaka.Player(video);
+                    window.player = player; // optional debug
+                    
+                    // DRM clearkeys configuration
+                    const drmConfig = {
+                        drm: {
+                            clearKeys: {
+                                [kid]: key
+                            }
+                        }
+                    };
+                    player.configure(drmConfig);
+                    
+                    // Load the stream
+                    player.load(mpdUrl).then(() => {
+                        console.log('Stream loaded successfully');
+                        // after loading, ensure sound settings again
+                        enforceSound();
+                        
+                        // try autoplay with sound — might be blocked by browser policies
+                        const autoPlayPromise = video.play();
+                        if (autoPlayPromise !== undefined) {
+                            autoPlayPromise.then(() => {
+                                // success: sound is playing automatically
+                                soundUnlocked = true;
+                            }).catch((err) => {
+                                // Autoplay blocked (chrome, safari, etc.)
+                                console.debug('Autoplay with sound blocked, waiting for user interaction (silent)');
+                                // no popup, no notification – we'll rely on silent global click
+                                soundUnlocked = false;
+                            });
+                        }
+                    }).catch(err => {
+                        console.error('Player load error', err);
+                        // still try to keep sound enabled for any fallback
+                        enforceSound();
+                    });
+                    
+                    // Setup UI (without any extra popups)
+                    const container = document.querySelector('[data-shaka-player-container]');
+                    if (container) {
+                        ui = new shaka.ui.Overlay(player, container, video);
+                        ui.getControls();
+                        ui.getControls().setEnabled(true);
+                    }
+                    
+                    // ---- Observer to fight any external mute (e.g., UI button) ----
+                    const muteObserver = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.attributeName === 'muted' && video.muted === true) {
+                                // immediately unmute to guarantee sound
+                                video.muted = false;
+                                console.debug('auto-unmuted by observer');
+                            }
+                        });
+                    });
+                    muteObserver.observe(video, { attributes: true });
+                    
+                    // Volume restoration: if volume ever becomes 0, restore to 1
+                    video.addEventListener('volumechange', () => {
+                        if (video.volume === 0 && soundUnlocked) {
+                            video.volume = 1.0;
+                        }
+                        if (video.muted && soundUnlocked) {
+                            video.muted = false;
+                        }
+                    });
+                    
+                    // When video actually starts playing, mark sound as unlocked
+                    video.addEventListener('playing', () => {
+                        if (!soundUnlocked && !video.muted && video.volume > 0) {
+                            soundUnlocked = true;
+                        }
+                    });
+                    
+                }).catch(err => {
+                    console.error('Shaka probe error', err);
+                });
+            }
+            
+            // ---- Initial attempt to set sound and autoplay ----
+            if (video) {
+                // initial forced unmute
+                video.muted = false;
+                video.volume = 1.0;
+                
+                // Attach silent global event listeners once to unlock sound if autoplay fails
+                // No UI, no text, no popup – just invisible handler.
+                document.addEventListener('click', silentGlobalUnlock);
+                document.addEventListener('touchstart', silentGlobalUnlock);
+                
+                // Also, if video is already playing (very rare without interaction), mark unlocked
+                if (!video.paused && !video.muted && video.volume > 0) {
+                    soundUnlocked = true;
+                }
+            }
+            
+            // Start everything when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initShakaPlayer);
+            } else {
+                initShakaPlayer();
+            }
+            
+            // Extra safety: periodic check to keep sound alive (every 5 sec, but no UI)
+            setInterval(() => {
+                if (video && !soundUnlocked && !video.paused && !video.muted && video.volume > 0) {
+                    soundUnlocked = true;
+                }
+                if (video && soundUnlocked && video.muted) {
+                    video.muted = false;
+                }
+                if (video && soundUnlocked && video.volume === 0) {
+                    video.volume = 1.0;
+                }
+            }, 5000);
+            
+            // On visibility change, re-assert sound
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && video && soundUnlocked) {
+                    enforceSound();
+                    if (video.paused) {
+                        video.play().catch(() => {});
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

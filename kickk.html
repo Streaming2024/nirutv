@@ -302,7 +302,7 @@
       ════════════════════════════════════════════ */
       let playbackUrl = "";
       try {
-        const res  = await fetch(`https://kick.com/api/v2/channels/${channel}`);
+        const res  = await fetch(`https://kick.com/api/v1/channels/${channel}`);
         const data = await res.json();
         if (!data.playback_url) { showRefresh(); return; }
         playbackUrl = data.playback_url;

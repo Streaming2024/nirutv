@@ -1,8 +1,249 @@
-<iframe 
-     src="https://player.kick.com/pgldota2" 
-     height="100%" 
-     width="100%"
-     frameborder="0" 
-     scrolling="no" 
-     allowfullscreen="true"> 
-</iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+   <script src="/app.js"></script>
+    <script src="/block.js"></script>
+     <script src="/click.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #dplayer {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    iframe { z-index: 999999 !important; }
+    #dplayer video { pointer-events: none; }
+
+    #qualityMenu {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      background: rgba(0,0,0,0.9);
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: none;
+      z-index: 99999;
+    }
+
+    .quality-item {
+      padding: 8px 12px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .quality-item:hover { background: rgba(255,255,255,0.2); }
+    .quality-item.active { color: #00d4ff; font-weight: bold; }
+
+    /* ── Refresh overlay ── */
+    #refreshOverlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.45);
+    }
+
+    #refreshOverlay.visible {
+      display: flex;
+    }
+
+    #refreshBtn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 14px;
+      padding: 22px 32px;
+      transition: background 0.2s;
+    }
+
+    #refreshBtn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    #refreshBtn .material-icons {
+      font-size: 44px;
+      color: #fff;
+    }
+
+    #refreshBtn span.label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-family: sans-serif;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="dplayer"></div>
+  <div id="qualityMenu"></div>
+
+  <!-- Refresh overlay shown when video is not playing -->
+  <div id="refreshOverlay">
+    <div id="refreshBtn">
+      <span class="material-icons">refresh</span>
+      <span class="label">Click Here</span>
+    </div>
+  </div>
+
+  <script>
+    (async () => {
+
+      const DEFAULT_CHANNEL = "deepak";
+      const container = document.getElementById("dplayer");
+      const qualityMenu = document.getElementById("qualityMenu");
+      const refreshOverlay = document.getElementById("refreshOverlay");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      const params = new URLSearchParams(window.location.search);
+      const channel = params.get("id") || DEFAULT_CHANNEL;
+
+      /* ── Show / hide overlay ── */
+      function showRefresh() { refreshOverlay.classList.add("visible"); }
+      function hideRefresh() { refreshOverlay.classList.remove("visible"); }
+
+      /* ── Stall detection ── */
+      let stallTimer = null;
+
+      function resetStallTimer(videoEl) {
+        clearTimeout(stallTimer);
+        stallTimer = setTimeout(() => {
+          if (videoEl && videoEl.paused === false && videoEl.readyState < 3) {
+            showRefresh();
+          }
+        }, 8000); // show refresh if no progress for 8s
+      }
+
+      /* ── Fetch stream URL ── */
+      let playbackUrl = "";
+
+      try {
+        const res = await fetch(`https://kick.com/api/v2/channels/${channel}`);
+        const data = await res.json();
+
+        if (!data.playback_url) {
+          showRefresh();
+          return;
+        }
+
+        playbackUrl = data.playback_url;
+      } catch (e) {
+        console.error("Kick API error", e);
+        showRefresh();
+        return;
+      }
+
+      /* ── Init player ── */
+      const player = new DPlayer({
+        container,
+        autoplay: true,
+        video: { url: playbackUrl, type: "hls" }
+      });
+
+      const videoEl = container.querySelector("video");
+
+      /* ── Video event hooks ── */
+      if (videoEl) {
+        videoEl.addEventListener("playing", hideRefresh);
+        videoEl.addEventListener("waiting", () => resetStallTimer(videoEl));
+        videoEl.addEventListener("stalled", showRefresh);
+        videoEl.addEventListener("error", showRefresh);
+        videoEl.addEventListener("progress", hideRefresh);
+      }
+
+      player.on("error", showRefresh);
+
+      /* ── Refresh button action ── */
+      refreshBtn.addEventListener("click", () => {
+        hideRefresh();
+        player.switchVideo({ url: playbackUrl, type: "hls" });
+        player.play();
+      });
+
+      /* ── Parse HLS qualities ── */
+      async function getQualities() {
+        const text = await fetch(playbackUrl).then(r => r.text());
+        const regex = /#EXT-X-STREAM-INF:.*RESOLUTION=\d+x(\d+).*?\n(.*)/g;
+        let match;
+        const qualities = [];
+        while ((match = regex.exec(text)) !== null) {
+          qualities.push({
+            label: match[1] + "p",
+            url: new URL(match[2], playbackUrl).href
+          });
+        }
+        return qualities;
+      }
+
+      const qualities = await getQualities();
+
+      qualities.forEach((q, i) => {
+        const item = document.createElement("div");
+        item.className = "quality-item";
+        item.textContent = q.label;
+        if (i === 0) item.classList.add("active");
+
+        item.onclick = () => {
+          player.switchVideo({ url: q.url, type: "hls" });
+          player.play();
+          document.querySelectorAll(".quality-item").forEach(el => el.classList.remove("active"));
+          item.classList.add("active");
+        };
+
+        qualityMenu.appendChild(item);
+      });
+
+      /* ── Quality button ── */
+      player.on("loadedmetadata", () => {
+        setTimeout(() => {
+          const rightIcons = document.querySelector(".dplayer-icons-right");
+          if (!rightIcons || document.querySelector(".quality-btn")) return;
+
+          const btn = document.createElement("div");
+          btn.className = "quality-btn material-icons";
+          btn.textContent = "settings";
+          btn.style.cursor = "pointer";
+          btn.style.fontSize = "22px";
+          btn.style.color = "#0505f5";
+          btn.style.marginLeft = "10px";
+
+          btn.onclick = e => {
+            e.stopPropagation();
+            qualityMenu.style.display =
+              qualityMenu.style.display === "block" ? "none" : "block";
+          };
+
+          rightIcons.appendChild(btn);
+        }, 500);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

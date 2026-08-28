@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #dplayer {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    iframe {
+      z-index: 999999 !important;
+    }
+
+    #dplayer video {
+      pointer-events: none;
+    }
+
+    #qualityMenu {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      background: rgba(0,0,0,0.9);
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: none;
+      z-index: 99999;
+    }
+
+    .quality-item {
+      padding: 8px 12px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .quality-item:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .quality-item.active {
+      color: #00d4ff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="dplayer"></div>
+  <div id="qualityMenu"></div>
+
+  <script>
+    (async () => {
+
+      /* -----------------------
+         CONFIG
+      ------------------------ */
+      const DEFAULT_CHANNEL = "deenthegreat";
+      const container = document.getElementById("dplayer");
+      const qualityMenu = document.getElementById("qualityMenu");
+
+      /* -----------------------
+         GET CHANNEL ID
+      ------------------------ */
+      const params = new URLSearchParams(window.location.search);
+      const channel = params.get("id") || DEFAULT_CHANNEL;
+
+      /* -----------------------
+         FETCH KICK API
+      ------------------------ */
+      let playbackUrl = "";
+
+      try {
+        const res = await fetch(`https://kick.com/api/v1/channels/${channel}`);
+        const data = await res.json();
+
+        if (!data.playback_url) {
+          console.error("No playback_url found");
+          return;
+        }
+
+        playbackUrl = data.playback_url;
+      } catch (e) {
+        console.error("Kick API error", e);
+        return;
+      }
+
+      /* -----------------------
+         INIT PLAYER
+      ------------------------ */
+      const player = new DPlayer({
+        container,
+        autoplay: true,
+        video: {
+          url: playbackUrl,
+          type: "hls"
+        }
+      });
+
+      /* -----------------------
+         PARSE HLS QUALITIES
+      ------------------------ */
+      async function getQualities() {
+        const text = await fetch(playbackUrl).then(r => r.text());
+        const regex = /#EXT-X-STREAM-INF:.*RESOLUTION=\d+x(\d+).*?\n(.*)/g;
+
+        let match;
+        const qualities = [];
+
+        while ((match = regex.exec(text)) !== null) {
+          qualities.push({
+            label: match[1] + "p",
+            url: new URL(match[2], playbackUrl).href
+          });
+        }
+
+        return qualities;
+      }
+
+      const qualities = await getQualities();
+
+      /* -----------------------
+         BUILD QUALITY MENU
+      ------------------------ */
+      qualities.forEach((q, i) => {
+        const item = document.createElement("div");
+        item.className = "quality-item";
+        item.textContent = q.label;
+
+        if (i === 0) item.classList.add("active");
+
+        item.onclick = () => {
+          player.switchVideo({
+            url: q.url,
+            type: "hls"
+          });
+          player.play();
+
+          document
+            .querySelectorAll(".quality-item")
+            .forEach(el => el.classList.remove("active"));
+
+          item.classList.add("active");
+        };
+
+        qualityMenu.appendChild(item);
+      });
+
+      /* -----------------------
+         QUALITY BUTTON (⚙)
+      ------------------------ */
+      player.on("loadedmetadata", () => {
+        setTimeout(() => {
+          const rightIcons = document.querySelector(".dplayer-icons-right");
+          if (!rightIcons || document.querySelector(".quality-btn")) return;
+
+          const btn = document.createElement("div");
+          btn.className = "quality-btn material-icons";
+          btn.textContent = "settings";
+          btn.style.cursor = "pointer";
+          btn.style.fontSize = "22px";
+          btn.style.color = "#0505f5";
+          btn.style.marginLeft = "10px";
+
+          btn.onclick = e => {
+            e.stopPropagation();
+            qualityMenu.style.display =
+              qualityMenu.style.display === "block" ? "none" : "block";
+          };
+
+          rightIcons.appendChild(btn);
+        }, 500);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

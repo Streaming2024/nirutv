@@ -1,252 +1,425 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="referrer" content="no-referrer">
-    <title>beIN ENGLISH | Live Stream</title>
-    <!-- Disable DevTools (preserved) -->
-    <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
-    <!-- Shaka Player & UI -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
-    <style>
-        * {
-            user-select: none;
-        }
-        body {
-            background-color: #000;
-            margin: 0;
-            overflow: hidden;
-        }
-        /* hide spinner and time elements (original styling) */
-        .shaka-spinner-container {
-            display: none;
-        }
-        .uc {
-            pointer-events: none;
-        }
-        .shaka-current-time, 
-        .shaka-time-container {
-            display: none;
-        }
-        /* ensure fullscreen container */
-        [data-shaka-player-container] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        /* no popups, no toasts, no overlays — completely silent */
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/controls.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;background:#0a0a0a;overflow:hidden;
+      font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+    #pc{position:fixed;inset:0;background:#000;display:flex;
+      align-items:center;justify-content:center;touch-action:manipulation}
+    video{width:100%;height:100%;object-fit:contain;background:#000;will-change:transform}
+    video.mode-fill{object-fit:fill}
+    video.mode-cover{object-fit:cover}
+
+    #status{position:fixed;top:max(12px,env(safe-area-inset-top));
+      right:max(12px,env(safe-area-inset-right));z-index:9997;
+      padding:5px 13px;background:rgba(8,8,8,.9);
+      border:1px solid rgba(255,255,255,.05);
+      font-size:11px;font-weight:500;letter-spacing:.02em;border-radius:20px;
+      pointer-events:none;opacity:0;transition:opacity .3s;
+      max-width:260px;text-align:right;
+      backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+    #status.show{opacity:1}
+    #status.ok{color:#ef4444}
+    #status.warn{color:#fb923c}
+    #status.err{color:#f87171}
+
+    .sp-btn{
+      background:transparent!important;border:none!important;
+      cursor:pointer!important;padding:0 8px!important;
+      opacity:.8;display:flex;align-items:center;justify-content:center;gap:5px;
+      height:100%;min-width:36px;transition:opacity .15s,color .15s;color:#fff!important;
+      -webkit-tap-highlight-color:transparent}
+    .sp-btn:hover{opacity:1}
+    .sp-btn:active{opacity:1;transform:scale(.92)}
+    .sp-btn:focus-visible{outline:2px solid #ef4444;outline-offset:2px;border-radius:6px}
+    .sp-btn svg{width:18px;height:18px;display:block;pointer-events:none;flex-shrink:0}
+    .sp-btn.active{opacity:1;color:#ef4444!important}
+    .fit-ratio{font-size:11px;font-weight:600;letter-spacing:.2px;line-height:1;
+      white-space:nowrap;pointer-events:none}
+    .shaka-controls-container button{color:#fff!important}
+    .shaka-video-container{background-color:#000!important}
+
+    .shaka-controls-container .shaka-play-button,
+    .shaka-controls-container .shaka-mute-button,
+    .shaka-controls-container .shaka-volume-bar,
+    .shaka-controls-container .shaka-fullscreen-button,
+    .shaka-controls-container .shaka-overflow-menu-button {
+      color: #ef4444 !important;
+    }
+    .shaka-controls-container .shaka-seek-bar .shaka-seek-bar-played {
+      background: #ef4444 !important;
+    }
+    .shaka-controls-container .shaka-seek-bar .shaka-seek-bar-buffered {
+      background: #7f1d1d !important;
+    }
+
+    @media (max-width:400px){
+      .fit-ratio{font-size:9px}
+      .sp-btn{padding:0 6px!important;gap:3px}
+    }
+  </style>
 </head>
 <body>
-    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-        <!-- 
-            muted attribute removed to enable sound. 
-            autoplay + playsinline for mobile compatibility.
-        -->
-        <video autoplay playsinline data-shaka-player id="video" poster="https://dns-tv.pages.dev/logo/image.png" style="width:100%; height:100%"></video>
-    </div>
 
-    <script>
-        (function() {
-            // ---------- Configuration ----------
-            const mpdUrl = 'https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/5qz8wmdome/out/v1/b9323e853dce427eac214b77bd48a204/cenc.mpd';
-            const kid = 'd9623774ac5c8c351aafe97c5fe70267';
-            const key = '5164e6d05164a2d65fa8fcc962aa4861';
-            
-            let player = null;
-            let ui = null;
-            const video = document.getElementById('video');
-            let soundUnlocked = false;
-            
-            // ---- Force unmute and maximum volume ----
-            function enforceSound() {
-                if (!video) return;
-                if (video.muted) {
-                    video.muted = false;
-                }
-                if (video.volume === 0 || video.volume < 0.9) {
-                    video.volume = 1.0;
-                }
-            }
-            
-            // ---- Attempt to play with sound (used after user interaction) ----
-            function attemptPlayWithSound() {
-                if (!video) return false;
-                enforceSound();
-                if (video.paused) {
-                    const playPromise = video.play();
-                    if (playPromise && typeof playPromise.catch === 'function') {
-                        playPromise.catch(err => {
-                            // silently ignore errors, no UI shown
-                            console.debug('play retry error:', err.name);
-                        });
-                    }
-                }
-                soundUnlocked = true;
-                return true;
-            }
-            
-            // ---- Silent global click handler: unlocks sound without any popup ----
-            function silentGlobalUnlock() {
-                if (soundUnlocked) return;
-                if (!video) return;
-                enforceSound();
-                attemptPlayWithSound();
-                // remove listeners after success to be clean
-                document.removeEventListener('click', silentGlobalUnlock);
-                document.removeEventListener('touchstart', silentGlobalUnlock);
-            }
-            
-            // ---- Shaka Player initialization ----
-            function initShakaPlayer() {
-                shaka.polyfill.installAll();
-                
-                shaka.Player.probeSupport().then(() => {
-                    if (!video) return;
-                    
-                    // ensure video starts unmuted and with full volume
-                    video.muted = false;
-                    video.volume = 1.0;
-                    video.removeAttribute('muted');
-                    
-                    player = new shaka.Player(video);
-                    window.player = player; // optional debug
-                    
-                    // DRM clearkeys configuration
-                    const drmConfig = {
-                        drm: {
-                            clearKeys: {
-                                [kid]: key
-                            }
-                        }
-                    };
-                    player.configure(drmConfig);
-                    
-                    // Load the stream
-                    player.load(mpdUrl).then(() => {
-                        console.log('Stream loaded successfully');
-                        // after loading, ensure sound settings again
-                        enforceSound();
-                        
-                        // try autoplay with sound — might be blocked by browser policies
-                        const autoPlayPromise = video.play();
-                        if (autoPlayPromise !== undefined) {
-                            autoPlayPromise.then(() => {
-                                // success: sound is playing automatically
-                                soundUnlocked = true;
-                            }).catch((err) => {
-                                // Autoplay blocked (chrome, safari, etc.)
-                                console.debug('Autoplay with sound blocked, waiting for user interaction (silent)');
-                                // no popup, no notification – we'll rely on silent global click
-                                soundUnlocked = false;
-                            });
-                        }
-                    }).catch(err => {
-                        console.error('Player load error', err);
-                        // still try to keep sound enabled for any fallback
-                        enforceSound();
-                    });
-                    
-                    // Setup UI (without any extra popups)
-                    const container = document.querySelector('[data-shaka-player-container]');
-                    if (container) {
-                        ui = new shaka.ui.Overlay(player, container, video);
-                        ui.getControls();
-                        ui.getControls().setEnabled(true);
-                    }
-                    
-                    // ---- Observer to fight any external mute (e.g., UI button) ----
-                    const muteObserver = new MutationObserver((mutations) => {
-                        mutations.forEach((mutation) => {
-                            if (mutation.attributeName === 'muted' && video.muted === true) {
-                                // immediately unmute to guarantee sound
-                                video.muted = false;
-                                console.debug('auto-unmuted by observer');
-                            }
-                        });
-                    });
-                    muteObserver.observe(video, { attributes: true });
-                    
-                    // Volume restoration: if volume ever becomes 0, restore to 1
-                    video.addEventListener('volumechange', () => {
-                        if (video.volume === 0 && soundUnlocked) {
-                            video.volume = 1.0;
-                        }
-                        if (video.muted && soundUnlocked) {
-                            video.muted = false;
-                        }
-                    });
-                    
-                    // When video actually starts playing, mark sound as unlocked
-                    video.addEventListener('playing', () => {
-                        if (!soundUnlocked && !video.muted && video.volume > 0) {
-                            soundUnlocked = true;
-                        }
-                    });
-                    
-                }).catch(err => {
-                    console.error('Shaka probe error', err);
-                });
-            }
-            
-            // ---- Initial attempt to set sound and autoplay ----
-            if (video) {
-                // initial forced unmute
-                video.muted = false;
-                video.volume = 1.0;
-                
-                // Attach silent global event listeners once to unlock sound if autoplay fails
-                // No UI, no text, no popup – just invisible handler.
-                document.addEventListener('click', silentGlobalUnlock);
-                document.addEventListener('touchstart', silentGlobalUnlock);
-                
-                // Also, if video is already playing (very rare without interaction), mark unlocked
-                if (!video.paused && !video.muted && video.volume > 0) {
-                    soundUnlocked = true;
-                }
-            }
-            
-            // Start everything when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initShakaPlayer);
-            } else {
-                initShakaPlayer();
-            }
-            
-            // Extra safety: periodic check to keep sound alive (every 5 sec, but no UI)
-            setInterval(() => {
-                if (video && !soundUnlocked && !video.paused && !video.muted && video.volume > 0) {
-                    soundUnlocked = true;
-                }
-                if (video && soundUnlocked && video.muted) {
-                    video.muted = false;
-                }
-                if (video && soundUnlocked && video.volume === 0) {
-                    video.volume = 1.0;
-                }
-            }, 5000);
-            
-            // On visibility change, re-assert sound
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible' && video && soundUnlocked) {
-                    enforceSound();
-                    if (video.paused) {
-                        video.play().catch(() => {});
-                    }
-                }
-            });
-        })();
-    </script>
+<div id="status"></div>
+
+<div id="pc">
+  <video id="v" playsinline webkit-playsinline
+    preload="none" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+// ─── HARDCODED STREAM DATA (no JSON, no fetch) ─────────────────────────────
+// Replace the values below with your actual stream URL, key ID and key.
+// Key ID and key must be hex strings (32 characters each, 16 bytes).
+const STREAM_URL = "https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/el49ilt2iv/out/v1/262729d2402a49c081a83d907e33166c/cenc.mpd"; // Example HLS
+const KEY_ID     = "690201218ff23b214db738b4f9dbd0e5"; // 32 hex chars
+const KEY        = "3cc4af4885d71ac3cf41ed1de010156e"; // 32 hex chars
+
+// Optional: change title, logo placeholder etc.
+const CHANNEL_NAME = "Cricket Live · Hardcoded";
+
+// ─── DOM refs ────────────────────────────────────────────────────────────────
+var $status  = document.getElementById("status");
+var $pc      = document.getElementById("pc");
+var $vid     = document.getElementById("v");
+var _stTmr   = null;
+
+// ─── UI helpers ──────────────────────────────────────────────────────────────
+function toast(msg,type,dur){
+  $status.textContent=msg;
+  $status.className="show "+(type||"ok");
+  if(_stTmr) clearTimeout(_stTmr);
+  if(dur!==0){
+    _stTmr=setTimeout(function(){
+      $status.className=$status.className.replace("show","").trim();
+      _stTmr=null;
+    },dur||4000);
+  }
+}
+
+function shakaErrStr(e){
+  if(!e) return "Unknown error";
+  var c={1:"Network",2:"Text",3:"Media",4:"Manifest",5:"Streaming",6:"DRM",7:"Player"};
+  var s=(c[e.category]||"Err")+" "+e.category+":"+e.code;
+  if(e.data&&e.data[0]&&typeof e.data[0]==="string") s+=" — "+e.data[0].slice(0,72);
+  return s;
+}
+
+function ratioLabel(w,h){
+  if(!w||!h) return "";
+  function gcd(a,b){ return b?gcd(b,a%b):a; }
+  var g=gcd(w,h)||1, rw=w/g, rh=h/g;
+  var common={"16:9":16/9,"4:3":4/3,"21:9":21/9,"1:1":1,"9:16":9/16,"3:2":3/2,"5:4":5/4,"2:1":2};
+  var real=w/h, best=null, bestDiff=.02;
+  Object.keys(common).forEach(function(k){
+    var d=Math.abs(common[k]-real);
+    if(d<bestDiff){ bestDiff=d; best=k; }
+  });
+  if(best) return best;
+  if(rw<=40&&rh<=40) return rw+":"+rh;
+  return real.toFixed(2)+":1";
+}
+
+// ─── Inject custom controls (fit, PiP) ─────────────────────────────────────
+function injectControls(container,vid,player){
+  var panel=container.querySelector(".shaka-controls-button-panel");
+  if(!panel) return;
+  var anchor=panel.querySelector(".shaka-fullscreen-button");
+
+  var FITS = ["contain","fill","cover"];
+  var MODE_LABEL = {contain:"Fit",fill:"Fill",cover:"Zoom"};
+  var FICO = {
+    contain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/></svg>',
+    fill:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
+    cover:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 7l3 3m0 0H7m2 0V8m9-1l-3 3m0 0h2m-2 0V8M6 13l3-3m0 0H7m2 0v2m9 1l-3-3m0 0h2m-2 0v2"/></svg>'
+  };
+  var PIP_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><rect x="12" y="12" width="7" height="5" rx="1" fill="currentColor" stroke="none"/></svg>';
+
+  var fitIdx=0;
+  var fitBtn=document.createElement("button");
+  fitBtn.className="sp-btn sp-fit-btn";
+  fitBtn.title="Video fit: Fit";
+  fitBtn.innerHTML=
+    '<span class="fit-icon">'+FICO.contain+'</span>'+
+    '<span class="fit-ratio">--</span>';
+  if(anchor) panel.insertBefore(fitBtn,anchor);
+  else panel.appendChild(fitBtn);
+
+  function applyFit(i){
+    fitIdx=i; var m=FITS[i];
+    vid.classList.remove("mode-fill","mode-cover");
+    if(m==="fill") vid.classList.add("mode-fill");
+    if(m==="cover") vid.classList.add("mode-cover");
+    var ic=fitBtn.querySelector(".fit-icon");
+    if(ic) ic.innerHTML=FICO[m];
+    fitBtn.title="Video fit: "+MODE_LABEL[m];
+  }
+  fitBtn.addEventListener("click",function(e){
+    e.stopPropagation();applyFit((fitIdx+1)%FITS.length);
+  });
+  ["fullscreenchange","webkitfullscreenchange"].forEach(function(ev){
+    document.addEventListener(ev,function(){
+      if(!(document.fullscreenElement||document.webkitFullscreenElement)) applyFit(0);
+    });
+  });
+
+  function updateRatio(){
+    var lbl=ratioLabel(vid.videoWidth,vid.videoHeight);
+    var badge=fitBtn.querySelector(".fit-ratio");
+    if(badge&&lbl) badge.textContent=lbl;
+  }
+  vid.addEventListener("loadedmetadata",updateRatio);
+  vid.addEventListener("resize",updateRatio);
+  updateRatio();
+
+  var pipOk=!!(document.pictureInPictureEnabled||
+    (vid.webkitSupportsPresentationMode&&typeof vid.webkitSetPresentationMode==="function"));
+  if(pipOk){
+    var pipBtn=document.createElement("button");
+    pipBtn.className="sp-btn sp-pip-btn";
+    pipBtn.title="Picture in Picture";
+    pipBtn.innerHTML=PIP_ICON;
+    panel.insertBefore(pipBtn,fitBtn);
+
+    function setPipState(active){
+      pipBtn.classList.toggle("active",active);
+      pipBtn.title=active?"Exit Picture in Picture":"Picture in Picture";
+    }
+    pipBtn.addEventListener("click",async function(e){
+      e.stopPropagation();
+      try{
+        if(document.pictureInPictureEnabled){
+          if(document.pictureInPictureElement) await document.exitPictureInPicture();
+          else await vid.requestPictureInPicture();
+        } else if(vid.webkitSupportsPresentationMode){
+          vid.webkitSetPresentationMode(
+            vid.webkitPresentationMode==="picture-in-picture"?"inline":"picture-in-picture"
+          );
+        }
+      } catch(_){ toast("PiP unavailable","warn",2500); }
+    });
+    vid.addEventListener("enterpictureinpicture",function(){ setPipState(true); });
+    vid.addEventListener("leavepictureinpicture",function(){ setPipState(false); });
+    if(vid.webkitPresentationMode!==undefined){
+      vid.addEventListener("webkitpresentationmodechanged",function(){
+        setPipState(vid.webkitPresentationMode==="picture-in-picture");
+      });
+    }
+  }
+}
+
+// ─── Player startup ──────────────────────────────────────────────────────────
+async function startPlayer(){
+  $pc.style.display="flex";
+  shaka.polyfill.installAll();
+  if(!shaka.Player.isBrowserSupported()){
+    toast("Browser not supported.","err",0);
+    return;
+  }
+
+  var player=new shaka.Player();
+  await player.attach($vid);
+
+  new shaka.ui.Overlay(player,$pc,$vid).configure({
+    controlPanelElements:["play_pause","mute","volume","time_and_duration","spacer","quality","fullscreen"],
+    seekBarColors:{base:"#a8a8a8",buffered:"#7f1d1d",played:"#ef4444"}
+  });
+  setTimeout(function(){ injectControls($pc,$vid,player); },100);
+
+  // DRM & stream config
+  var keyId = KEY_ID;
+  var key   = KEY;
+  var url   = STREAM_URL;
+
+  var restrictionsRelaxed = false;
+
+  // Tier detection (simple)
+  var mem   = navigator.deviceMemory || 4;
+  var cores = navigator.hardwareConcurrency || 4;
+  var mob   = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var conn  = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var net   = conn ? (conn.effectiveType || "4g") : "4g";
+  var tier = "high";
+  if(mob && (mem<=1.5 || cores<=2 || net==="slow-2g" || net==="2g")) tier="low";
+  else if(mob && (mem<=3 || cores<=4)) tier="mid";
+  var PROF = {
+    low:  {buf:5,  reBuf:1.5, behind:15, maxH:480,  maxBw:1200000, bwEst:400000 },
+    mid:  {buf:8,  reBuf:1.5, behind:25, maxH:720,  maxBw:3500000, bwEst:1000000},
+    high: {buf:12, reBuf:1.5, behind:30, maxH:1080, maxBw:0,       bwEst:2000000}
+  }[tier];
+
+  function buildCfg(){
+    var restr={};
+    if(!restrictionsRelaxed){
+      if(PROF.maxH<1080) restr.maxHeight=PROF.maxH;
+      if(PROF.maxBw>0)   restr.maxBandwidth=PROF.maxBw;
+    }
+    return {
+      drm: { clearKeys: { [keyId]: key } },
+      manifest: {
+        defaultPresentationDelay:4,
+        ignoreTextStreamFailures:true,
+        retryParameters:{maxAttempts:5,baseDelay:500,backoffFactor:2,fuzzFactor:.5,timeout:30000}
+      },
+      streaming:{
+        lowLatencyMode:false,
+        bufferingGoal: PROF.buf,
+        rebufferingGoal:PROF.reBuf,
+        bufferBehind: PROF.behind,
+        safeSeekOffset: 4,
+        stallEnabled: true,
+        stallThreshold: 1,
+        stallSkip: .3,
+        inaccurateManifestTolerance:0,
+        retryParameters:{maxAttempts:5,baseDelay:500,backoffFactor:2,fuzzFactor:.5,timeout:30000}
+      },
+      abr:{
+        enabled:true,
+        defaultBandwidthEstimate:PROF.bwEst,
+        switchInterval:4,
+        restrictions:restr
+      }
+    };
+  }
+
+  player.configure(buildCfg());
+
+  // Request filter for referer / user-agent
+  var T=shaka.net.NetworkingEngine.RequestType;
+  player.getNetworkingEngine().registerRequestFilter(function(type,req){
+    req.headers["Referer"]    ="https://www.jiotv.com/";
+    req.headers["User-Agent"] ="Mozilla/5.0 (Linux; Android 11; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36";
+  });
+
+  // ── recovery / reload logic ──
+  var refreshing=false, retries=0, edgeTried=false, lastTry=0, started=false;
+
+  function unmuteOnce(){ $vid.muted=false; }
+  $pc.addEventListener("pointerdown",unmuteOnce,{capture:true,once:true});
+  $pc.addEventListener("click",unmuteOnce,{capture:true,once:true});
+  $pc.addEventListener("keydown",unmuteOnce,{capture:true,once:true});
+
+  function goLiveEdge(){
+    if(refreshing) return;
+    try{ player.goToLive(); edgeTried=true; toast("Syncing…","warn",2000); }
+    catch(_){ reload(); }
+  }
+
+  async function reload(){
+    var now=Date.now();
+    if(refreshing||now-lastTry<1500) return;
+    if(retries>=5){ toast("Stream unavailable.","err",0); return; }
+    refreshing=true; lastTry=now; retries++;
+    toast("Reconnecting… ("+retries+"/5)","warn",0);
+    try{
+      // just reload same URL (hardcoded)
+      player.configure(buildCfg());
+      await player.load(url);
+      $vid.play().catch(function(){});
+      retries=0; edgeTried=false;
+      toast("● Live","ok",4000);
+    } catch(_){
+      setTimeout(reload, Math.min(1000*Math.pow(2,retries-1),8000));
+    } finally{ refreshing=false; }
+  }
+
+  var RECOVERABLE=[1001,1002,1003,4012,6006,6007,7000,7001,7002];
+
+  player.addEventListener("error",function(ev){
+    var err=ev.detail, code=err&&err.code;
+    if(code===4014 && !restrictionsRelaxed){
+      restrictionsRelaxed=true;
+      refreshing=true;
+      player.configure(buildCfg());
+      toast("Playing best available quality","warn",2500);
+      player.load(url)
+        .then(function(){
+          $vid.play().catch(function(){});
+          toast("● Live","ok",4000);
+        })
+        .catch(function(){ reload(); })
+        .finally(function(){ refreshing=false; });
+      return;
+    }
+    if(RECOVERABLE.indexOf(code)!==-1) reload();
+    else toast(shakaErrStr(err),"err",6000);
+  });
+
+  // ── load stream ──
+  try{
+    toast("Loading stream…","warn",0);
+    await player.load(url);
+    toast("Tap ▶ to start","ok",5000);
+  } catch(_){
+    toast("Retrying…","warn",0);
+    setTimeout(reload,1500);
+    return;
+  }
+
+  // ── stall / buffering handling ──
+  var stallTmr=null;
+  function onStall(){
+    if(!started||stallTmr||refreshing) return;
+    toast("Buffering…","warn",0);
+    stallTmr=setTimeout(function(){
+      stallTmr=null;
+      if(!edgeTried) goLiveEdge(); else reload();
+    },5000);
+  }
+  function onPlaying(){
+    started=true;
+    if(stallTmr){ clearTimeout(stallTmr); stallTmr=null; }
+    edgeTried=false;
+    if(!refreshing) toast("● Live","ok",3000);
+  }
+  $vid.addEventListener("waiting", onStall);
+  $vid.addEventListener("stalled", onStall);
+  $vid.addEventListener("playing", onPlaying);
+  $vid.addEventListener("error",   function(){ if(!refreshing) reload(); });
+
+  document.addEventListener("visibilitychange",function(){
+    if(!document.hidden){
+      setTimeout(function(){
+        if(started&&$vid.paused&&!refreshing) $vid.play().catch(function(){});
+      },400);
+    }
+  });
+
+  // network quality adaptation (optional)
+  var netConn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  if(netConn){
+    netConn.addEventListener("change",function(){
+      if(!player||restrictionsRelaxed) return;
+      var t=netConn.effectiveType||"4g";
+      var h=t==="slow-2g"||t==="2g"?240:t==="3g"?480:PROF.maxH;
+      try{ player.configure("abr.restrictions.maxHeight",h); } catch(_){}
+      if(h<PROF.maxH) toast("Slow network — reducing quality","warn",3000);
+    });
+  }
+}
+
+// ─── Go ──────────────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", function(){
+  // Set page title
+  document.title = CHANNEL_NAME;
+  startPlayer();
+});
+
+})();
+</script>
 </body>
 </html>

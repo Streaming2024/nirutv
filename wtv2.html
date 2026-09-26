@@ -1,146 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Shaka Player</title>
+<title>Bitmovin Player</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.16.3/shaka-player.ui.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.16.3/controls.css">
+<script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background:#000;
+}
+
+
+/* Header */
+
+.header{
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    background:#121212;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.live{
+    background:#ff0000;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* Body */
+
+.container{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    padding:0;
+}
+
+/* Server Buttons */
+
+.server-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.server-box button{
+    flex:1;
+    height:44px;
+    border:none;
+    border-radius:10px;
+    background:#1d1d1d;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    transition:.25s;
+}
+
+.server-box button:hover{
+    background:#303030;
+}
+
+.server-box button.active{
+    background:#e50914;
+}
+
+/* Player */
+
+.player-card{
+    width:100%;
+    height:100%;
+    background:#000;
+    border-radius:0;
+    box-shadow:none;
+    overflow:hidden;
+}
+
+.player-title{
+    padding:14px 18px;
+    background:#181818;
+    font-size:16px;
+    font-weight:600;
+}
+
+#player-wrapper{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#000;
+}
+
+#player{
+    width:100%;
+    height:100%;
+}
+/* Loading */
+
+#status{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    z-index:100;
+}
+
+.spinner{
+    width:55px;
+    height:55px;
+    border:4px solid rgba(255,255,255,.15);
+    border-top:4px solid #ff0000;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
     }
+}
 
-    #video-container {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      background: #000;
-    }
+.s-title{
+    margin-top:18px;
+    font-size:16px;
+}
 
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #000;
-    }
-  </style>
+/* Bitmovin */
+
+.bmpui-ui-watermark{
+    background-image:url("https://github.io") !important;
+}
+
+.bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+.bmpui-ui-volumeslider .bmpui-seekbar-playbackposition{
+    background:#ff0000 !important;
+}
+
+.bmpui-on,
+.bmpui-ui-selectbox{
+    color:#ff0000 !important;
+}
+
+@media(max-width:768px){
+
+.header{
+    height:55px;
+}
+
+.logo{
+    font-size:18px;
+}
+
+.server-box button{
+    height:42px;
+}
+
+}
+</style>
 </head>
 
 <body>
 
-<div id="video-container">
-  <video id="video" class="shaka-video" playsinline></video>
-  <div class="shaka-controls-container" shaka-controls></div>
+
+<body>
+
+<div class="container">
+
+    <div class="player-card">
+
+        <div id="player-wrapper">
+
+            <div id="status">
+                <div class="spinner"></div>
+                <div class="s-title">Loading Stream...</div>
+            </div>
+
+            <div id="player"></div>
+
+        </div>
+
+    </div>
+
 </div>
 
+<!-- Your JavaScript stays exactly the same -->
+
+</body>
+
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
 
-  shaka.polyfill.installAll();
+var url="https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/live/clients/dash/enc/xhys43gbgu/out/v1/ec2d6860db184a459d59d66c5e560b8b/cenc.mpd";
 
-  // ==========================================
-  // YOUR STREAM DATA
-  // ==========================================
+var ck_keyid="5aab7e7ac344b32e7e1acea2d92c78f3";
 
-  const manifestUri =
-    "https://a96aivottlinear-a.akamaihd.net/OTTB/pdx-nitro/live/clients/dash/enc/kvdztx0wyt/out/v1/35c85c1cc5264ddaa6d601acb893c9bf/cenc.mpd";
+var ck_key="d6c5d1c0ed77d1f1a0a87af823591c78";
 
-  const keyId =
-    "7b535c85849cc63ff2db626085eca0b1";
+function override(url){
 
-  const key =
-    "40e3f86321b88e87faba0e03fad20bae";
+    var wm=document.querySelector('button.bmpui-ui-watermark');
 
+    if(wm) wm.setAttribute('disabled','disabled');
 
-  // ==========================================
-  // VIDEO
-  // ==========================================
+    if(url.indexOf('licensing.bitmovin.com/licensing')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
 
-  const video = document.getElementById("video");
-  const container = document.getElementById("video-container");
+    if(url.indexOf('licensing.bitmovin.com/impression')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
 
-  const player = new shaka.Player(video);
+    return url;
+}
 
+var _xhrOpen=XMLHttpRequest.prototype.open;
 
-  // ==========================================
-  // ERROR HANDLING
-  // ==========================================
+XMLHttpRequest.prototype.open=function(){
 
-  player.addEventListener("error", (event) => {
-    console.error("Shaka Player Error:", event.detail);
-  });
+    arguments[1]=override(arguments[1]);
 
+    return _xhrOpen.apply(this,arguments);
 
-  // ==========================================
-  // CLEARKEY DRM
-  // ==========================================
+};
 
-  const clearKeyMap = {};
+document.addEventListener("DOMContentLoaded",function(){
 
-  clearKeyMap[keyId] = key;
+    var config={
+        key:"11d3698c-efdf-42f1-8769-54663995de2b",
+        playback:{
+            autoplay:true,
+            muted:false
+        }
+    };
 
-  player.configure({
-    drm: {
-      clearKeys: clearKeyMap
-    }
-  });
+    var source={
+        dash:url,
+        drm:{
+            clearkey:[
+                {
+                    keyId:ck_keyid,
+                    key:ck_key
+                }
+            ]
+        }
+    };
 
-
-  // ==========================================
-  // SHAKA UI
-  // ==========================================
-
-  const ui = new shaka.ui.Overlay(
-    player,
-    container,
-    video
-  );
-
-  ui.configure({
-    controlPanelElements: [
-      "play_pause",
-      "time_and_duration",
-      "spacer",
-      "mute",
-      "volume",
-      "quality",
-      "playback_rate",
-      "picture_in_picture",
-      "fullscreen"
-    ],
-
-    enableQualitySelection: true,
-    addBigPlayButton: true
-  });
-
-
-  // ==========================================
-  // LOAD MPD
-  // ==========================================
-
-  try {
-
-    await player.load(manifestUri);
-
-    console.log("Stream loaded successfully.");
-
-  } catch (error) {
-
-    console.error(
-      "Failed to load stream:",
-      error
+    var player=new bitmovin.player.Player(
+        document.getElementById("player"),
+        config
     );
 
-  }
+    player.load(source).then(function(){
+
+        document.getElementById("status").style.display="none";
+
+    }).catch(function(err){
+
+        document.querySelector(".s-title").innerHTML="Failed to load stream.";
+
+        console.log(err);
+
+    });
 
 });
 </script>

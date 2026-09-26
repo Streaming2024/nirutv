@@ -1,85 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <title>FC2</title>
-     <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
-   <script src="/app.js"></script>
-    <script src="/block.js"></script>
-     <script src="/click.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
-    <style>
-        body { background-color: #000; margin: 0; }
-        .watermark {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 100px;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        img { position:relative; right:130; bottom:10; margin:auto auto; max-width:20%; max-height:20%; object-fit:contain; pointer-events:none; }
-        .shaka-spinner-container { display:none; }
-        .uc { pointer-events:none; }
-        .shaka-current-time, .shaka-time-container { display: none; } /* Hide time display */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Bitmovin Player</title>
+
+<script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background:#000;
+}
+
+
+/* Header */
+
+.header{
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    background:#121212;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.live{
+    background:#ff0000;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* Body */
+
+.container{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    padding:0;
+}
+
+/* Server Buttons */
+
+.server-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.server-box button{
+    flex:1;
+    height:44px;
+    border:none;
+    border-radius:10px;
+    background:#1d1d1d;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    transition:.25s;
+}
+
+.server-box button:hover{
+    background:#303030;
+}
+
+.server-box button.active{
+    background:#e50914;
+}
+
+/* Player */
+
+.player-card{
+    width:100%;
+    height:100%;
+    background:#000;
+    border-radius:0;
+    box-shadow:none;
+    overflow:hidden;
+}
+
+.player-title{
+    padding:14px 18px;
+    background:#181818;
+    font-size:16px;
+    font-weight:600;
+}
+
+#player-wrapper{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#000;
+}
+
+#player{
+    width:100%;
+    height:100%;
+}
+/* Loading */
+
+#status{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    z-index:100;
+}
+
+.spinner{
+    width:55px;
+    height:55px;
+    border:4px solid rgba(255,255,255,.15);
+    border-top:4px solid #ff0000;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.s-title{
+    margin-top:18px;
+    font-size:16px;
+}
+
+/* Bitmovin */
+
+.bmpui-ui-watermark{
+    background-image:url("https://github.io") !important;
+}
+
+.bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+.bmpui-ui-volumeslider .bmpui-seekbar-playbackposition{
+    background:#ff0000 !important;
+}
+
+.bmpui-on,
+.bmpui-ui-selectbox{
+    color:#ff0000 !important;
+}
+
+@media(max-width:768px){
+
+.header{
+    height:55px;
+}
+
+.logo{
+    font-size:18px;
+}
+
+.server-box button{
+    height:42px;
+}
+
+}
+</style>
 </head>
+
 <body>
-    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-        <video autoplay muted data-shaka-player id="video" poster="https://dns-tv.pages.dev/logo/image.png" style="width:100%; height:100%"></video>
+
+
+<body>
+
+<div class="container">
+
+    <div class="player-card">
+
+        <div id="player-wrapper">
+
+            <div id="status">
+                <div class="spinner"></div>
+                <div class="s-title">Loading Stream...</div>
+            </div>
+
+            <div id="player"></div>
+
+        </div>
+
     </div>
-    <script>
-       const mpdUrl ='https://abfjk4haaaaaaaampv6ofhkihi4r6.bia-cf.live.pv-cdn.net/iad-nitro/live/clients/dash-sd/enc/qddnwqthpp/out/v1/6c25cddab58043a6ace0ac64d97983f0/cenc-sd.mpd';
-    const kid = '709c812e1b4174002605df1d17d34a4c';
-    const key = '0bbee6c9c20a0f065bf8369d54cbf83e';
-    let player;
-    let ui;
-       
-        function initApp() {
-            shaka.polyfill.installAll();
 
-            shaka.Player.probeSupport().then(function() {
-                const video = document.getElementById('video');
-                player = new shaka.Player(video);
+</div>
 
-                // Attach the player to the window to make it easy to access in the console
-                window.player = player;
+<!-- Your JavaScript stays exactly the same -->
 
-                const drmConfig = {
-                    drm: {
-                        clearKeys: {
-                            [kid]: key // Set Clear Key
-                        }
-                    }
-                };
-                player.configure(drmConfig);
+</body>
 
-                player.load(mpdUrl).then(function() {
-                    console.log('The video has now been loaded!');
-                }).catch(onPlayerError);
+<script>
 
-                initializeUI(video);
-            }).catch(onPlayerError);
+var url="https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/avqlywnuzx/out/v1/aefca6420f944a9482e117f315de535f/cenc.mpd";
+
+var ck_keyid="1994b1df7dfd2e8a8d7b9bf3fb900285";
+
+var ck_key="22a1444b3da18e139191665b3d652835";
+
+function override(url){
+
+    var wm=document.querySelector('button.bmpui-ui-watermark');
+
+    if(wm) wm.setAttribute('disabled','disabled');
+
+    if(url.indexOf('licensing.bitmovin.com/licensing')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+
+    if(url.indexOf('licensing.bitmovin.com/impression')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+
+    return url;
+}
+
+var _xhrOpen=XMLHttpRequest.prototype.open;
+
+XMLHttpRequest.prototype.open=function(){
+
+    arguments[1]=override(arguments[1]);
+
+    return _xhrOpen.apply(this,arguments);
+
+};
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    var config={
+        key:"11d3698c-efdf-42f1-8769-54663995de2b",
+        playback:{
+            autoplay:true,
+            muted:false
         }
+    };
 
-        function initializeUI(video) {
-            const container = document.querySelector('[data-shaka-player-container]');
-
-            // Create UI elements with Shaka's default configuration
-            ui = new shaka.ui.Overlay(player, container, video);
-            ui.getControls(); // This loads the default controls
-
-            // Set fullscreen button visibility if needed
-            ui.getControls().setEnabled(true);
+    var source={
+        dash:url,
+        drm:{
+            clearkey:[
+                {
+                    keyId:ck_keyid,
+                    key:ck_key
+                }
+            ]
         }
+    };
 
-        function onPlayerError(event) {
-            console.error('Player error', event);
-        }
+    var player=new bitmovin.player.Player(
+        document.getElementById("player"),
+        config
+    );
 
-        document.addEventListener('DOMContentLoaded', initApp);
-    </script>
-    </body>
-    
+    player.load(source).then(function(){
+
+        document.getElementById("status").style.display="none";
+
+    }).catch(function(err){
+
+        document.querySelector(".s-title").innerHTML="Failed to load stream.";
+
+        console.log(err);
+
+    });
+
+});
+</script>
+
+</body>
 </html>

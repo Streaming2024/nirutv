@@ -1,183 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MDP Player</title>
 
-<title>Bitmovin Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/controls.min.css">
 
-<script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
-<style>
+
+
+
+  <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body{
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
-    overflow:hidden;
-    background:#000;
+html,body{
+  width:100%;
+  height:100%;
+  background:#000;
+  overflow:hidden;
+  font-family:'Rajdhani',system-ui,sans-serif;
 }
 
-
-/* Header */
-
-.header{
-    height:60px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-    background:#121212;
-    border-bottom:1px solid rgba(255,255,255,.08);
+/* Background */
+.shaka-video-container{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top,#ff3b3b30 0%,transparent 45%),
+    radial-gradient(circle at bottom,#ff000015 0%,transparent 50%),
+    linear-gradient(135deg,#280000 0%,#090909 60%,#000 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.logo{
-    font-size:20px;
-    font-weight:700;
-    letter-spacing:.5px;
+video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
 }
 
-.live{
-    background:#ff0000;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
+.shaka-spinner-container{
+  display:none!important;
 }
 
-/* Body */
-
-.container{
-    width:100vw;
-    height:100vh;
-    margin:0;
-    padding:0;
+/* Controls */
+.shaka-controls-container,
+.shaka-bottom-controls,
+.shaka-controls-button-panel {
+    box-shadow: none !important;
+    filter: none !important;
 }
 
-/* Server Buttons */
-
-.server-box{
-    display:flex;
-    gap:10px;
-    margin-bottom:15px;
+.shaka-video-container::before,
+.shaka-video-container::after {
+    display: none !important;
 }
 
-.server-box button{
-    flex:1;
-    height:44px;
-    border:none;
-    border-radius:10px;
-    background:#1d1d1d;
-    color:#fff;
-    cursor:pointer;
-    font-weight:700;
-    transition:.25s;
+/* Buttons */
+.shaka-controls-button-panel button,
+.shaka-overflow-menu button,
+.shaka-settings-menu button{
+  color:#fff!important;
+  border-radius:12px;
+  transition:.25s;
 }
 
-.server-box button:hover{
-    background:#303030;
+.shaka-controls-button-panel button:hover,
+.shaka-overflow-menu button:hover,
+.shaka-settings-menu button:hover{
+  background:rgba(255,0,0,.18)!important;
+  color:#ff3d3d!important;
 }
 
-.server-box button.active{
-    background:#e50914;
+/* Seekbar */
+.shaka-seek-bar-container{
+  border-radius:999px!important;
+  overflow:hidden!important;
 }
 
-/* Player */
-
-.player-card{
-    width:100%;
-    height:100%;
-    background:#000;
-    border-radius:0;
-    box-shadow:none;
-    overflow:hidden;
+.shaka-range-element{
+  accent-color:#ff2020!important;
 }
 
-.player-title{
-    padding:14px 18px;
-    background:#181818;
-    font-size:16px;
-    font-weight:600;
+/* Menus */
+.shaka-overflow-menu,
+.shaka-settings-menu{
+  background:rgba(18,18,18,.92)!important;
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,60,60,.25)!important;
+  border-radius:18px!important;
+  box-shadow:
+      0 20px 50px rgba(0,0,0,.6),
+      0 0 30px rgba(255,0,0,.15);
+  color:#fff!important;
 }
 
-#player-wrapper{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#000;
+/* Watermark */
+#wm{
+  position:absolute;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  pointer-events:none;
+  opacity:.55;
 }
 
-#player{
-    width:100%;
-    height:100%;
-}
-/* Loading */
-
-#status{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:#000;
-    z-index:100;
+.wm-rule{
+  width:22px;
+  height:2px;
+  border-radius:999px;
+  background:linear-gradient(90deg,transparent,#ff2a2a);
 }
 
-.spinner{
-    width:55px;
-    height:55px;
-    border:4px solid rgba(255,255,255,.15);
-    border-top:4px solid #ff0000;
-    border-radius:50%;
-    animation:spin .8s linear infinite;
+.wm-rule.r{
+  background:linear-gradient(90deg,#ff2a2a,transparent);
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+.wm-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.s-title{
-    margin-top:18px;
-    font-size:16px;
+.wm-name{
+  color:#fff;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  letter-spacing:4px;
+  text-shadow:
+      0 0 12px rgba(255,0,0,.6),
+      0 0 30px rgba(255,0,0,.25);
 }
 
-/* Bitmovin */
-
-.bmpui-ui-watermark{
-    background-image:url("https://github.io") !important;
+.wm-name .r{
+  color:#ff2a2a;
 }
 
-.bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
-.bmpui-ui-volumeslider .bmpui-seekbar-playbackposition{
-    background:#ff0000 !important;
+.wm-url{
+  font-size:9px;
+  letter-spacing:3px;
+  color:#ffd3d3;
 }
 
-.bmpui-on,
-.bmpui-ui-selectbox{
-    color:#ff0000 !important;
+/* Join Button */
+.st-join-btn{
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:100;
+
+  min-width:110px;
+  height:34px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999px;
+  text-decoration:none;
+
+  background:linear-gradient(135deg,#ff4444,#d80000);
+  color:#fff;
+
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+
+  border:1px solid rgba(255,255,255,.18);
+
+  box-shadow:
+      0 8px 25px rgba(255,0,0,.35),
+      inset 0 1px 0 rgba(255,255,255,.25);
+
+  transition:.25s;
 }
 
-@media(max-width:768px){
-
-.header{
-    height:55px;
+.st-join-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+      0 14px 35px rgba(255,0,0,.45),
+      inset 0 1px 0 rgba(255,255,255,.3);
 }
 
-.logo{
-    font-size:18px;
+@media(max-width:600px){
+
+#wm{
+  bottom:62px;
 }
 
-.server-box button{
-    height:42px;
+.wm-name{
+  font-size:14px;
+}
+
+.wm-url{
+  font-size:8px;
+}
+
+.st-join-btn{
+  top:6px;
+  left:6px;
+  min-width:96px;
+  height:30px;
+  font-size:12px;
 }
 
 }
@@ -185,107 +222,152 @@ body{
 </head>
 
 <body>
+  <div class="shaka-video-container" id="player-container">
+    <video id="video" autoplay playsinline></video>
 
-
-<body>
-
-<div class="container">
-
-    <div class="player-card">
-
-        <div id="player-wrapper">
-
-            <div id="status">
-                <div class="spinner"></div>
-                <div class="s-title">Loading Stream...</div>
-            </div>
-
-            <div id="player"></div>
-
-        </div>
-
+    <div id="wm">
+      <div class="wm-rule"></div>
+      <div class="wm-inner">
+        <div class="wm-name">YoNo<span class="r">TV</span></div>
+        <div class="wm-url">LIVE</div>
+      </div>
+      <div class="wm-rule r"></div>
     </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      shaka.polyfill.installAll();
 
-</div>
+      if (!shaka.Player.isBrowserSupported()) return;
 
-<!-- Your JavaScript stays exactly the same -->
+      const videoEl = document.getElementById('video');
+      const container = document.getElementById('player-container');
+      const wm = document.getElementById('wm');
 
-</body>
+      /*
+        Add your own authorized stream details here.
+        If your stream does not need ClearKey DRM, keep keyId and key empty.
+      */
+      const streamUrl = "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/xhys43gbgu/out/v1/ec2d6860db184a459d59d66c5e560b8b/cenc.mpd";
+      const keyId = "5aab7e7ac344b32e7e1acea2d92c78f3";
+      const key = "d6c5d1c0ed77d1f1a0a87af823591c78";
 
-<script>
+      const player = new shaka.Player();
+      await player.attach(videoEl);
 
-var url="https://a96aivottlinear-a.akamaihd.net/OTTB/iad-nitro/live/clients/dash/enc/xhys43gbgu/out/v1/ec2d6860db184a459d59d66c5e560b8b/cenc.mpd";
+      const ui = new shaka.ui.Overlay(player, container, videoEl);
 
-var ck_keyid="5aab7e7ac344b32e7e1acea2d92c78f3";
-
-var ck_key="d6c5d1c0ed77d1f1a0a87af823591c78";
-
-function override(url){
-
-    var wm=document.querySelector('button.bmpui-ui-watermark');
-
-    if(wm) wm.setAttribute('disabled','disabled');
-
-    if(url.indexOf('licensing.bitmovin.com/licensing')>-1)
-        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
-
-    if(url.indexOf('licensing.bitmovin.com/impression')>-1)
-        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
-
-    return url;
-}
-
-var _xhrOpen=XMLHttpRequest.prototype.open;
-
-XMLHttpRequest.prototype.open=function(){
-
-    arguments[1]=override(arguments[1]);
-
-    return _xhrOpen.apply(this,arguments);
-
-};
-
-document.addEventListener("DOMContentLoaded",function(){
-
-    var config={
-        key:"11d3698c-efdf-42f1-8769-54663995de2b",
-        playback:{
-            autoplay:true,
-            muted:false
+      ui.configure({
+        controlPanelElements: [
+          'play_pause',
+          'mute',
+          'volume',
+          'time_and_duration',
+          'spacer',
+          'language',
+          'captions',
+          'picture_in_picture',
+          'quality',
+          'fullscreen'
+        ],
+        seekBarColors: {
+          base: 'rgba(255,255,255,.32)',
+          buffered: 'rgba(255,255,255,.55)',
+          played: '#00ff84'
         }
-    };
+      });
 
-    var source={
-        dash:url,
-        drm:{
-            clearkey:[
-                {
-                    keyId:ck_keyid,
-                    key:ck_key
-                }
-            ]
+      setTimeout(() => container.appendChild(wm), 100);
+
+      const playerConfig = {
+        abr: {
+          defaultBandwidthEstimate: 10000,
+          enabled: true,
+          switchInterval: 1
+        },
+        manifest: {
+          defaultPresentationDelay: 4,
+          dash: {
+            ignoreSuggestedPresentationDelay: true,
+            ignoreMinBufferTime: true,
+            autoCorrectDrift: true
+          }
+        },
+        streaming: {
+          bufferingGoal: 8,
+          rebufferingGoal: 2,
+          bufferBehind: 10,
+          lowLatencyMode: true,
+          safeSeekOffset: 4,
+          stallThreshold: 1,
+          jumpLargeGaps: true
         }
-    };
+      };
 
-    var player=new bitmovin.player.Player(
-        document.getElementById("player"),
-        config
-    );
+      if (keyId && key) {
+        playerConfig.drm = {
+          clearKeys: {
+            [keyId]: key
+          }
+        };
+      }
 
-    player.load(source).then(function(){
+      player.configure(playerConfig);
 
-        document.getElementById("status").style.display="none";
+      try {
+        await player.load(streamUrl, -4);
+        videoEl.play();
+      } catch (e) {
+        console.log('Player load error:', e);
+      }
 
-    }).catch(function(err){
+      const onFsChange = () => {
+        const fsEl =
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement;
 
-        document.querySelector(".s-title").innerHTML="Failed to load stream.";
+        if (fsEl) {
+          fsEl.appendChild(wm);
+          wm.style.opacity = '.50';
+          wm.style.bottom = '74px';
+        } else {
+          container.appendChild(wm);
+          wm.style.opacity = '.55';
+          wm.style.bottom = '70px';
+        }
+      };
 
-        console.log(err);
+      document.addEventListener('fullscreenchange', onFsChange);
+      document.addEventListener('webkitfullscreenchange', onFsChange);
+      document.addEventListener('mozfullscreenchange', onFsChange);
 
+      videoEl.addEventListener('play', () => {
+        setTimeout(() => {
+          wm.style.opacity = '.30';
+        }, 3000);
+      });
+
+      videoEl.addEventListener('pause', () => {
+        wm.style.opacity = '.55';
+      });
+
+      document.addEventListener('mousemove', () => {
+        wm.style.opacity = '.55';
+        clearTimeout(window._wmTimer);
+        window._wmTimer = setTimeout(() => {
+          if (!videoEl.paused) wm.style.opacity = '.30';
+        }, 3000);
+      });
+
+      document.addEventListener('touchstart', () => {
+        wm.style.opacity = '.55';
+        clearTimeout(window._wmTimer);
+        window._wmTimer = setTimeout(() => {
+          if (!videoEl.paused) wm.style.opacity = '.30';
+        }, 3000);
+      });
     });
-
-});
-</script>
-
+  </script>
 </body>
 </html>

@@ -1,289 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Bitmovin Player</title>
-
-<script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<title>WTV LIVE</title>
+<script>(function(s){s.dataset.zone='11621694',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/controls.css">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
-    overflow:hidden;
-    background:#000;
-}
-
-
-/* Header */
-
-.header{
-    height:60px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-    background:#121212;
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-    font-size:20px;
-    font-weight:700;
-    letter-spacing:.5px;
-}
-
-.live{
-    background:#ff0000;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-/* Body */
-
-.container{
-    width:100vw;
-    height:100vh;
-    margin:0;
-    padding:0;
-}
-
-/* Server Buttons */
-
-.server-box{
-    display:flex;
-    gap:10px;
-    margin-bottom:15px;
-}
-
-.server-box button{
-    flex:1;
-    height:44px;
-    border:none;
-    border-radius:10px;
-    background:#1d1d1d;
-    color:#fff;
-    cursor:pointer;
-    font-weight:700;
-    transition:.25s;
-}
-
-.server-box button:hover{
-    background:#303030;
-}
-
-.server-box button.active{
-    background:#e50914;
-}
-
-/* Player */
-
-.player-card{
-    width:100%;
-    height:100%;
-    background:#000;
-    border-radius:0;
-    box-shadow:none;
-    overflow:hidden;
-}
-
-.player-title{
-    padding:14px 18px;
-    background:#181818;
-    font-size:16px;
-    font-weight:600;
-}
-
-#player-wrapper{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#000;
-}
-
-#player{
-    width:100%;
-    height:100%;
-}
-/* Loading */
-
-#status{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:#000;
-    z-index:100;
-}
-
-.spinner{
-    width:55px;
-    height:55px;
-    border:4px solid rgba(255,255,255,.15);
-    border-top:4px solid #ff0000;
-    border-radius:50%;
-    animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-.s-title{
-    margin-top:18px;
-    font-size:16px;
-}
-
-/* Bitmovin */
-
-.bmpui-ui-watermark{
-    background-image:url("https://github.io") !important;
-}
-
-.bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
-.bmpui-ui-volumeslider .bmpui-seekbar-playbackposition{
-    background:#ff0000 !important;
-}
-
-.bmpui-on,
-.bmpui-ui-selectbox{
-    color:#ff0000 !important;
-}
-
-@media(max-width:768px){
-
-.header{
-    height:55px;
-}
-
-.logo{
-    font-size:18px;
-}
-
-.server-box button{
-    height:42px;
-}
-
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.shaka-video-container{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+video{width:100%;height:100%;object-fit:contain;background:#000}
+video.mode-fill{object-fit:fill}
+video.mode-cover{object-fit:cover}
+.shaka-spinner-container,.shaka-spinner,.shaka-spinner-svg{display:none!important}
+.shaka-controls-container button{color:#fff!important}
+.shaka-fit-btn{background:transparent!important;border:none!important;cursor:pointer!important;padding:0 10px!important;opacity:.85;display:flex;align-items:center;justify-content:center;height:100%;transition:opacity .15s}
+.shaka-fit-btn:hover{opacity:1}
+.shaka-fit-btn svg{width:18px;height:18px;display:block}
+#loader{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
+#loader.on{opacity:1}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#38bdf8;border-radius:50%;animation:sp .75s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 </style>
 </head>
-
 <body>
 
-
-<body>
-
-<div class="container">
-
-    <div class="player-card">
-
-        <div id="player-wrapper">
-
-            <div id="status">
-                <div class="spinner"></div>
-                <div class="s-title">Loading Stream...</div>
-            </div>
-
-            <div id="player"></div>
-
-        </div>
-
-    </div>
-
+<div class="shaka-video-container" id="pc">
+  <video id="v" autoplay playsinline preload="metadata"></video>
+  <div id="loader"><div class="spin"></div></div>
 </div>
 
-<!-- Your JavaScript stays exactly the same -->
-
-</body>
-
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/shaka-player.ui.min.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', async () => {
+  shaka.polyfill.installAll();
+  if (!shaka.Player.isBrowserSupported()) return;
 
-var url="https://dash-ott.bia-cf.live.pv-cdn.net/iad-nitro/live/clients/dash/enc/xhys43gbgu/out/v1/ec2d6860db184a459d59d66c5e560b8b/cenc.mpd";
+  const video     = document.getElementById('v');
+  const container = document.getElementById('pc');
+  const loader    = document.getElementById('loader');
 
-var ck_keyid="5aab7e7ac344b32e7e1acea2d92c78f3";
+  let playing = false;
+  const showLoader = () => { if (playing) loader.classList.add('on'); };
+  const hideLoader = () => { playing = true; loader.classList.remove('on'); };
 
-var ck_key="d6c5d1c0ed77d1f1a0a87af823591c78";
+  video.addEventListener('waiting',    showLoader);
+  video.addEventListener('stalled',    showLoader);
+  video.addEventListener('seeking',    showLoader);
+  video.addEventListener('playing',    hideLoader);
+  video.addEventListener('canplay',    hideLoader);
+  video.addEventListener('timeupdate', () => { if (!video.paused && video.currentTime > 0) hideLoader(); });
 
-function override(url){
+  const player = new shaka.Player();
+  await player.attach(video);
 
-    var wm=document.querySelector('button.bmpui-ui-watermark');
+  const ui = new shaka.ui.Overlay(player, container, video);
+  ui.configure({
+    controlPanelElements: ['play_pause','time_and_duration','spacer','quality','fullscreen','overflow_menu'],
+    overflowMenuButtons:  ['language','captions','playback_rate','picture_in_picture'],
+    seekBarColors: { base:'rgba(209,213,219,.25)', buffered:'rgba(139,0,0,.45)', played:'#22c55e' },
+    fadeDelay: 3
+  });
 
-    if(wm) wm.setAttribute('disabled','disabled');
+  const STREAM_URL = 'https://abfjk4haaaaaaaamkitc5445rybm6.bia-cf.live.pv-cdn.net/iad-nitro/live/clients/dash/enc/pxbjna1dxy/out/v1/7da1bc4ba0bb40f6b509aada2b491efe/cenc.mpd';
+  const RAW_KEYS = 'a6533dcb0dcdfec329a68f177c700810:b6ed085e409ceda3dddfb9b0d1ea8731';
+  const clearKeys = Object.fromEntries(
+    RAW_KEYS.split(',').map(pair => pair.trim().split(':'))
+  );
 
-    if(url.indexOf('licensing.bitmovin.com/licensing')>-1)
-        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+  player.configure({
+    drm: { clearKeys },
+    manifest: {
+      defaultPresentationDelay: 4,
+      ignoreTextStreamFailures: true,dash: { autoCorrectDrift: true, ignoreMinBufferTime: true }
+    },
+    abr: {
+      enabled: true,
+      defaultBandwidthEstimate: 2000000,
+      bandwidthUpgradeTarget: 0.85,
+      bandwidthDowngradeTarget: 0.95,
+      restrictions: { maxHeight: 1080 }
+    }
+  });
+  player.configurationForLowLatency({
+    streaming: {
+      inaccurateManifestTolerance: 0,
+      segmentPrefetchLimit: 2,
+      updateIntervalSeconds: 0.1,
+      maxDisabledTime: 1,
+      bufferingGoal: 10,
+      rebufferingGoal: 2,
+      bufferBehind: 30,
+      safeSeekOffset: 3,
+      retryParameters: { baseDelay: 100, maxAttempts: 5, backoffFactor: 1.5, fuzzFactor: 0.5 }
+    },
+    manifest: {
+      dash: { autoCorrectDrift: true },
+      retryParameters: { baseDelay: 100 }
+    },
+    drm: {
+      retryParameters: { baseDelay: 100 }
+    }
+  });
 
-    if(url.indexOf('licensing.bitmovin.com/impression')>-1)
-        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+  player.getNetworkingEngine().registerRequestFilter((type, request) => {
+    request.headers['Referer']    = 'https://www.cricbuzz.com/';
+    request.headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36';
+  });
 
-    return url;
-}
+  try { await player.load(STREAM_URL); } catch (_) {}
 
-var _xhrOpen=XMLHttpRequest.prototype.open;
+  const MODES = ['contain','fill','cover'];
+  const ICONS = {
+    contain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/></svg>',
+    fill:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
+    cover:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 7l3 3m0 0H7m2 0V8m9-1l-3 3m0 0h2m-2 0V8M6 13l3-3m0 0H7m2 0v2m9 1l-3-3m0 0h2m-2 0v2"/></svg>'
+  };
+  let modeIdx = 0;
 
-XMLHttpRequest.prototype.open=function(){
+  function injectFitButton(cnt, vid) {
+    const poll = setInterval(() => {
+      const panel = cnt.querySelector('.shaka-controls-button-panel');
+      if (!panel) return;
+      clearInterval(poll);
+      const btn = document.createElement('button');
+      btn.className = 'shaka-fit-btn';
+      btn.title     = 'Toggle fit mode';
+      btn.innerHTML = ICONS.contain;
+      const anchor = panel.querySelector('.shaka-fullscreen-button');
+      if (anchor) panel.insertBefore(btn, anchor); else panel.appendChild(btn);
+      function applyMode(idx) {
+        modeIdx = idx;
+        const m = MODES[idx];
+        vid.classList.remove('mode-fill','mode-cover');
+        if (m === 'fill')  vid.classList.add('mode-fill');
+        if (m === 'cover') vid.classList.add('mode-cover');
+        btn.innerHTML = ICONS[m];
+      }
+      btn.addEventListener('click', e => { e.stopPropagation(); applyMode((modeIdx + 1) % MODES.length); });
+      ['fullscreenchange','webkitfullscreenchange'].forEach(ev => {
+        document.addEventListener(ev, () => {
+          if (!(document.fullscreenElement || document.webkitFullscreenElement)) applyMode(0);
+        });
+      });
+    }, 50);
+  }
 
-    arguments[1]=override(arguments[1]);
-
-    return _xhrOpen.apply(this,arguments);
-
-};
-
-document.addEventListener("DOMContentLoaded",function(){
-
-    var config={
-        key:"11d3698c-efdf-42f1-8769-54663995de2b",
-        playback:{
-            autoplay:true,
-            muted:false
-        }
-    };
-
-    var source={
-        dash:url,
-        drm:{
-            clearkey:[
-                {
-                    keyId:ck_keyid,
-                    key:ck_key
-                }
-            ]
-        }
-    };
-
-    var player=new bitmovin.player.Player(
-        document.getElementById("player"),
-        config
-    );
-
-    player.load(source).then(function(){
-
-        document.getElementById("status").style.display="none";
-
-    }).catch(function(err){
-
-        document.querySelector(".s-title").innerHTML="Failed to load stream.";
-
-        console.log(err);
-
-    });
-
+  injectFitButton(container, video);
 });
 </script>
 

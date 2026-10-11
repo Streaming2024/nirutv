@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading… — Live</title>
+
+    <!-- Shaka Player UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.16.3/shaka-player.ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.16.3/controls.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #video-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            object-fit: contain;
+        }
+
+        .shaka-controls-container {
+            z-index: 10 !important;
+        }
+
+        .shaka-play-button {
+            z-index: 15 !important;
+        }
+
+        /* Live-latency badge */
+        .ll-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            color: #00e5a0;
+            font: 600 12px/1.2 system-ui, sans-serif;
+            padding: 6px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 229, 160, 0.5);
+            letter-spacing: .4px;
+            pointer-events: none;
+            display: none;
+        }
+
+        .ll-badge.visible {
+            display: inline-block;
+        }
+
+        .ll-badge .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5a0;
+            margin-right: 6px;
+            animation: pulse 1.4s infinite ease-in-out;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.75);
+            }
+        }
+
+        /* Premium look for the settings menu */
+        .shaka-settings-menu {
+            background: rgba(30, 30, 30, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            max-width: 220px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .shaka-settings-menu button {
+            display: block;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            border-radius: 8px;
+            padding: 6px 12px;
+            margin: 4px 0;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            font-size: 13px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shaka-settings-menu button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 198, 255, 0.12), rgba(0, 114, 255, 0.12));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+            z-index: 0;
+        }
+
+        .shaka-settings-menu button:hover::before,
+        .shaka-settings-menu button:focus::before {
+            opacity: 1;
+        }
+
+        .shaka-settings-menu button:hover,
+        .shaka-settings-menu button:focus {
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+            color: #fff;
+        }
+
+        .shaka-settings-menu button[aria-checked="true"] {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 12px rgba(0, 198, 255, 0.7);
+        }
+
+        .shaka-settings-menu button:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Status overlay */
+        .status-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8fafc;
+            font-family: system-ui, sans-serif;
+            background: #0f172a;
+            z-index: 30;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .status-overlay.hidden {
+            display: none;
+        }
+
+        .status-overlay a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .status-overlay a:hover {
+            text-decoration: underline;
+        }
+
+        .status-overlay code {
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: .9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Status / error overlay -->
+    <div id="statusOverlay" class="status-overlay">Loading match…</div>
+
+    <div id="video-container">
+        <video id="video" poster="https://dns-tv.pages.dev/logo/image.png" class="shaka-video" playsinline></video>
+        <div class="shaka-controls-container" shaka-controls></div>
+    </div>
+
+    <script>
+        /* =====================================================================
+         *  CONFIG
+         * ===================================================================== */
+        const M3U_URL = 'https://raw.githubusercontent.com/doctor-8trange/nexphi0/refs/heads/main/data/icc.m3u';
+        const WORKER_URL = 'https://falling-math-23a2.safkdk10.workers.dev/';
+        const ALLOWED_DOMAINS = ['yonotv.pages.dev'];   // client-side host check
+
+        /* =====================================================================
+         *  DOMAIN LOCK (client-side — best-effort replacement for PHP referer check)
+         *  NOTE: Static pages can't truly block embedding. We do what we can:
+         *    1. If the parent hostname is not in the allow-list, redirect top.
+         *    2. If we're framed by an unexpected domain, break out.
+         *  Same-origin framing is always allowed.
+         * ===================================================================== */
+        (function enforceDomainLock() {
+            try {
+                const parentHost = (function () {
+                    try {
+                        if (window.top === window.self) return '';
+                        return new URL(document.referrer).hostname || '';
+                    } catch {
+                        // Cross-origin parent — referrer still gives us a hint
+                        try { return new URL(document.referrer).hostname || ''; } catch { return ''; }
+                    }
+                })();
+
+                // Direct visit → allow
+                if (parentHost === '') return;
+
+                const ok = ALLOWED_DOMAINS.some(d =>
+                    parentHost === d || parentHost.endsWith('.' + d)
+                );
+                if (ok) return;
+
+                // Blocked — escape the frame
+                const target = 'https://sphublive.com';
+                try {
+                    if (window.top !== window.self) window.top.location.href = target;
+                    else window.location.href = target;
+                } catch {
+                    window.location.href = target;
+                }
+            } catch (e) {
+                // Never let the lock itself break the page
+                console.warn('Domain lock error:', e);
+            }
+        })();
+
+        /* =====================================================================
+         *  M3U PARSER  (identical logic to index.html)
+         * ===================================================================== */
+        function parseM3U(text) {
+            const lines = text.split(/\r?\n/);
+            const matches = {};
+            let current = null;
+
+            for (let raw of lines) {
+                const line = raw.trim();
+
+                if (line.startsWith('#EXTINF:')) {
+                    const idMatch = line.match(/tvg-id="([^"]+)"/);
+                    const logoMatch = line.match(/tvg-logo="([^"]+)"/);
+                    const grpMatch = line.match(/group-title="([^"]+)"/);
+                    const commaIdx = line.lastIndexOf(',');
+                    const title = commaIdx >= 0 ? line.slice(commaIdx + 1).trim() : '';
+                    const tvgId = idMatch ? idMatch[1] : '';
+
+                    if (!tvgId) { current = null; continue; }
+
+                    current = {
+                        tvg_id: tvgId,
+                        logo: logoMatch ? logoMatch[1] : '',
+                        group: grpMatch ? grpMatch[1] : 'General',
+                        title: title,
+                        url: '',
+                        license_key: '',
+                    };
+                    continue;
+                }
+
+                if (current !== null && line.startsWith('#KODIPROP:inputstream.adaptive.license_key=')) {
+                    current.license_key = line.slice(
+                        '#KODIPROP:inputstream.adaptive.license_key='.length
+                    );
+                    continue;
+                }
+
+                if (line && !line.startsWith('#') && current !== null) {
+                    current.url = line;
+                    matches[current.tvg_id] = current;
+                    current = null;
+                }
+            }
+            return matches;
+        }
+
+        /* =====================================================================
+         *  Extract ClearKey (KID:KEY) from license_key (same logic as PHP)
+         * ===================================================================== */
+        function extractClearKey(licenseKey) {
+            if (!licenseKey) return { keyid: '', key: '' };
+            const lk = licenseKey.trim();
+
+            // Try JSON form: {"keys":[{"kid":"...","k":"..."}]}
+            try {
+                const decoded = JSON.parse(lk);
+                if (decoded && decoded.keys && decoded.keys[0] &&
+                    decoded.keys[0].kid && decoded.keys[0].k) {
+                    return {
+                        keyid: decoded.keys[0].kid,
+                        key: decoded.keys[0].k
+                    };
+                }
+            } catch { /* not JSON */ }
+
+            // Try "KID:KEY" form
+            if (lk.includes(':') && !lk.includes('{')) {
+                const idx = lk.indexOf(':');
+                return {
+                    keyid: lk.slice(0, idx).trim(),
+                    key: lk.slice(idx + 1).trim()
+                };
+            }
+
+            return { keyid: '', key: '' };
+        }
+
+        /* =====================================================================
+         *  Proxy helper — routes through the Cloudflare Worker
+         * ===================================================================== */
+        function proxiedUrl(original) {
+            return WORKER_URL + '?url=' + encodeURIComponent(original);
+        }
+
+        /* =====================================================================
+         *  Status overlay helpers
+         * ===================================================================== */
+        function showStatus(html) {
+            const el = document.getElementById('statusOverlay');
+            el.innerHTML = html;
+            el.classList.remove('hidden');
+        }
+        function hideStatus() {
+            document.getElementById('statusOverlay').classList.add('hidden');
+        }
+
+        /* =====================================================================
+         *  MAIN
+         * ===================================================================== */
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const requestedId = params.get('id') || '';
+
+            if (!requestedId) {
+                showStatus('<div><h2>Missing match ID</h2>' +
+                    '<p><a href="index.html">← Back to matches</a></p></div>');
+                return;
+            }
+
+            /* ---------- Fetch & parse M3U ---------- */
+            let match;
+            try {
+                const res = await fetch(M3U_URL, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const text = await res.text();
+                const matches = parseM3U(text);
+                match = matches[requestedId] || null;
+            } catch (err) {
+                showStatus('<div><h2>Error</h2><p>Could not fetch the M3U playlist.<br>' +
+                    '<small>' + err.message + '</small></p>' +
+                    '<p><a href="index.html">← Back to matches</a></p></div>');
+                return;
+            }
+
+            if (!match) {
+                showStatus(
+                    '<div><h2>Match not found</h2>' +
+                    '<p>No live match with <code>tvg-id</code> = <code>' +
+                    escapeHtml(requestedId) + '</code></p>' +
+                    '<p><a href="index.html">← Back to matches</a></p></div>'
+                );
+                return;
+            }
+
+            /* ---------- Page title ---------- */
+            document.title = match.title + ' — Live';
+
+            /* ---------- ClearKey extraction ---------- */
+            const ck = extractClearKey(match.license_key);
+
+            /* ---------- Shaka init ---------- */
+            shaka.polyfill.installAll();
+            if (!shaka.Player.isBrowserSupported()) {
+                showStatus('<div><h2>Browser not supported</h2>' +
+                    '<p>Please use a modern browser.</p></div>');
+                return;
+            }
+
+            hideStatus();
+
+            const video = document.getElementById('video');
+            const container = document.getElementById('video-container');
+            const llBadge = document.getElementById('llBadge');
+
+            const player = new shaka.Player(video);
+            const ui = new shaka.ui.Overlay(player, container, video);
+
+            player.addEventListener('error', e => {
+                console.error('Shaka Player Error:', e.detail);
+            });
+
+            /* ==========================================================
+             *  LOW-LATENCY STREAMING CONFIGURATION
+             * ========================================================== */
+            player.configure({
+                streaming: {
+                    autoLowLatencyMode: true,
+                    lowLatencyMode: false,
+
+                    liveSync: true,
+                    liveSyncMaxLatency: 4.0,
+                    liveSyncTargetLatency: 2.5,
+                    liveSyncPlaybackRate: 1.02,
+
+                    rebufferingGoal: 2.0,
+                    bufferingGoal: 8.0,
+                    bufferBehind: 10.0,
+
+                    inaccurateManifestTolerance: 2,
+                    rebufferToLiveDuration: 1.0,
+
+                    segmentPrefetchLimit: 3,
+
+                    retryParameters: {
+                        maxAttempts: 6,
+                        baseDelay: 500,
+                        backoffFactor: 1.6,
+                        fuzzFactor: 0.4,
+                        timeout: 30000
+                    }
+                },
+                manifest: {
+                    retryParameters: {
+                        maxAttempts: 6,
+                        baseDelay: 500,
+                        backoffFactor: 1.6,
+                        fuzzFactor: 0.4
+                    },
+                    dash: { ignoreMinBufferTime: true }
+                },
+                abr: {
+                    enabled: true,
+                    defaultBandwidthEstimate: 2000000,
+                    switchInterval: 6,
+                    bandwidthUpgradeTarget: 0.85,
+                    bandwidthDowngradeTarget: 0.95
+                }
+            });
+
+            /* ---------- ClearKey (DRM) ---------- */
+            if (ck.keyid && ck.key) {
+                const clearKeyMap = {};
+                clearKeyMap[ck.keyid.trim()] = ck.key.trim();
+
+                player.configure({
+                    drm: {
+                        clearKeys: clearKeyMap,
+                        servers: {
+                            'org.w3.clearkey': match.url
+                        }
+                    }
+                });
+                console.log('ClearKey configured:', clearKeyMap);
+            }
+
+            /* ---------- UI controls ---------- */
+            ui.configure({
+                controlPanelElements: [
+                    'play_pause', 'time_and_duration',
+                    'spacer', 'mute', 'volume', 'captions',
+                    'quality', 'playback_rate', 'picture_in_picture',
+                    'fullscreen'
+                ],
+                addBigPlayButton: true,
+                enableTooltips: true,
+                overflowMenuButtons: ['captions', 'quality', 'playback_rate', 'picture_in_picture']
+            });
+
+            /* ---------- Latency badge (simple live indicator) ---------- */
+            function startLatencyMonitor() {
+                setInterval(() => {
+                    if (!player.isLive || !video.duration) return;
+                    const seekRange = player.seekRange();
+                    const liveEdge = seekRange.end;
+                    const current = video.currentTime;
+                    const latency = Math.max(0, liveEdge - current);
+                    // Show badge if within 6s of live edge
+                    if (latency <= 6) llBadge.classList.add('visible');
+                    else llBadge.classList.remove('visible');
+                }, 1000);
+            }
+
+            /* ---------- Load stream ---------- */
+            const loadUrl = proxiedUrl(match.url);
+            console.log('Match ID:', match.tvg_id);
+            console.log('Original URL:', match.url);
+            console.log('Proxied URL:', loadUrl);
+
+            try {
+                await player.load(loadUrl);
+                console.log('Loaded OK');
+
+                video.play().catch(async err => {
+                    console.warn('Autoplay blocked, retrying muted:', err);
+                    video.muted = true;
+                    try { await video.play(); }
+                    catch (e) { console.warn('Muted autoplay failed:', e); }
+                });
+
+                startLatencyMonitor();
+                window.player = player;   // debugging
+            } catch (err) {
+                console.error('Load failed:', err);
+                showStatus(
+                    '<div><h2>Stream failed to load</h2>' +
+                    '<p><small>' + escapeHtml(String(err && err.message || err)) + '</small></p>' +
+                    '<p><a href="index.html">← Back to matches</a></p></div>'
+                );
+            }
+        });
+
+        /* =====================================================================
+         *  Small helper
+         * ===================================================================== */
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+    </script>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fancode Live</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#0b0f14; color:#e6e6e6; margin:0; padding:16px; }
+  h1 { font-size: 1.2rem; }
+  .match { background:#141b23; border:1px solid #23303d; border-radius:10px; padding:12px; margin:10px 0; }
+  .match img { width:100%; max-width:320px; border-radius:8px; display:block; margin-bottom:8px; }
+  .live { color:#22c55e; font-weight:700; }
+  .upcoming { color:#f59e0b; font-weight:700; }
+  a.play-btn { display:inline-block; background:#2563eb; color:#fff; padding:8px 14px;
+               border-radius:8px; text-decoration:none; font-weight:600; margin-top:6px; }
+  a.play-btn:hover { background:#1d4ed8; }
+  .small { font-size:.8rem; color:#8b9bb0; }
+</style>
+</head>
+<body>
+<h1>🏏 Fancode Live Matches</h1>
+<p class="small" id="status">Loading…</p>
+<div id="list"></div>
+
+<script>
+const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
+const PROXY    = "https://live.kaizokutv.tech/prox/fan2-prox.php?url=";
+const PLAYER   = "https://yonotv-now.pages.dev/dplyrr?src=";
+
+// Build the final player link for a match
+function buildPlayerUrl(match) {
+  // prefer adfree_url, fall back to dai_url
+  const stream = match.adfree_url || match.dai_url;
+  if (!stream) return null;
+
+  // 1) URL-encode the stream URL for the proxy
+  const proxied = PROXY + encodeURIComponent(stream);
+
+  // 2) URL-encode the proxy URL for the player's ?src=
+  const playerUrl = PLAYER + encodeURIComponent(proxied);
+
+  return playerUrl;
+}
+
+async function load() {
+  const status = document.getElementById("status");
+  const list   = document.getElementById("list");
+  try {
+    const res = await fetch(JSON_URL, { cache: "no-store" });
+    const data = await res.json();
+
+    const matches = data.matches || [];
+    status.textContent = `Last update: ${data["last update time"] || "?"} — ${matches.length} matches`;
+
+    // Show LIVE first, then UPCOMING
+    matches.sort((a,b) => (b.status === "LIVE") - (a.status === "LIVE"));
+
+    list.innerHTML = "";
+    for (const m of matches) {
+      const div = document.createElement("div");
+      div.className = "match";
+
+      const playerUrl = buildPlayerUrl(m);
+      const liveClass = m.status === "LIVE" ? "live" : "upcoming";
+
+      div.innerHTML = `
+        ${m.src ? `<img src="${m.src}" alt="" loading="lazy">` : ""}
+        <div><strong>${m.match_name || m.title}</strong></div>
+        <div class="small">${m.event_name || ""}</div>
+        <div class="${liveClass}">${m.status} · ${m.startTime || ""}</div>
+        ${playerUrl
+          ? `<a class="play-btn" href="${playerUrl}" target="_blank" rel="noopener">▶ Play</a>`
+          : `<div class="small">No stream available yet</div>`}
+      `;
+      list.appendChild(div);
+    }
+  } catch (err) {
+    status.textContent = "Error loading JSON: " + err.message;
+  }
+}
+
+load();
+setInterval(load, 60 * 1000); // refresh every 60s
+</script>
+</body>
+</html>

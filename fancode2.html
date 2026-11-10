@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fancode Live</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<style>
+  :root{
+    --bg:#0b0f14; --card:#141b23; --line:#23303d;
+    --txt:#e6e6e6; --muted:#8b9bb0; --live:#22c55e; --up:#f59e0b;
+    --blue:#2563eb;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg); color:var(--txt); margin:0; padding:18px;
+  }
+  .hidden{display:none !important}
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+    justify-content:space-between; margin-bottom:18px;
+  }
+  h1{font-size:1.25rem; margin:0}
+  .meta{font-size:.82rem; color:var(--muted)}
+  .filter{display:flex; gap:8px; flex-wrap:wrap}
+  .filter button{
+    background:var(--card); color:var(--txt); border:1px solid var(--line);
+    padding:6px 12px; border-radius:999px; cursor:pointer; font-size:.82rem;
+  }
+  .filter button.active{background:var(--blue); border-color:var(--blue)}
+
+  /* ---------- GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .card:hover{transform:translateY(-3px); border-color:#34506b}
+  .thumb{
+    position:relative; aspect-ratio:16/9; background:#0a0e13; overflow:hidden;
+  }
+  .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  .badge{
+    position:absolute; top:8px; left:8px; font-size:.7rem; font-weight:700;
+    padding:3px 8px; border-radius:999px; letter-spacing:.4px;
+  }
+  .badge.LIVE{background:var(--live); color:#04130a}
+  .badge.UPCOMING{background:var(--up); color:#1a1000}
+  .cat{
+    position:absolute; top:8px; right:8px; font-size:.68rem;
+    background:rgba(0,0,0,.6); color:#fff; padding:3px 8px; border-radius:999px;
+  }
+  .body{padding:12px; display:flex; flex-direction:column; gap:6px; flex:1}
+  .teams{font-weight:700; font-size:.95rem; line-height:1.25}
+  .event{font-size:.78rem; color:var(--muted)}
+  .time{font-size:.78rem; color:var(--muted); margin-top:auto}
+  .play{
+    margin-top:10px; display:inline-block; text-align:center;
+    background:var(--blue); color:#fff; text-decoration:none;
+    padding:9px 14px; border-radius:9px; font-weight:600; font-size:.85rem;
+    border:none; cursor:pointer; width:100%;
+  }
+  .play:hover{background:#1d4ed8}
+  .play[disabled]{background:#2a3644; color:#7c8a9a; cursor:not-allowed}
+  .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:40px}
+
+  /* ---------- PLAYER VIEW ---------- */
+  a.back{
+    color:var(--muted); text-decoration:none; font-size:.85rem; margin-bottom:10px;
+    display:inline-block;
+  }
+  a.back:hover{color:#fff}
+  .wrap{
+    width:100%; max-width:1100px; margin:0 auto;
+    background:#000; border-radius:12px; overflow:hidden;
+    aspect-ratio:16/9; position:relative;
+  }
+  video{width:100%; height:100%; display:block; background:#000}
+  .ptitle{margin:12px auto 4px; max-width:1100px; font-weight:700; font-size:1rem}
+  .psub{max-width:1100px; margin:0 auto; color:var(--muted); font-size:.82rem}
+  .pstatus{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-size:.95rem; text-align:center; padding:20px;
+  }
+
+  @media(max-width:480px){
+    .grid{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:10px}
+    .teams{font-size:.85rem}
+    .body{padding:9px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== GRID VIEW ===================== -->
+<div id="gridView">
+  <header>
+    <div>
+      <h1>🏏 Fancode Live</h1>
+      <div class="meta" id="status">Loading…</div>
+    </div>
+    <div class="filter" id="filters">
+      <button data-f="ALL" class="active">All</button>
+      <button data-f="LIVE">Live</button>
+      <button data-f="UPCOMING">Upcoming</button>
+      <button data-f="Cricket">Cricket</button>
+      <button data-f="Football">Football</button>
+      <button data-f="Tennis">Tennis</button>
+      <button data-f="Golf">Golf</button>
+      <button data-f="Badminton">Badminton</button>
+    </div>
+  </header>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- ===================== PLAYER VIEW ===================== -->
+<div id="playerView" class="hidden">
+  <a class="back" href="index.html">← Back to matches</a>
+  <div class="wrap">
+    <video id="video" controls playsinline autoplay></video>
+    <div class="pstatus" id="pstatus">Loading…</div>
+  </div>
+  <div class="ptitle" id="ptitle"></div>
+  <div class="psub" id="psub"></div>
+</div>
+
+<script>
+const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
+const PROXY    = "https://live.kaizokutv.tech/prox/fan2-prox.php?url=";
+
+/* ---------- shared state ---------- */
+let ALL = [];
+let FILTER = "ALL";
+let hls = null;
+
+/* ---------- helpers ---------- */
+function sameId(a, b){ return String(a) === String(b); }
+function hasStream(m){ return !!(m.adfree_url || m.dai_url); }
+
+/* =====================================================
+   GRID VIEW
+   ===================================================== */
+function renderGrid(){
+  const grid = document.getElementById("grid");
+  let list = ALL.slice();
+
+  if(FILTER === "LIVE" || FILTER === "UPCOMING")
+    list = list.filter(m => m.status === FILTER);
+  else if(FILTER !== "ALL")
+    list = list.filter(m => m.event_category === FILTER);
+
+  list.sort((a,b) => (b.status === "LIVE") - (a.status === "LIVE"));
+
+  if(!list.length){
+    grid.innerHTML = `<div class="empty">No matches in this filter.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(m => {
+    const img = m.src || "https://via.placeholder.com/640x360/101720/8b9bb0?text=No+Image";
+    const id  = m.match_id;
+    return `
+      <div class="card">
+        <div class="thumb">
+          <img src="${img}" alt="" loading="lazy"
+               onerror="this.src='https://via.placeholder.com/640x360/101720/8b9bb0?text=No+Image'">
+          <span class="badge ${m.status}">${m.status}</span>
+          <span class="cat">${m.event_category || ""}</span>
+        </div>
+        <div class="body">
+          <div class="teams">${m.match_name || m.title || ""}</div>
+          <div class="event">${m.event_name || ""}</div>
+          <div class="time">🕒 ${m.startTime || ""}</div>
+          ${
+            hasStream(m)
+              ? `<a class="play" href="index.html?id=${encodeURIComponent(id)}">▶ Play</a>`
+              : `<button class="play" disabled>Not live yet</button>`
+          }
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+async function loadGrid(){
+  const status = document.getElementById("status");
+  try{
+    const res = await fetch(JSON_URL, {cache:"no-store"});
+    const data = await res.json();
+    ALL = data.matches || [];
+    status.textContent = `Last update: ${data["last update time"] || "?"} · ${ALL.length} matches`;
+    renderGrid();
+  }catch(e){
+    status.textContent = "Failed to load: " + e.message;
+  }
+}
+
+document.getElementById("filters").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if(!b) return;
+  document.querySelectorAll("#filters button").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  FILTER = b.dataset.f;
+  renderGrid();
+});
+
+/* =====================================================
+   PLAYER VIEW
+   ===================================================== */
+function setPStatus(t){
+  const el = document.getElementById("pstatus");
+  el.textContent = t || "";
+  el.style.display = t ? "flex" : "none";
+}
+
+async function loadPlayer(id){
+  const video = document.getElementById("video");
+  const titleEl = document.getElementById("ptitle");
+  const subEl = document.getElementById("psub");
+
+  setPStatus("Loading match…");
+
+  let data;
+  try{
+    const res = await fetch(JSON_URL, {cache:"no-store"});
+    data = await res.json();
+  }catch(e){
+    setPStatus("Failed to load match list: " + e.message);
+    return;
+  }
+
+  const match = (data.matches || []).find(m => sameId(m.match_id, id));
+  if(!match){
+    setPStatus(`Match ${id} not found in feed (may have finished).`);
+    return;
+  }
+
+  document.title = (match.match_name || match.title || "Live") + " — Fancode";
+  titleEl.textContent = match.match_name || match.title || "";
+  subEl.textContent = [match.event_name, match.startTime, match.status]
+    .filter(Boolean).join(" · ");
+
+  const stream = match.adfree_url || match.dai_url;
+  if(!stream){
+    setPStatus(match.status === "UPCOMING"
+      ? "This match has not started yet. Refresh closer to start time."
+      : "No stream URL available for this match yet.");
+    return;
+  }
+
+  const proxied = PROXY + encodeURIComponent(stream);
+  playStream(proxied);
+}
+
+function playStream(url){
+  const video = document.getElementById("video");
+  setPStatus("Connecting to stream…");
+
+  if(video.canPlayType("application/vnd.apple.mpegurl")){
+    video.src = url;
+    video.addEventListener("loadedmetadata", () => setPStatus(""), {once:true});
+    video.addEventListener("error", () => setPStatus("Playback error (link may have expired). Reload to refresh."), {once:true});
+    video.play().catch(()=>{});
+  } else if(window.Hls && Hls.isSupported()){
+    hls = new Hls({lowLatencyMode:true, enableWorker:true});
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      setPStatus("");
+      video.play().catch(()=>{});
+    });
+    hls.on(Hls.Events.ERROR, (_, d) => {
+      if(d.fatal){
+        console.warn("HLS fatal:", d.type, d.details);
+        setPStatus("Stream error: " + d.details + ". The signed link may have expired — reload the page.");
+      }
+    });
+  } else {
+    setPStatus("HLS not supported in this browser.");
+  }
+}
+
+window.addEventListener("beforeunload", () => { if(hls) hls.destroy(); });
+
+/* =====================================================
+   ROUTER — decides which view to show
+   ===================================================== */
+function route(){
+  const id = new URLSearchParams(location.search).get("id");
+  const gridView   = document.getElementById("gridView");
+  const playerView = document.getElementById("playerView");
+
+  if(id){
+    gridView.classList.add("hidden");
+    playerView.classList.remove("hidden");
+    loadPlayer(id);
+  } else {
+    playerView.classList.add("hidden");
+    gridView.classList.remove("hidden");
+    loadGrid();
+    setInterval(loadGrid, 60 * 1000); // auto-refresh only on grid
+  }
+}
+
+route();
+</script>
+</body>
+</html>

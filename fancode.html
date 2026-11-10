@@ -5,80 +5,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fancode Live</title>
 <style>
-  body { font-family: system-ui, sans-serif; background:#0b0f14; color:#e6e6e6; margin:0; padding:16px; }
-  h1 { font-size: 1.2rem; }
-  .match { background:#141b23; border:1px solid #23303d; border-radius:10px; padding:12px; margin:10px 0; }
-  .match img { width:100%; max-width:320px; border-radius:8px; display:block; margin-bottom:8px; }
-  .live { color:#22c55e; font-weight:700; }
-  .upcoming { color:#f59e0b; font-weight:700; }
-  a.play-btn { display:inline-block; background:#2563eb; color:#fff; padding:8px 14px;
-               border-radius:8px; text-decoration:none; font-weight:600; margin-top:6px; }
-  a.play-btn:hover { background:#1d4ed8; }
-  .small { font-size:.8rem; color:#8b9bb0; }
+  :root{
+    --bg:#0b0f14; --card:#141b23; --line:#23303d;
+    --txt:#e6e6e6; --muted:#8b9bb0; --live:#22c55e; --up:#f59e0b;
+    --blue:#2563eb;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg); color:var(--txt); margin:0; padding:18px;
+  }
+  header{
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+    justify-content:space-between; margin-bottom:18px;
+  }
+  h1{font-size:1.25rem; margin:0}
+  .meta{font-size:.82rem; color:var(--muted)}
+  .filter{display:flex; gap:8px; flex-wrap:wrap}
+  .filter button{
+    background:var(--card); color:var(--txt); border:1px solid var(--line);
+    padding:6px 12px; border-radius:999px; cursor:pointer; font-size:.82rem;
+  }
+  .filter button.active{background:var(--blue); border-color:var(--blue)}
+
+  /* ---------- GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .card:hover{transform:translateY(-3px); border-color:#34506b}
+  .thumb{
+    position:relative; aspect-ratio:16/9; background:#0a0e13; overflow:hidden;
+  }
+  .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  .badge{
+    position:absolute; top:8px; left:8px; font-size:.7rem; font-weight:700;
+    padding:3px 8px; border-radius:999px; letter-spacing:.4px;
+  }
+  .badge.LIVE{background:var(--live); color:#04130a}
+  .badge.UPCOMING{background:var(--up); color:#1a1000}
+  .cat{
+    position:absolute; top:8px; right:8px; font-size:.68rem;
+    background:rgba(0,0,0,.6); color:#fff; padding:3px 8px; border-radius:999px;
+  }
+  .body{padding:12px; display:flex; flex-direction:column; gap:6px; flex:1}
+  .teams{font-weight:700; font-size:.95rem; line-height:1.25}
+  .event{font-size:.78rem; color:var(--muted)}
+  .time{font-size:.78rem; color:var(--muted); margin-top:auto}
+  .play{
+    margin-top:10px; display:inline-block; text-align:center;
+    background:var(--blue); color:#fff; text-decoration:none;
+    padding:9px 14px; border-radius:9px; font-weight:600; font-size:.85rem;
+    border:none; cursor:pointer; width:100%;
+  }
+  .play:hover{background:#1d4ed8}
+  .play[disabled]{background:#2a3644; color:#7c8a9a; cursor:not-allowed}
+  .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:40px}
+
+  @media(max-width:480px){
+    .grid{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:10px}
+    .teams{font-size:.85rem}
+    .body{padding:9px}
+  }
 </style>
 </head>
 <body>
-<h1>🏏 Fancode Live Matches</h1>
-<p class="small" id="status">Loading…</p>
-<div id="list"></div>
+
+<header>
+  <div>
+    <h1>🏏 Fancode Live</h1>
+    <div class="meta" id="status">Loading…</div>
+  </div>
+  <div class="filter" id="filters">
+    <button data-f="ALL" class="active">All</button>
+    <button data-f="LIVE">Live</button>
+    <button data-f="UPCOMING">Upcoming</button>
+    <button data-f="Cricket">Cricket</button>
+    <button data-f="Football">Football</button>
+    <button data-f="Tennis">Tennis</button>
+    <button data-f="Golf">Golf</button>
+    <button data-f="Badminton">Badminton</button>
+  </div>
+</header>
+
+<div class="grid" id="grid"></div>
 
 <script>
 const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
 const PROXY    = "https://live.kaizokutv.tech/prox/fan2-prox.php?url=";
 const PLAYER   = "https://yonotv-now.pages.dev/dplyrr?src=";
 
-// Build the final player link for a match
-function buildPlayerUrl(match) {
-  // prefer adfree_url, fall back to dai_url
-  const stream = match.adfree_url || match.dai_url;
-  if (!stream) return null;
+let ALL = [];
+let FILTER = "ALL";
 
-  // 1) URL-encode the stream URL for the proxy
+/* Build the final "open in new tab" URL:
+   player?src=  <encoded>  proxy?url=<encoded stream>
+*/
+function playerUrl(m){
+  const stream = m.adfree_url || m.dai_url;
+  if(!stream) return null;
   const proxied = PROXY + encodeURIComponent(stream);
-
-  // 2) URL-encode the proxy URL for the player's ?src=
-  const playerUrl = PLAYER + encodeURIComponent(proxied);
-
-  return playerUrl;
+  return PLAYER + encodeURIComponent(proxied);
 }
 
-async function load() {
+/* Render cards */
+function render(){
+  const grid = document.getElementById("grid");
+  let list = ALL.slice();
+
+  if(FILTER === "LIVE" || FILTER === "UPCOMING")
+    list = list.filter(m => m.status === FILTER);
+  else if(FILTER !== "ALL")
+    list = list.filter(m => m.event_category === FILTER);
+
+  list.sort((a,b) => (b.status === "LIVE") - (a.status === "LIVE"));
+
+  if(!list.length){
+    grid.innerHTML = `<div class="empty">No matches in this filter.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(m => {
+    const url = playerUrl(m);
+    const img = m.src || "https://via.placeholder.com/640x360/101720/8b9bb0?text=No+Image";
+    return `
+      <div class="card">
+        <div class="thumb">
+          <img src="${img}" alt="" loading="lazy"
+               onerror="this.src='https://via.placeholder.com/640x360/101720/8b9bb0?text=No+Image'">
+          <span class="badge ${m.status}">${m.status}</span>
+          <span class="cat">${m.event_category || ""}</span>
+        </div>
+        <div class="body">
+          <div class="teams">${m.match_name || m.title || ""}</div>
+          <div class="event">${m.event_name || ""}</div>
+          <div class="time">🕒 ${m.startTime || ""}</div>
+          ${
+            url
+              ? `<a class="play" href="${url.replace(/"/g,'&quot;')}"
+                    target="_blank" rel="noopener noreferrer">▶ Play</a>`
+              : `<button class="play" disabled>Not live yet</button>`
+          }
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+/* Fetch JSON */
+async function load(){
   const status = document.getElementById("status");
-  const list   = document.getElementById("list");
-  try {
-    const res = await fetch(JSON_URL, { cache: "no-store" });
+  try{
+    const res = await fetch(JSON_URL, {cache:"no-store"});
     const data = await res.json();
-
-    const matches = data.matches || [];
-    status.textContent = `Last update: ${data["last update time"] || "?"} — ${matches.length} matches`;
-
-    // Show LIVE first, then UPCOMING
-    matches.sort((a,b) => (b.status === "LIVE") - (a.status === "LIVE"));
-
-    list.innerHTML = "";
-    for (const m of matches) {
-      const div = document.createElement("div");
-      div.className = "match";
-
-      const playerUrl = buildPlayerUrl(m);
-      const liveClass = m.status === "LIVE" ? "live" : "upcoming";
-
-      div.innerHTML = `
-        ${m.src ? `<img src="${m.src}" alt="" loading="lazy">` : ""}
-        <div><strong>${m.match_name || m.title}</strong></div>
-        <div class="small">${m.event_name || ""}</div>
-        <div class="${liveClass}">${m.status} · ${m.startTime || ""}</div>
-        ${playerUrl
-          ? `<a class="play-btn" href="${playerUrl}" target="_blank" rel="noopener">▶ Play</a>`
-          : `<div class="small">No stream available yet</div>`}
-      `;
-      list.appendChild(div);
-    }
-  } catch (err) {
-    status.textContent = "Error loading JSON: " + err.message;
+    ALL = data.matches || [];
+    status.textContent = `Last update: ${data["last update time"] || "?"} · ${ALL.length} matches`;
+    render();
+  }catch(e){
+    status.textContent = "Failed to load: " + e.message;
   }
 }
 
+/* Filters */
+document.getElementById("filters").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if(!b) return;
+  document.querySelectorAll("#filters button").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  FILTER = b.dataset.f;
+  render();
+});
+
+/* Init */
 load();
 setInterval(load, 60 * 1000); // refresh every 60s
 </script>

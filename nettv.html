@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Player</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <style>  
+    * { margin: 0; padding: 0; box-sizing: border-box; }  
+    html, body { background: #000; height: 100vh; width: 100vw; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }  
+    .shaka-video-container { position: absolute; inset: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }  
+    video { width: 100%; height: 100%; background: #000; object-fit: contain; transition: object-fit 0.25s ease-in-out; }  
+    .shaka-spinner-container { display: none !important; }
+    .shaka-bottom-controls { display: flex !important; flex-direction: column !important; }
+    .shaka-seek-bar-container { order: 1 !important; }
+    .shaka-controls-button-panel { order: 2 !important; }
+    .watermark-logo { position: absolute; top: 16px; right: 16px; left: auto; width: 72px; max-width: 78px; min-width: 62px; height: auto; z-index: 100; opacity: 0.82; pointer-events: none; user-select: none; transition: opacity 0.25s, left 0.15s, top 0.15s; }
+    .shaka-video-container:not(.shaka-controls-active) .watermark-logo { opacity: 0.9; }
+    .custom-icon-btn { background: none; border: none; padding: 0 5px; color: rgba(255, 255, 255, 0.9); cursor: pointer; display: flex; align-items: center; transition: color 0.2s, transform 0.2s; }
+    .custom-icon-btn:hover { color: #fff; transform: scale(1.1); }
+    .toast-message { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); background: rgba(0, 0, 0, 0.7); color: white; padding: 12px 24px; border-radius: 30px; font-size: 16px; font-weight: 500; pointer-events: none; opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2000; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); }
+    .toast-message.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .shaka-settings-menu, .shaka-overflow-menu { background-color: rgba(15, 15, 15, 0.95) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; border-radius: 8px !important; backdrop-filter: blur(5px); }
+    .shaka-settings-menu button, .shaka-overflow-menu button { color: #ffffff !important; background-color: transparent !important; transition: background 0.2s; }
+    .shaka-settings-menu button:hover, .shaka-overflow-menu button:hover { background-color: rgba(255, 255, 255, 0.15) !important; }
+    .shaka-settings-menu i, .shaka-overflow-menu i, .shaka-settings-menu span, .shaka-overflow-menu span { color: #ffffff !important; }
+  </style>  
+</head>  
+<body>  
+  <div class="shaka-video-container" id="video-container">  
+    <video autoplay playsinline muted preload="auto" id="video" poster="https://dns-tv.pages.dev/logo/image.png"></video>  
+    <img src="https://dns-tv.pages.dev/logo/image.png" class="watermark-logo" id="watermark-logo" alt="Watermark">
+    <div id="toast" class="toast-message">Original</div>
+  </div>  
+
+  <script>  
+    const video = document.getElementById('video'), toast = document.getElementById('toast'), watermark = document.getElementById('watermark-logo'), container = document.getElementById('video-container');
+    let toastTimeout, currentRatioIndex = 0;
+    const ratioModes = [{ mode: 'contain', name: 'Original', icon: 'aspect_ratio' }, { mode: 'fill', name: 'Stretch', icon: 'settings_overscan' }, { mode: 'cover', name: 'Zoom (Fill)', icon: 'crop_free' }];
+
+    function showToast(message) { toast.innerText = message; toast.classList.add('show'); clearTimeout(toastTimeout); toastTimeout = setTimeout(() => toast.classList.remove('show'), 1500); }
+    function applyRatio() { video.style.objectFit = ratioModes[currentRatioIndex].mode; updateWatermark(); }
+
+    function updateWatermark() {
+      const cw = container.clientWidth, ch = container.clientHeight, vw = video.videoWidth || 16, vh = video.videoHeight || 9, mode = ratioModes[currentRatioIndex].mode;
+      let left = 0, top = 0, width = cw, height = ch;
+      if (mode === 'contain') { const sr = vw / vh, br = cw / ch; if (sr > br) { height = cw / sr; top = (ch - height) / 2; } else { width = ch * sr; left = (cw - width) / 2; } }
+      const size = Math.min(78, Math.max(64, Math.round(Math.min(width, height) * 0.075))), gap = Math.max(14, Math.min(22, Math.round(Math.min(width, height) * 0.02)));
+      watermark.style.width = size + 'px'; watermark.style.left = (left + width - size - gap) + 'px'; watermark.style.right = 'auto'; watermark.style.top = (top + gap) + 'px';
+    }
+
+    // Auto-parser for single or comma-separated KID:KEY strings
+    function parseKeys(input) {
+      let keys = {};
+      input.split(',').forEach(pair => { let [kid, key] = pair.trim().split(':'); if (kid && key) keys[kid] = key; });
+      return keys;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {  
+      shaka.polyfill.installAll();  
+      if (!shaka.Player.isBrowserSupported()) return;  
+
+      const player = new shaka.Player();  
+      await player.attach(video); 
+      const ui = new shaka.ui.Overlay(player, container, video);  
+
+      ui.configure({  
+        fadeDelay: 3,
+        controlPanelElements: ['play_pause', 'mute', 'volume',  'spacer', 'language', 'quality', 'fullscreen'],
+        volumeBarColors: { base: 'rgba(255, 255, 255, 0.3)', level: '#e74c3c' },  
+        seekBarColors: { base: 'rgba(255, 255, 255, 0.3)', buffered: 'rgba(255, 255, 255, 0.5)', played: 'rgba(255, 0, 0)' }
+      });  
+
+      const fullscreenBtn = document.querySelector('.shaka-fullscreen-button');
+      const pipIcon = document.createElement('button');
+      pipIcon.innerHTML = '<i class="material-icons-round" style="font-size:24px;">picture_in_picture_alt</i>';
+      pipIcon.classList.add('custom-icon-btn'); pipIcon.title = "Picture-in-Picture";
+      if (fullscreenBtn && fullscreenBtn.parentNode) fullscreenBtn.parentNode.insertBefore(pipIcon, fullscreenBtn);
+      pipIcon.onclick = async (e) => { e.stopPropagation(); try { if (video !== document.pictureInPictureElement) await video.requestPictureInPicture(); else await document.exitPictureInPicture(); } catch (err) {} };
+
+      const ratioIcon = document.createElement('button');
+      ratioIcon.innerHTML = `<i class="material-icons-round" style="font-size:24px;">${ratioModes[currentRatioIndex].icon}</i>`;
+      ratioIcon.classList.add('custom-icon-btn'); ratioIcon.title = "Change Aspect Ratio";
+      if (fullscreenBtn && fullscreenBtn.parentNode) fullscreenBtn.parentNode.insertBefore(ratioIcon, fullscreenBtn);
+      ratioIcon.onclick = (e) => { e.preventDefault(); e.stopPropagation(); currentRatioIndex = (currentRatioIndex + 1) % ratioModes.length; applyRatio(); ratioIcon.innerHTML = `<i class="material-icons-round" style="font-size:24px;">${ratioModes[currentRatioIndex].icon}</i>`; showToast(ratioModes[currentRatioIndex].name); };
+
+      document.addEventListener('fullscreenchange', () => { if (document.fullscreenElement) { try { if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {}); } catch(e) {} } else { try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch(e) {} } setTimeout(updateWatermark, 150); });
+      ['resize', 'orientationchange'].forEach(evt => window.addEventListener(evt, () => setTimeout(updateWatermark, 150)));
+      ['loadedmetadata', 'loadeddata', 'canplay'].forEach(evt => video.addEventListener(evt, updateWatermark));
+
+      player.getNetworkingEngine().registerRequestFilter((type, request) => { request.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36'; });
+
+      // DRM & Stream Configuration
+      let rawKeys = "b4d7fc89103597185058cc4c81a1800d:17062472ba2a3f1db709d3bb7761c936";
+      let drmConfig = { clearKeys: parseKeys(rawKeys) };  
+      let streamUrl = "https://soft-water-8070.sphub-tech.workers.dev/npl/npl-live.mpd";  
+
+      player.configure({ 
+        preferredAudioLanguage: 'en', preferredTextLanguage: 'en', drm: drmConfig, 
+        streaming: { bufferingGoal: 30, rebufferingGoal: 2, bufferBehind: 10, retryParameters: { timeout: 10000, maxAttempts: 5, baseDelay: 1000, backoffFactor: 2 } },
+        manifest: { retryParameters: { timeout: 10000, maxAttempts: 3 } },
+        abr: { enabled: true }
+      });  
+
+      try { await player.load(streamUrl); applyRatio(); updateWatermark(); } catch (error) { console.error("Error loading stream:", error); }  
+    });  
+  </script>
+</body>
+</html>
+
+

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fancode Live</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 <style>
@@ -12,13 +12,13 @@
     --blue:#2563eb;
   }
   *{box-sizing:border-box}
-  body{
+  .hidden{display:none !important}
+
+  /* ================= GRID VIEW ================= */
+  body.grid{
     font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     background:var(--bg); color:var(--txt); margin:0; padding:18px;
   }
-  .hidden{display:none !important}
-
-  /* ---------- HEADER ---------- */
   header{
     display:flex; flex-wrap:wrap; gap:12px; align-items:center;
     justify-content:space-between; margin-bottom:18px;
@@ -32,7 +32,6 @@
   }
   .filter button.active{background:var(--blue); border-color:var(--blue)}
 
-  /* ---------- GRID ---------- */
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
@@ -72,26 +71,28 @@
   .play[disabled]{background:#2a3644; color:#7c8a9a; cursor:not-allowed}
   .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:40px}
 
-  /* ---------- PLAYER VIEW ---------- */
-  a.back{
-    color:var(--muted); text-decoration:none; font-size:.85rem; margin-bottom:10px;
-    display:inline-block;
+  /* ================= PLAYER VIEW (FULLSCREEN, NO TEXT) ================= */
+  body.player{
+    margin:0; padding:0; background:#000; overflow:hidden;
+    width:100vw; height:100vh;
   }
-  a.back:hover{color:#fff}
-  .wrap{
-    width:100%; max-width:1100px; margin:0 auto;
-    background:#000; border-radius:12px; overflow:hidden;
-    aspect-ratio:16/9; position:relative;
+  body.player video{
+    position:fixed; inset:0;
+    width:100vw; height:100vh;
+    object-fit:contain;
+    background:#000;
   }
-  video{width:100%; height:100%; display:block; background:#000}
-  .ptitle{margin:12px auto 4px; max-width:1100px; font-weight:700; font-size:1rem}
-  .psub{max-width:1100px; margin:0 auto; color:var(--muted); font-size:.82rem}
-  .pstatus{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    color:var(--muted); font-size:.95rem; text-align:center; padding:20px;
+  /* tiny invisible status layer — only visible if there's an error */
+  #pstatus{
+    position:fixed; inset:0; display:none;
+    align-items:center; justify-content:center;
+    color:#8b9bb0; font-family:system-ui,sans-serif;
+    font-size:.95rem; text-align:center; padding:20px;
+    pointer-events:none;
   }
 
   @media(max-width:480px){
+    body.grid{padding:12px}
     .grid{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:10px}
     .teams{font-size:.85rem}
     .body{padding:9px}
@@ -121,33 +122,25 @@
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- ===================== PLAYER VIEW ===================== -->
+<!-- ===================== PLAYER VIEW (video only) ===================== -->
 <div id="playerView" class="hidden">
-  <a class="back" href="index.html">← Back to matches</a>
-  <div class="wrap">
-    <video id="video" controls playsinline autoplay></video>
-    <div class="pstatus" id="pstatus">Loading…</div>
-  </div>
-  <div class="ptitle" id="ptitle"></div>
-  <div class="psub" id="psub"></div>
+  <video id="video" controls playsinline autoplay></video>
+  <div id="pstatus"></div>
 </div>
 
 <script>
 const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
 const PROXY    = "https://live.kaizokutv.tech/prox/fan2-prox.php?url=";
+const FILE     = "fancode2.html";   // change if you rename the file
 
-/* ---------- shared state ---------- */
 let ALL = [];
 let FILTER = "ALL";
 let hls = null;
 
-/* ---------- helpers ---------- */
-function sameId(a, b){ return String(a) === String(b); }
+function sameId(a,b){ return String(a) === String(b); }
 function hasStream(m){ return !!(m.adfree_url || m.dai_url); }
 
-/* =====================================================
-   GRID VIEW
-   ===================================================== */
+/* ===================== GRID ===================== */
 function renderGrid(){
   const grid = document.getElementById("grid");
   let list = ALL.slice();
@@ -166,7 +159,6 @@ function renderGrid(){
 
   grid.innerHTML = list.map(m => {
     const img = m.src || "https://via.placeholder.com/640x360/101720/8b9bb0?text=No+Image";
-    const id  = m.match_id;
     return `
       <div class="card">
         <div class="thumb">
@@ -181,7 +173,7 @@ function renderGrid(){
           <div class="time">🕒 ${m.startTime || ""}</div>
           ${
             hasStream(m)
-              ? `<a class="play" href="index.html?id=${encodeURIComponent(id)}">▶ Play</a>`
+              ? `<a class="play" href="${FILE}?id=${encodeURIComponent(m.match_id)}">▶ Play</a>`
               : `<button class="play" disabled>Not live yet</button>`
           }
         </div>
@@ -212,9 +204,7 @@ document.getElementById("filters").addEventListener("click", e => {
   renderGrid();
 });
 
-/* =====================================================
-   PLAYER VIEW
-   ===================================================== */
+/* ===================== PLAYER ===================== */
 function setPStatus(t){
   const el = document.getElementById("pstatus");
   el.textContent = t || "";
@@ -222,52 +212,44 @@ function setPStatus(t){
 }
 
 async function loadPlayer(id){
-  const video = document.getElementById("video");
-  const titleEl = document.getElementById("ptitle");
-  const subEl = document.getElementById("psub");
-
-  setPStatus("Loading match…");
+  setPStatus("Loading…");
 
   let data;
   try{
     const res = await fetch(JSON_URL, {cache:"no-store"});
     data = await res.json();
   }catch(e){
-    setPStatus("Failed to load match list: " + e.message);
+    setPStatus("Failed to load: " + e.message);
     return;
   }
 
   const match = (data.matches || []).find(m => sameId(m.match_id, id));
   if(!match){
-    setPStatus(`Match ${id} not found in feed (may have finished).`);
+    setPStatus(`Match ${id} not found.`);
     return;
   }
 
-  document.title = (match.match_name || match.title || "Live") + " — Fancode";
-  titleEl.textContent = match.match_name || match.title || "";
-  subEl.textContent = [match.event_name, match.startTime, match.status]
-    .filter(Boolean).join(" · ");
+  document.title = match.match_name || match.title || "Live";
 
   const stream = match.adfree_url || match.dai_url;
   if(!stream){
     setPStatus(match.status === "UPCOMING"
-      ? "This match has not started yet. Refresh closer to start time."
-      : "No stream URL available for this match yet.");
+      ? "Match not started yet."
+      : "No stream available.");
     return;
   }
 
-  const proxied = PROXY + encodeURIComponent(stream);
-  playStream(proxied);
+  playStream(PROXY + encodeURIComponent(stream));
 }
 
 function playStream(url){
   const video = document.getElementById("video");
-  setPStatus("Connecting to stream…");
+  setPStatus("Connecting…");
 
   if(video.canPlayType("application/vnd.apple.mpegurl")){
     video.src = url;
     video.addEventListener("loadedmetadata", () => setPStatus(""), {once:true});
-    video.addEventListener("error", () => setPStatus("Playback error (link may have expired). Reload to refresh."), {once:true});
+    video.addEventListener("error", () => setPStatus("Playback error — reload to refresh token."), {once:true});
     video.play().catch(()=>{});
   } else if(window.Hls && Hls.isSupported()){
     hls = new Hls({lowLatencyMode:true, enableWorker:true});
@@ -280,33 +262,33 @@ function playStream(url){
     hls.on(Hls.Events.ERROR, (_, d) => {
       if(d.fatal){
         console.warn("HLS fatal:", d.type, d.details);
-        setPStatus("Stream error: " + d.details + ". The signed link may have expired — reload the page.");
+        setPStatus("Stream error — reload to refresh token.");
       }
     });
   } else {
-    setPStatus("HLS not supported in this browser.");
+    setPStatus("HLS not supported.");
   }
 }
 
 window.addEventListener("beforeunload", () => { if(hls) hls.destroy(); });
 
-/* =====================================================
-   ROUTER — decides which view to show
-   ===================================================== */
+/* ===================== ROUTER ===================== */
 function route(){
   const id = new URLSearchParams(location.search).get("id");
   const gridView   = document.getElementById("gridView");
   const playerView = document.getElementById("playerView");
 
   if(id){
+    document.body.className = "player";
     gridView.classList.add("hidden");
     playerView.classList.remove("hidden");
     loadPlayer(id);
   } else {
+    document.body.className = "grid";
     playerView.classList.add("hidden");
     gridView.classList.remove("hidden");
     loadGrid();
-    setInterval(loadGrid, 60 * 1000); // auto-refresh only on grid
+    setInterval(loadGrid, 60 * 1000);
   }
 }
 

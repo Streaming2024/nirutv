@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DPlayer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="icon" href="https://player.style/favicon.ico">
+
+<!-- HLS + DPlayer -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#dplayer {
+    width: 100%;
+    height: 100%;
+}
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#startBtn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#countdown {
+    display: none;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+}
+
+#countNumber {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ff3333;
+    font-size: 40px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="dplayer"></div>
+
+<!-- Start Screen -->
+<div id="startScreen">
+    <div style="text-align:center;">
+        <button id="startBtn">▶ PLAY</button>
+
+        <div id="countdown">
+            Starting in<br>
+            <span id="countNumber">5</span>
+        </div>
+    </div>
+</div>
+
+<script>
+
+// Get stream URL
+function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+}
+
+const streamUrl = getParam("src");
+
+if (!streamUrl) {
+    document.body.innerHTML =
+        "<h2 style='color:white;text-align:center;margin-top:20%;'>No Stream Provided</h2>";
+
+    throw new Error("Missing src parameter");
+}
+
+// Player variables
+let dp = null;
+let started = false;
+let videoStarted = false;
+let refreshTimer = null;
+let countdownTimer = null;
+
+// Elements
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const countdownBox = document.getElementById("countdown");
+const countNumber = document.getElementById("countNumber");
+
+// Automatic refresh after 5 seconds
+function scheduleRefresh() {
+
+    if (refreshTimer) return;
+
+    console.log("Playback failed. Refreshing in 5 seconds...");
+
+    refreshTimer = setTimeout(() => {
+        location.reload();
+    }, 5000);
+}
+
+// Cancel automatic refresh
+function cancelRefresh() {
+
+    if (refreshTimer) {
+        clearTimeout(refreshTimer);
+        refreshTimer = null;
+    }
+}
+
+// Initialize DPlayer
+function initializePlayer() {
+
+    if (dp) {
+        dp.destroy();
+        dp = null;
+    }
+
+    videoStarted = false;
+
+    dp = new DPlayer({
+
+        container: document.getElementById("dplayer"),
+
+        autoplay: true,
+        live: true,
+        preload: "auto",
+        volume: 0.7,
+
+        video: {
+            url: streamUrl,
+            type: "hls"
+        },
+
+        lang: "en",
+        logo: "",
+
+        pluginOptions: {
+            hls: {
+                enableWorker: true,
+                lowLatencyMode: true
+            }
+        }
+    });
+
+    const video = dp.video;
+
+    // Video successfully playing
+    video.addEventListener("playing", () => {
+
+        videoStarted = true;
+
+        cancelRefresh();
+
+        console.log("Playback started successfully");
+
+    });
+
+    // Video error
+    video.addEventListener("error", () => {
+
+        scheduleRefresh();
+
+    });
+
+    // Stream stalled
+    video.addEventListener("stalled", () => {
+
+        scheduleRefresh();
+
+    });
+
+    // Stream ended unexpectedly
+    video.addEventListener("ended", () => {
+
+        scheduleRefresh();
+
+    });
+
+    // DPlayer error
+    dp.on("error", () => {
+
+        scheduleRefresh();
+
+    });
+
+    // Initial playback timeout
+    setTimeout(() => {
+
+        if (!videoStarted) {
+            scheduleRefresh();
+        }
+
+    }, 5000);
+
+}
+
+// Play button
+startBtn.addEventListener("click", () => {
+
+    if (started) return;
+
+    started = true;
+
+    startBtn.style.display = "none";
+    countdownBox.style.display = "block";
+
+    let seconds = 5;
+
+    countNumber.textContent = seconds;
+
+    countdownTimer = setInterval(() => {
+
+        seconds--;
+
+        countNumber.textContent = seconds;
+
+        if (seconds <= 0) {
+
+            clearInterval(countdownTimer);
+
+            startScreen.style.display = "none";
+
+            initializePlayer();
+
+        }
+
+    }, 1000);
+
+});
+
+</script>
+
+</body>
+</html>

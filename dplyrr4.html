@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DPlayer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="icon" href="https://player.style/favicon.ico">
+
+<!-- HLS + DPlayer -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+#dplayer {
+    width: 100%;
+    height: 100%;
+}
+
+#waitCountdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+#waitCountdown h2 {
+    margin: 0 0 15px;
+    font-weight: normal;
+}
+#waitCountdown .count {
+    font-size: 64px;
+    font-weight: bold;
+    color: #00e0ff;
+}
+</style>
+</head>
+
+<body>
+
+<div id="dplayer"></div>
+
+<!-- Wait countdown overlay -->
+<div id="waitCountdown">
+    <h2 id="waitTitle">Video not loaded yet...</h2>
+    <div class="count" id="countNum">5</div>
+    <h2>Auto refreshing...</h2>
+</div>
+
+<script>
+function getParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+const streamUrl = getParam("src");
+
+if(!streamUrl){
+    document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20%;'>No Stream Provided</h2>";
+    throw new Error("Missing src parameter");
+}
+
+const dp = new DPlayer({
+    container: document.getElementById('dplayer'),
+    autoplay: true,
+    live: true,
+    preload: "auto",
+    volume: 0.7,
+    video: {
+        url: streamUrl,
+        type: "hls"
+    },
+    lang: "en",
+    logo: "",
+    pluginOptions: {
+        hls: {
+            enableWorker: true,
+            lowLatencyMode: true
+        }
+    }
+});
+
+/* ---- Auto-refresh logic ---- */
+let videoLoaded = false;
+let countdownStarted = false;
+
+const waitOverlay = document.getElementById('waitCountdown');
+const countNum = document.getElementById('countNum');
+const waitTitle = document.getElementById('waitTitle');
+
+function startRefreshCountdown(titleText) {
+    if (countdownStarted || videoLoaded) return;
+    countdownStarted = true;
+
+    waitTitle.textContent = titleText;
+    waitOverlay.style.display = 'flex';
+
+    let remaining = 5;
+    countNum.textContent = remaining;
+
+    const countdown = setInterval(() => {
+        remaining--;
+        countNum.textContent = remaining;
+        if (remaining <= 0) {
+            clearInterval(countdown);
+            location.reload();
+        }
+    }, 1000);
+}
+
+// Video loaded successfully
+dp.on('loadedmetadata', () => {
+    videoLoaded = true;
+});
+
+dp.on('playing', () => {
+    videoLoaded = true;
+});
+
+// If user clicks play but load fails
+dp.on('play', () => {
+    // If still not loaded after user clicks play, wait and check
+    setTimeout(() => {
+        if (!videoLoaded && dp.video && dp.video.readyState === 0) {
+            startRefreshCountdown("Video load failed...");
+        }
+    }, 1000);
+});
+
+// DPlayer error event (e.g. "Video load failed")
+dp.on('error', () => {
+    if (!videoLoaded) {
+        startRefreshCountdown("Video load failed...");
+        return;
+    }
+    console.log("Stream error, retrying...");
+    setTimeout(() => {
+        dp.switchVideo({
+            url: streamUrl,
+            type: "hls"
+        });
+    }, 3000);
+});
+
+// Native video error event
+dp.video.addEventListener('error', () => {
+    if (!videoLoaded) {
+        startRefreshCountdown("Video load failed...");
+    }
+});
+
+// Initial check: if video doesn't load on its own
+setTimeout(() => {
+    if (!videoLoaded) {
+        startRefreshCountdown("Video not loaded yet...");
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

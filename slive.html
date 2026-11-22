@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Pro Player · Live Match</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Video.js base CSS -->
+  <link href="https://vjs.zencdn.net/7.21.5/video-js.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .player-wrapper {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-js {
+      position: relative !important;
+      width: min(100vw, 177.7778vh) !important;
+      height: auto !important;
+      aspect-ratio: 16 / 9 !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      margin: auto !important;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-js.vjs-fullscreen {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      max-height: none !important;
+      aspect-ratio: auto !important;
+    }
+
+    .video-js .vjs-tech {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: object-fit 0.25s ease;
+    }
+
+    .video-js .vjs-big-play-button {
+      display: none !important;
+    }
+
+    .vjs-custom-watermark {
+      position: absolute;
+      top: 15px;
+      left: auto;
+      right: auto;
+      width: 72px;
+      max-width: 78px;
+      min-width: 62px;
+      height: auto;
+      opacity: 0.85;
+      z-index: 20;
+      pointer-events: none;
+      user-select: none;
+      transition: width 0.2s ease, left 0.15s ease, top 0.15s ease;
+    }
+
+    .video-js .vjs-control-bar {
+      position: absolute !important;
+      left: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 48px !important;
+      padding: 0 6px !important;
+      display: flex !important;
+      align-items: center !important;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.90),
+        rgba(0,0,0,0.45),
+        transparent
+      ) !important;
+    }
+
+    .video-js .vjs-control {
+      flex: 0 0 38px !important;
+      width: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+      height: 38px !important;
+    }
+
+    .video-js .vjs-button {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+    }
+
+    .video-js .vjs-icon-placeholder:before {
+      font-size: 20px !important;
+      line-height: 38px !important;
+    }
+
+    .video-js .vjs-button:hover {
+      color: #ff0000 !important;
+    }
+
+    .video-js .vjs-volume-panel {
+      flex: 0 0 38px !important;
+      width: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+      height: 38px !important;
+      margin-right: auto !important;
+    }
+
+    .video-js .vjs-volume-panel .vjs-volume-control {
+      display: none !important;
+    }
+
+    .video-js .vjs-volume-level {
+      background: #ff0000 !important;
+    }
+
+    .video-js .vjs-slider {
+      background: rgba(255,255,255,0.3) !important;
+    }
+
+    .video-js .vjs-aspect-ratio-button {
+      flex: 0 0 38px !important;
+      width: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+    }
+
+    .video-js .vjs-aspect-ratio-button .vjs-icon-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .video-js .vjs-aspect-ratio-button i {
+      font-family: 'Material Icons Round';
+      font-size: 22px;
+      font-style: normal;
+      line-height: 38px;
+    }
+
+    .vjs-menu-button-popup .vjs-menu {
+      left: auto !important;
+      right: 0 !important;
+      margin-bottom: 8px !important;
+    }
+
+    .vjs-menu-content {
+      background: rgba(20,20,20,0.96) !important;
+      border-radius: 8px !important;
+      padding: 5px !important;
+    }
+
+    .vjs-menu-item {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 13px !important;
+      padding: 10px 20px !important;
+    }
+
+    .vjs-menu-item.vjs-selected {
+      background: #ff0000 !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+    }
+
+    .vjs-menu-item:hover {
+      background: rgba(255,255,255,0.1) !important;
+    }
+
+    .vjs-progress-control,
+    .vjs-current-time,
+    .vjs-time-divider,
+    .vjs-duration,
+    .vjs-remaining-time,
+    .vjs-live-control {
+      display: none !important;
+    }
+
+    .ratio-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 11px 23px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .ratio-toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Loading overlay */
+    .loader-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .loader-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255,255,255,0.15);
+      border-top: 4px solid #ff0000;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(20,20,20,0.95);
+      color: #fff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      z-index: 200;
+      text-align: center;
+      max-width: 90vw;
+      font-size: 15px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="player-wrapper">
+
+  <video
+    id="live-player"
+    class="video-js vjs-default-skin"
+    autoplay
+    muted
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    poster="https://dns-tv.pages.dev/logo/image.png">
+
+    <source src="" type="application/x-mpegURL">
+
+  </video>
+
+  <!-- Loading spinner -->
+  <div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error message container -->
+  <div id="error-msg" class="error-message"></div>
+
+</div>
+
+<div id="ratio-toast" class="ratio-toast">Original</div>
+
+<!-- Video.js core -->
+<script src="https://vjs.zencdn.net/7.21.5/video.min.js"></script>
+
+<!-- HLS quality selector plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.1.0/videojs-contrib-quality-levels.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.min.js"></script>
+
+<script>
+  (function() {
+    'use strict';
+
+    // ---------- CONFIG ----------
+    const JSON_URL = 'https://raw.githubusercontent.com/drmlive/sliv-live-events/refs/heads/main/sonyliv.json';
+    const WATERMARK_URL = 'https://dns-tv.pages.dev/logo/image.png';
+    const DEFAULT_POSTER = 'https://dns-tv.pages.dev/logo/image.png';
+
+    // ---------- DOM elements ----------
+    const videoEl = document.getElementById('live-player');
+    const loaderEl = document.getElementById('loader');
+    const errorEl = document.getElementById('error-msg');
+    const ratioToast = document.getElementById('ratio-toast');
+
+    // ---------- global variables ----------
+    let player = null;
+    let currentRatioIndex = 0;
+    let pauseTime = 0;
+    let ratioToastTimeout = null;
+    let watermarkObserver = null;
+    let watermarkImg = null;
+
+    // Aspect ratio modes
+    const ratioModes = [
+      { mode: 'contain', name: 'Original', icon: 'aspect_ratio' },
+      { mode: 'fill', name: 'Stretch', icon: 'settings_overscan' },
+      { mode: 'cover', name: 'Zoom (Fill)', icon: 'crop_free' }
+    ];
+
+    // ---------- Utility: show loader / error ----------
+    function showLoader(show) {
+      loaderEl.classList.toggle('active', show);
+    }
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.classList.add('show');
+      showLoader(false);
+    }
+
+    function hideError() {
+      errorEl.classList.remove('show');
+    }
+
+    // ---------- Get contentId from URL ----------
+    function getContentIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('contentId') || params.get('id') || null;
+    }
+
+    // ---------- Fetch JSON and find match by contentId ----------
+    async function fetchMatchData(contentId) {
+      if (!contentId) {
+        throw new Error('No contentId provided in URL. Use ?contentId=YOUR_ID');
+      }
+
+      showLoader(true);
+      hideError();
+
+      try {
+        const response = await fetch(JSON_URL, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Failed to load JSON (HTTP ${response.status})`);
+        }
+        const data = await response.json();
+
+        if (!data.matches || !Array.isArray(data.matches)) {
+          throw new Error('Invalid JSON structure: missing "matches" array.');
+        }
+
+        // Search for matching contentId (case-insensitive string comparison)
+        const targetId = String(contentId).trim().toLowerCase();
+        const match = data.matches.find(function(item) {
+          return String(item.contentId).trim().toLowerCase() === targetId;
+        });
+
+        if (!match) {
+          // Show available contentIds to help debugging
+          const available = data.matches
+            .filter(function(m) { return m.isLive === true; })
+            .map(function(m) { return m.contentId; })
+            .join(', ');
+          throw new Error(
+            `No match found for contentId "${contentId}".` +
+            (available ? ` Live IDs: ${available}` : '')
+          );
+        }
+
+        // Pick the best stream URL (prefer dai_url, then pub_url, then video_url)
+        const streamUrl = match.dai_url || match.pub_url || match.video_url;
+        if (!streamUrl) {
+          throw new Error('Match found but no stream URL available (dai_url / pub_url / video_url).');
+        }
+
+        // Return the match data with resolved stream url
+        return {
+          match: match,
+          streamUrl: streamUrl,
+          poster: match.src || DEFAULT_POSTER
+        };
+
+      } catch (err) {
+        showError(err.message);
+        throw err;
+      } finally {
+        showLoader(false);
+      }
+    }
+
+    // ---------- Initialize Video.js player ----------
+    function initPlayer(streamUrl, poster) {
+      // If player already exists, dispose it first
+      if (player) {
+        player.dispose();
+        player = null;
+      }
+
+      // Set the source on the video element
+      videoEl.src = streamUrl;
+      videoEl.poster = poster || DEFAULT_POSTER;
+
+      // Register custom AspectRatioButton component
+      const Button = videojs.getComponent('Button');
+
+      class AspectRatioButton extends Button {
+        constructor(player, options) {
+          super(player, options);
+          this.controlText('Change Aspect Ratio');
+          this.addClass('vjs-aspect-ratio-button');
+          this.updateIcon();
+        }
+
+        updateIcon() {
+          const placeholder = this.el().querySelector('.vjs-icon-placeholder');
+          if (placeholder) {
+            placeholder.innerHTML = '<i>' + ratioModes[currentRatioIndex].icon + '</i>';
+          }
+        }
+
+        handleClick() {
+          currentRatioIndex = (currentRatioIndex + 1) % ratioModes.length;
+          applyRatio();
+          this.updateIcon();
+          showRatioToast(ratioModes[currentRatioIndex].name);
+        }
+      }
+
+      videojs.registerComponent('AspectRatioButton', AspectRatioButton);
+
+      // Initialize player
+      player = videojs('live-player', {
+        controls: true,
+        autoplay: true,
+        muted: true,
+        html5: {
+          vhs: {
+            overrideNative: true,
+            allowCrossfileNaming: true
+          },
+          nativeVideoTracks: false,
+          nativeAudioTracks: false,
+          nativeTextTracks: false
+        },
+        inactivityTimeout: 3000,
+        controlBar: {
+          children: [
+            'playToggle',
+            'volumePanel',
+            'pictureInPictureToggle',
+            'AspectRatioButton',
+            'qualitySelector',
+            'fullscreenToggle'
+          ]
+        }
+      });
+
+      // Initialize HLS quality selector
+      if (typeof player.hlsQualitySelector === 'function') {
+        player.hlsQualitySelector({
+          displayCurrentQuality: true
+        });
+      }
+
+      // ---------- Watermark ----------
+      // Remove old watermark if exists
+      if (watermarkImg && watermarkImg.parentNode) {
+        watermarkImg.parentNode.removeChild(watermarkImg);
+      }
+
+      watermarkImg = document.createElement('img');
+      watermarkImg.src = WATERMARK_URL;
+      watermarkImg.className = 'vjs-custom-watermark';
+      watermarkImg.alt = 'CricFlixs';
+      watermarkImg.draggable = false;
+      player.el().appendChild(watermarkImg);
+
+      // ---------- Toast helper ----------
+      window.showRatioToast = function(message) {
+        ratioToast.innerText = message;
+        ratioToast.classList.add('show');
+        clearTimeout(ratioToastTimeout);
+        ratioToastTimeout = setTimeout(function() {
+          ratioToast.classList.remove('show');
+        }, 1500);
+      };
+
+      // ---------- Apply aspect ratio to video element ----------
+      window.applyRatio = function() {
+        const videoElement = player.el().querySelector('video');
+        if (!videoElement) return;
+        videoElement.style.objectFit = ratioModes[currentRatioIndex].mode;
+        updateWatermark();
+      };
+
+      // ---------- Update watermark position based on current mode ----------
+      function updateWatermark() {
+        const videoElement = player.el().querySelector('video');
+        if (!videoElement || !watermarkImg) return;
+
+        const cw = player.el().clientWidth;
+        const ch = player.el().clientHeight;
+
+        const vw = videoElement.videoWidth || 16;
+        const vh = videoElement.videoHeight || 9;
+
+        const mode = ratioModes[currentRatioIndex].mode;
+
+        let left = 0;
+        let top = 0;
+        let width = cw;
+        let height = ch;
+
+        if (mode === 'contain') {
+          const sourceRatio = vw / vh;
+          const boxRatio = cw / ch;
+
+          if (sourceRatio > boxRatio) {
+            height = cw / sourceRatio;
+            top = (ch - height) / 2;
+          } else {
+            width = ch * sourceRatio;
+            left = (cw - width) / 2;
+          }
+        }
+
+        const size = Math.min(
+          78,
+          Math.max(
+            64,
+            Math.round(Math.min(width, height) * 0.075)
+          )
+        );
+
+        const gap = Math.max(
+          14,
+          Math.min(
+            22,
+            Math.round(Math.min(width, height) * 0.02)
+          )
+        );
+
+        watermarkImg.style.width = size + 'px';
+        watermarkImg.style.left = (left + width - size - gap) + 'px';
+        watermarkImg.style.right = 'auto';
+        watermarkImg.style.top = (top + gap - 10) + 'px';
+      }
+
+      // Expose for external calls
+      window.updateWatermark = updateWatermark;
+
+      // ---------- Event listeners for watermark & ratio ----------
+      player.on('loadedmetadata', updateWatermark);
+      player.on('loadeddata', updateWatermark);
+      player.on('canplay', updateWatermark);
+      player.on('playerresize', updateWatermark);
+      player.on('resize', updateWatermark);
+
+      player.on('fullscreenchange', function() {
+        setTimeout(updateWatermark, 150);
+        if (player.isFullscreen()) {
+          if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape').catch(function() {});
+          }
+        } else {
+          if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+          }
+        }
+      });
+
+      window.addEventListener('resize', function() {
+        setTimeout(updateWatermark, 150);
+      });
+
+      window.addEventListener('orientationchange', function() {
+        setTimeout(updateWatermark, 150);
+      });
+
+      const nativeVideo = player.el().querySelector('video');
+      if (nativeVideo) {
+        nativeVideo.addEventListener('resize', updateWatermark);
+      }
+
+      // ResizeObserver for container
+      if (window.ResizeObserver) {
+        if (watermarkObserver) {
+          watermarkObserver.disconnect();
+        }
+        watermarkObserver = new ResizeObserver(function() {
+          updateWatermark();
+        });
+        watermarkObserver.observe(player.el());
+      }
+
+      // ---------- Pause / play handling for live recovery ----------
+      player.on('pause', function() {
+        if (!player.ended()) {
+          pauseTime = Date.now();
+        }
+      });
+
+      player.on('play', function() {
+        if (pauseTime > 0) {
+          const timePaused = Date.now() - pauseTime;
+          if (timePaused > 10000) {
+            const currentSource = player.currentSource();
+            if (currentSource && currentSource.src) {
+              player.src(currentSource);
+              player.play().catch(function() {});
+            }
+          } else if (player.liveTracker && player.liveTracker.isLive()) {
+            player.liveTracker.seekToLiveEdge();
+          }
+          pauseTime = 0;
+        }
+      });
+
+      // ---------- Ready handler ----------
+      player.ready(function() {
+        applyRatio();
+        updateWatermark();
+        player.play().catch(function() {});
+      });
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function() {
+        if (watermarkObserver) {
+          watermarkObserver.disconnect();
+        }
+      });
+
+      // Ensure the initial source gets loaded properly
+      player.src({ src: streamUrl, type: 'application/x-mpegURL' });
+    }
+
+    // ---------- Main entry point ----------
+    async function main() {
+      const contentId = getContentIdFromUrl();
+      if (!contentId) {
+        showError('Missing contentId parameter. Append ?contentId=YOUR_ID to the URL.');
+        return;
+      }
+
+      try {
+        const { streamUrl, poster } = await fetchMatchData(contentId);
+        initPlayer(streamUrl, poster);
+      } catch (err) {
+        // error already displayed by fetchMatchData
+        console.error('Initialization failed:', err);
+      }
+    }
+
+    // Start everything when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', main);
+    } else {
+      main();
+    }
+
+  })();
+</script>
+
+</body>
+</html>

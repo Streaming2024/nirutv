@@ -332,7 +332,7 @@
   const errorEl = document.getElementById('error-msg');
   const ratioToast = document.getElementById('ratio-toast');
 
-  // ===== Globals (same as your working player) =====
+  // ===== Globals =====
   const ratioModes = [
     { mode: 'contain', name: 'Original', icon: 'aspect_ratio' },
     { mode: 'fill',    name: 'Stretch',  icon: 'settings_overscan' },
@@ -392,9 +392,11 @@
         );
       }
 
+      // Prefer dai_url, then pub_url, then video_url
       const streamUrl = match.dai_url || match.pub_url || match.video_url;
       if (!streamUrl) throw new Error('Match found but no stream URL available.');
 
+      // Also return poster (src) from the match data
       return { match, streamUrl, poster: match.src || DEFAULT_POSTER };
     } catch (err) {
       showError(err.message);
@@ -404,7 +406,7 @@
     }
   }
 
-  // ===== Custom AspectRatioButton (exactly as in your working player) =====
+  // ===== Custom AspectRatioButton =====
   const Button = videojs.getComponent('Button');
   class AspectRatioButton extends Button {
     constructor(player, options) {
@@ -426,7 +428,7 @@
   }
   videojs.registerComponent('AspectRatioButton', AspectRatioButton);
 
-  // ===== Watermark & ratio functions (same logic) =====
+  // ===== Watermark & ratio =====
   function updateWatermark() {
     const videoElement = player.el().querySelector('video');
     if (!videoElement || !watermarkImg) return;
@@ -467,27 +469,27 @@
     updateWatermark();
   }
 
-  // ===== Init player with a given stream URL =====
+  // ===== Init player with stream URL =====
   function initPlayer(streamUrl, poster) {
-    // Dispose any previous player instance
+    // Dispose any previous player
     if (player) {
       player.dispose();
       player = null;
     }
 
-    // Reset ratio mode
+    // Reset ratio
     currentRatioIndex = 0;
 
-    // Set source on the <video> element before creating player
+    // --- CRITICAL: Set the source and poster on the <video> element BEFORE creating player ---
     videoEl.src = streamUrl;
     videoEl.poster = poster || DEFAULT_POSTER;
 
-    // Remove old watermark
+    // Remove old watermark if exists
     if (watermarkImg && watermarkImg.parentNode) {
       watermarkImg.parentNode.removeChild(watermarkImg);
     }
 
-    // Create player – exactly your working config
+    // Create player
     player = videojs('live-player', {
       controls: true,
       autoplay: true,
@@ -527,7 +529,7 @@
     watermarkImg.draggable = false;
     player.el().appendChild(watermarkImg);
 
-    // Watermark listeners (same as your working player)
+    // Watermark listeners
     player.on('loadedmetadata', updateWatermark);
     player.on('loadeddata', updateWatermark);
     player.on('canplay', updateWatermark);
@@ -559,7 +561,7 @@
       watermarkObserver.observe(player.el());
     }
 
-    // Pause/play live recovery (same as your working player)
+    // Pause/play live recovery
     player.on('pause', function () {
       if (!player.ended()) pauseTime = Date.now();
     });
@@ -583,6 +585,7 @@
     player.ready(function () {
       applyRatio();
       updateWatermark();
+      // Explicitly play after ready
       player.play().catch(() => {});
     });
 
@@ -590,7 +593,8 @@
       if (watermarkObserver) watermarkObserver.disconnect();
     });
 
-    // Ensure source is loaded
+    // --- CRITICAL: Use player.src() with the full URL ---
+    // This ensures Video.js uses the correct M3U8 URL with all query parameters
     player.src({ src: streamUrl, type: 'application/x-mpegURL' });
   }
 
@@ -604,6 +608,9 @@
 
     try {
       const { streamUrl, poster } = await fetchMatchData(contentId);
+      // Log for debugging
+      console.log('Playing stream:', streamUrl);
+      console.log('Poster:', poster);
       initPlayer(streamUrl, poster);
     } catch (err) {
       console.error('Init failed:', err);
